@@ -8,7 +8,7 @@
 
 ["Build a Super-Simple Tasker"](Super-Simple-Tasker.pdf) was
 a cover story article published originally in
-[Embedded Systems Design](https://www.embedded.com/build-a-super-simple-tasker)
+[Embedded Systems Design](https://www.embedded.com/embedded-systems-design-july-2006)
 magazine in July 2006. This repository contains the article PDF and the updated code.
 
 
