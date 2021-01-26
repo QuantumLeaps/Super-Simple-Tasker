@@ -1,5 +1,8 @@
-[![Build a Super-Simple Tasker Article](img/thumbnail.jpg)](Super-Simple-Tasker.pdf)
+## Brought to you by:
+[![Quantum Leaps](https://www.state-machine.com/attachments/logo_ql_400.png)](https://www.state-machine.com)
 
+---------------------------------------------------------------------
+[![Build a Super-Simple Tasker Article](img/thumbnail.jpg)](Super-Simple-Tasker.pdf)
 
 # Build a Super Simple Tasker
 
@@ -8,14 +11,14 @@
 
 ["Build a Super-Simple Tasker"](Super-Simple-Tasker.pdf) was
 a cover story article published originally in
-[Embedded Systems Design](https://www.embedded.com/build-a-super-simple-tasker)
+[Embedded Systems Design](https://www.embedded.com/embedded-systems-design-july-2006)
 magazine in July 2006. This repository contains the article PDF and the updated code.
 
 
 # Licensing
 The SST source code and examples are released under the terms of the GNU
 General Public License version 2 (GPL) as published by the Free Software
-Foundation and appearing in the file LICENSE included in this repository.
+Foundation and appearing in the file [LICENSE](LICENSE) included in this repository.
 Please note that GPL Section 2[b] requires that all works based on this
 software must also be made publicly available under the terms of the GPL
 ("Copyleft").
@@ -56,8 +59,8 @@ The <sst> code repository the following subdirectories and files:
     +-sst.c          - platform-independent SST implementation
 ```
 
-# Running the SST Example
 
+# Running the SST Example
 ![SST Running in DOS Window](img/fig05.gif)
 
 The executable file for the SST example is provided in
@@ -120,7 +123,7 @@ program and follow the installation instructions.
 Miro Samek<br>
 April 24, 2006
 
--------------------------------------------------------------------------------
+
 # Updates and Support for Modern Microcontrollers
 As described in the article, SST-type kernel is ideal for deterministic
 Run-To-Completion (RTC) execution of concurrent state machines. The website
