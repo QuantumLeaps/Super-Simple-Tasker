@@ -1,136 +1,181 @@
 ## Brought to you by:
 [![Quantum Leaps](https://www.state-machine.com/attachments/logo_ql_400.png)](https://www.state-machine.com)
+<hr>
 
----------------------------------------------------------------------
-[![Build a Super-Simple Tasker Article](img/thumbnail.jpg)](Super-Simple-Tasker.pdf)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/QuantumLeaps/Super-Simple-Tasker)](https://github.com/QuantumLeaps/ET/releases/latest)
+[![GitHub](https://img.shields.io/github/license/QuantumLeaps/Super-Simple-Tasker)](https://github.com/QuantumLeaps/Super-Simple-Tasker/blob/master/LICENSE.md)
 
-# Build a Super Simple Tasker
+# Super-Simple Tasker (SST)
+Super-Simple Tasker (SST) is an event-driven, preemptive, priority-based
+real-time operating system (RTOS) kernel that is fully compatible with
+the requirements of
+[Rate Monotonic Analysis/Scheduling (RMA/RMS)](https://youtu.be/kLxxXNCrY60).
 
-## Miro Samek and Robert Ward
-## July, 2006
+<p align="center"><img src="img/logo_sst_c-cpp.png"/></p>
 
-["Build a Super-Simple Tasker"](Super-Simple-Tasker.pdf) was
-a cover story article published originally in
-[Embedded Systems Design](https://www.embedded.com/embedded-systems-design-july-2006)
-magazine in July 2006. This repository contains the article PDF and the updated code.
+The tasks in SST are non-blocking and run-to-completion, which are also known
+as **basic tasks** in the
+[OSEK/VDX Operating System Specification](https://www.irisa.fr/alf/downloads/puaut/TPNXT/images/os223.pdf). SST corresponds to the BCC2 conformance class in OSEK/VDX.
+SST provides the following features:
+- basic tasks (non-blocking, run-to-completion)
+- preemptive, priority-based scheduling
+- multiple tasks per prioriy level
+- multiple "activations" per task (event queues)
 
+> **NOTE**<br>
+The execution profile of SST tasks perfectly matches the non-blocking and
+run-to-completion semantics of event-driven state machines
+(a.k.a. ["Active Objects" or "Actors](https://www.state-machine.com/active-object)).
+
+This repository contains the SST following implementations:
+- [preemptvie SST in C](sst_c)
+- [preemptvie SST in C++](sst_cpp)
+
+Additionally, this repository contains the even simpler, *non-preemptive*
+implementation of basic tasks called [SST0](#non-preemptive-sst0):
+- [non-preemptvie SST0 in C](sst0_c)
+- [non-preemptvie SST0 in C++](sst0_cpp)
+
+
+> **NOTE**<br>
+The preemptive SST and non-preemptive SST0 implement actually *the same*
+[SST API](https://github.com/QuantumLeaps/Super-Simple-Tasker/tree/main/include)
+(either in C or C++).
+
+## Hardware RTOS for ARM Cortex-M
+[SST for ARM Cortex-M](sst_c/ports/arm-cm) provides a unique
+**hardware implementation** of SST for ARM Cortex-M (M0, M0+, M3,
+M4, M7, M23, M33). The SST "hardware RTOS" for ARM Cortex-M is fully
+compatible with the requirements of
+[Rate Monotonic Analysis/Scheduling (RMA/RMS)](https://youtu.be/kLxxXNCrY60).
+
+<p align="center"><img src="img/logo_sst-arm-cm.png"/></p>
+
+> **NOTE**<br>
+The SST hardware implementation is likely the most performant and efficient
+**hard-real time RTOS** kernel for ARM Cortex-M.
+
+
+# SST History
+SST has been originally published as a cover-story article
+["Build a Super-Simple Tasker"](legacy/Super-Simple-Tasker.pdf) in the
+Embedded Systems Design magazine in
+[July 2006](https://www.embedded.com/embedded-systems-design-july-2006).
+That original version of SST (now called "Legacy SST") is
+[still available](legacy) and is provided for historical reference.
+
+Over the years, more complete SST-like kernels have been developed
+for a number of embedded processors, such as: ARM Cortex-M (M0-M7),
+MSP430, PIC24/dsPIC, PIC32, etc. Examples include:
+[QP Real-Time Embedded Frameworks](https://www.state-machine.com/products/qp)
+
+- [QK](https://www.state-machine.com/qpc/srs_qk.html),
+which  works like SST and is available as one of the built-in kernels in the
+[QP Real-Time Embedded Frameworks (RTEFs)](https://www.state-machine.com/products/qp).
+
+- [QXK](https://www.state-machine.com/qpc/srs_qxk.html),
+which combines the basic-tasks of SST with traditional blocking tasks (a.k.a.
+**extended tasks** in OSEK/VDX) and is available as one of the
+built-in kernels in the
+[QP Real-Time Embedded Frameworks (RTEFs)](https://www.state-machine.com/products/qp)
+
+- [QV](https://www.state-machine.com/qpc/srs_qv.html),
+which works like [SST0](#non-preemptive-sst0) and is available as one
+of the built-in kernels in the
+[QP Real-Time Embedded Frameworks (RTEFs)](https://www.state-machine.com/products)
+
+
+# Non-Preemptive SST0
+This repository contains also the non-preemptive implementation of the
+SST API, called **SST0**. SST0 is also a **priority-based
+RTOS kernel**, but the scheduling is non-preemptive. SST0 scheduler always
+executes the higest-priority basic task ready to run, but the scheduling
+is performed only after every the completion of the task (run-to-completion
+execution).
+
+<p align="center"><img src="img/logo_sst0-chip.png"/></p>
+
+SST0 provides the following features:
+- basic tasks (non-blocking, run-to-completion)
+- priority-based, non-preemptive, cooperative scheduling
+- only one task per prioriy level
+- multiple "activations" per task (event queues)
+
+
+# Getting Started / Examples
+The best way to get started with SST is to build and run the provided
+**examples**. This repository contains several versions of the
+**"blinky-button" example**, which contains several SST tasks running
+concurrently and communicating with each other. The "blinky-button" example
+demonstrates **real-time** capabilities of SST and uses a logic analyzer.
+(REMARK: Logic analyzer is not necessary to build and run the examples.)
+
+<p align="center"><img src="img/blinky_button.png"/></p>
+
+The "blinky-button" example is provided for:
+```c
+Super-Simple-Tasker/
+|
++---sst_c/                     // preemptive SST/C
+|   +----examples/             // examples for SST/C
+|   |    +----blinky_button/   // "blinky-button" example
+|   |    |    +----armclang/   // project for ARM/KEIL
+|   |    |    +----gnu/        // makefile for GNU-ARM
+|   |    |    +----iar/        // project for IAR EWARM
+|
++---sst_c/                     // preemptive SST/C++
+|   +----examples/             // examples for SST/C++
+|   |    +----blinky_button/   // "blinky-button" example
+|   |    |    +----armclang/   // project for ARM/KEIL
+|   |    |    +----gnu/        // makefile for GNU-ARM
+|   |    |    +----iar/        // project for IAR EWARM
+|
++---sst0_c/                    // non-preemptive SST0/C
+|   +----examples/             // examples for SST0/C
+|   |    +----blinky_button/   // "blinky-button" example
+|   |    |    +----armclang/   // project for ARM/KEIL
+|   |    |    +----gnu/        // makefile for GNU-ARM
+|   |    |    +----iar/        // project for IAR EWARM
+|
++---sst0_cpp/                  // non-preemptive SST0/C++
+|   +----examples/             // examples for SST0/C++
+|   |    +----blinky_button/   // "blinky-button" example
+|   |    |    +----armclang/   // project for ARM/KEIL
+|   |    |    +----gnu/        // makefile for GNU-ARM
+|   |    |    +----iar/        // project for IAR EWARM
+|
+```
+For **every** of these cases the examples are built for the following
+embedded boards:
+
+<p align="center"><img src="img/bd-nucleos.png"/></p>
+
+- **STM32 NUCLEO-L053R8** (ARM Cortex-M0+)
+- **STM32 NUCLEO-H743ZI** (ARM Cortex-M7 with double-precision FPU)
 
 # Licensing
-The SST source code and examples are released under the terms of the GNU
-General Public License version 2 (GPL) as published by the Free Software
-Foundation and appearing in the file [LICENSE](LICENSE) included in this repository.
-Please note that GPL Section 2[b] requires that all works based on this
-software must also be made publicly available under the terms of the GPL
-("Copyleft").
+The SST source code and examples are released under the terms of the
+permissive [MIT open source license](LICENSE). Please note that the
+attribution clause in the MIT license requires you to preserve the
+original copyright notice in all changes and derivate works.
 
 
-# Files and Directories
-The <sst> code repository the following subdirectories and files:
-
-```
-<sst>\
-  |
-  +-README.md        - this file
-  |
-  +-LICENSE          - the GNU General Public License
-  |
-  +-example\         - subdirectory containing the SST example files
-  | |
-  | +-bin\           - contains .OBJ, .EXE, and .MAP files
-  | +-bsp.c          - Board Support Package for DOS/Turbo C++ 1.01
-  | +-bsp.h          - BSP header file
-  | +-kbd_task.c     - The keyboard task function
-  | +-main.c         - The main function
-  | +-sst_exa.h      - The header file for the SST example application
-  | +-sst_exa.prj    - The Turbo C++ project file for building and
-  | |                  debugging the SST example application from the
-  | |                  Turbo C++ IDE
-  | +-sst_port.h     - SST port to DOS/Turbo C++ 1.01
-  | +-stdint.h       - The C99 standard exact-width integer types
-  | |                  for the Turbo C++ 1.01, which is a pre-standard
-  | |                  compiler. You could copy this file to the
-  | |                  Turbo C++ include directory.
-  | +-tick_tsk.c     - The two tick tasks (tickTaskA and tickTaskB)
-  |
-  +-include\         - subdirectory containing the SST public interface
-  | +-sst.h          - The platform-independent SST header file
-  |
-  +-source\          - subdirectory containing the SST implementation
-    +-sst.c          - platform-independent SST implementation
-```
+# Invitation to Collaborate
+**This project welcomes collaboration!** Please help to improve SST,
+port it to other processors, integrate it with other embedded software,
+add interesting examples, etc. To avoid fragmentation, this repository is
+intended to remain the home of SST. To contribute, please clone, fork,
+and submit **pull requests** to incorporate your changes.
 
 
-# Running the SST Example
-![SST Running in DOS Window](img/fig05.gif)
+# How to Help this Project?
+If you like this project, please **spread the word** about SST on various
+forums, social media, and other venues frequented by embedded folks!
 
-The executable file for the SST example is provided in
-<sst>\example\bin\sst_exa.exe. You can run this executable on a
-Windows-based PC in a DOS emulator (e.g. DOSBox DOS emulator).
+<p align="center"><img src="img/spread-the-word.jpg"/></p>
 
-> NOTE: The legacy DOS platform has been chosen for demonstrating SST, because
-it still allows programming with interrupts, directly manipulating CPU registers,
-and directly accessing I/O space of the processor (required for writing the EOI
-command to the 8259A interrupt controller). No other modern desktop development
-environment for the commodity PC allows this much so easily. The ubiquitous PC
-running under DOS (or a DOS emulator within any variant of Windows) is capable
-of demonstrating most key embedded features of SST.
+Also, please give [this repository](https://github.com/QuantumLeaps/Super-Simple-Tasker)
+a star (in the upper-right corner of your browser window)
 
-The example program takes one command-line argument, which is the number of
-iterations through a delay loop peppered throughout the application code.
-The purpose of this delay is to extend the run-to-completion processing
-(which is really short on the fast modern PCs), and thus increase the probability
-of asynchronous preemptions. We’ve been using a typical value of this delay
-around 10000 on a modern 2GHz PC, which corresponds to the following invocation
-of the SST example application:
+<p align="center"><img src="img/github-star.jpg"/></p>
 
-`sst_exa.exe 10000`
-
-As described in the article, you should not go overboard with this parameter
-because you can eventually overload the machine, and the SST will start losing
-events (the queues will overflow and won’t accept new events).
-
-Once the application starts running, you can generate asynchronous preemptions
-by typing on the keyboard. The keyboard interrupt is asynchronous with respect
-to the periodic time-tick interrupt and consequently the keyboard interrupt
-can preempt the time tick tasks (that run just after the tick interrupt), and
-the time tick interrupt can preempt the keyboard task (that runs just after
-the keyboard interrupt). Moreover, the interrupts can also preempt each other.
-Please note, however, that the tick ISR has the highest priority, and
-consequently the Programmable Interrupt Controller (the 8259A chip) will not
-allow in hardware that the lower-priority keyboard ISR preempts the
-highest-priority tick ISR. The only allowed interrupt preemption is that tick
-ISR preempts the keyboard ISR. You should verify this by observing the
-“Preemptions” column of the application display.
-
-After typing for a while on the keyboard, you should see some cases of the
-asynchronous preemption in the “Preemptions” column. The synchronous
-preemptions are not displayed, but they occur every time a keyboard task posts
-an event to the higher-priority tickTaskB(). On the other hand, the
-synchronous preemption does not occur when the keyboard task posts an event to
-the lower-priority tickTaskA().
-
-
-# Legacy DOS Compiler
-In order to modify and recompile the example, you need to download and install
-a legacy DOS compiler, such as Turbo C++ 1.01, which is available for a free download
-from the Borland Museum at
-http://bdn.borland.com/article/0,1410,21751,00.html.
-
-To install Borland Turbo C++ 1.01, download the file TCPP101.ZIP from the
-Borland Museum and unzip it into a temporary directory. Run the INSTALL.EXE
-program and follow the installation instructions.
-
-Miro Samek<br>
-April 24, 2006
-
-
-# Updates and Support for Modern Microcontrollers
-As described in the article, SST-type kernel is ideal for deterministic
-Run-To-Completion (RTC) execution of concurrent state machines. The website
-https://www.state-machine.com provides an implementation of the RTC kernel, called
-**QK** ("Quantum Kernel") that works exactly like SST and only differs in the way it
-is integrated with the [QP Real-Time Embedded Frameworks (RTEFs)](https://www.state-machine.com/products).
-QK has been ported to many embedded CPUs, such as: **ARM Cortex-M** (M0-M7), MSP430, PIC24/dsPIC, PIC32, etc.
-
-<br>
-October 14, 2011

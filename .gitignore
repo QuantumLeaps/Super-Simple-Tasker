@@ -12,21 +12,15 @@
 *.map
 *.exp
 
-# Precompiled Headers
-*.gch
-*.pch
+# uVision temporaries
+*.uvguix.*
+*.htm
+*.lnp
+*.sct
+Debug*/
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# IAR temporaries
+*.dep
 
 # Executables
 *.exe
@@ -50,3 +44,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# test directories
+test_priv/

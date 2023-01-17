@@ -1,73 +1,128 @@
-/*****************************************************************************
-* SST platform-independent public interface
+/*===========================================================================
+* Super-Simple Tasker (SST/C) API
 *
-* Copyright (C) 2006 Miro Samek and Robert Ward. All rights reserved.
+* Copyright (C) 2005-2023 Quantum Leaps, <state-machine.com>.
 *
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
+* SPDX-License-Identifier: MIT
 *
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
+* Permission is hereby granted, free of charge, to any person obtaining a
+* copy of this software and associated documentation files (the "Software"),
+* to deal in the Software without restriction, including without limitation
+* the rights to use, copy, modify, merge, publish, distribute, sublicense,
+* and/or sell copies of the Software, and to permit persons to whom the
+* Software is furnished to do so, subject to the following conditions:
 *
-* You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <www.gnu.org/licenses>.
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
 *
-* Contact information:
-* Email:    miro@quantum-leaps.com
-* Internet: www.quantum-leaps.com
-*****************************************************************************/
-#ifndef sst_h
-#define sst_h
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+* THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+* FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+* DEALINGS IN THE SOFTWARE.
+===========================================================================*/
+#ifndef SST_H_
+#define SST_H_
 
-#include <stdint.h>                 /* exact-width integer types, ANSI C'99 */
+#include <stdint.h>   /* standard C99 integer types */
+#include "sst_port.h" /* SST port for specific CPU */
 
-typedef uint8_t SSTSignal;
-typedef uint8_t SSTParam;
+/* SST Event facilities ----------------------------------------------------*/
+/*! signal of SST event */
+typedef uint16_t SST_Signal;
 
-typedef struct SSTEventTag SSTEvent;
-struct SSTEventTag {
-    SSTSignal sig;
-    SSTParam  par;
+/*! SST event class */
+typedef struct {
+    SST_Signal sig;
+} SST_Evt;
+
+/*! macro for downcasting SST events to specific Evt "subclasses" */
+#define SST_EVT_DOWNCAST(EVT_, e_) ((EVT_ const *)(e_))
+
+/* SST Task facilities -----------------------------------------------------*/
+typedef struct SST_Task SST_Task; /* forward declaration */
+
+/*! SST Task priority */
+typedef uint8_t SST_TaskPrio;
+
+/*! SST internal event-queue counter */
+typedef uint8_t SST_QCtr;
+
+/*! generic handler signature */
+typedef void (*SST_Handler)(SST_Task * const me, SST_Evt const * const e);
+
+/*! SST task (a.k.a. "Active Object") */
+struct SST_Task {
+    SST_Handler init;
+    SST_Handler dispatch;
+
+    SST_Evt const **qBuf; /*!< ring buffer for the queue */
+    SST_QCtr end;   /*!< last index into the ring buffer */
+    SST_QCtr head;  /*!< index for inserting events */
+    SST_QCtr tail;  /*!< index for removing events */
+    SST_QCtr nUsed; /*!< # used entries currently in the queue */
+
+#ifdef SST_PORT_TASK_ATTR
+    SST_PORT_TASK_ATTR
+#endif
 };
 
-typedef void (*SSTTask)(SSTEvent e);
+void SST_Task_ctor(
+    SST_Task * const me,
+    SST_Handler init,
+    SST_Handler dispatch);
 
+void SST_Task_start(
+    SST_Task * const me,
+    SST_TaskPrio prio,
+    SST_Evt const **qBuf, SST_QCtr qLen,
+    SST_Evt const * const ie);
+
+void SST_Task_post(SST_Task * const me, SST_Evt const * const e);
+
+int  SST_Task_run(void); /* run SST tasks static */
+
+#ifdef SST_PORT_TASK_OPER
+    /* additional Task operations needed by the specific SST port */
+    SST_PORT_TASK_OPER
+#endif
+
+/* SST Kernel facilities ---------------------------------------------------*/
 void SST_init(void);
-void SST_task(SSTTask task, uint8_t prio, SSTEvent *queue, uint8_t qlen,
-              SSTSignal sig, SSTParam  par);
-void SST_start(void);
-void SST_run(void);
-void SST_onIdle(void);
-void SST_exit(void);
+void SST_onStart(void);
 
-uint8_t SST_post(uint8_t prio, SSTSignal sig, SSTParam  par);
+#ifndef SST_LOG2
+static inline uint_fast8_t SST_LOG2(uint32_t x) {
+    static uint8_t const log2LUT[16] = {
+        0U, 1U, 2U, 2U, 3U, 3U, 3U, 3U,
+        4U, 4U, 4U, 4U, 4U, 4U, 4U, 4U
+    };
+    uint_fast8_t n = 0U;
+    SST_ReadySet tmp;
 
-uint8_t SST_mutexLock(uint8_t prioCeiling);
-void SST_mutexUnlock(uint8_t orgPrio);
+    #if (SST_PORT_MAX_TASK > 16U)
+    tmp = (SST_ReadySet)(x >> 16U);
+    if (tmp != 0U) {
+        n += 16U;
+        x = tmp;
+    }
+    #endif
+    #if (SST_PORT_MAX_TASK > 8U)
+    tmp = (x >> 8U);
+    if (tmp != 0U) {
+        n += 8U;
+        x = tmp;
+    }
+    #endif
+    tmp = (x >> 4U);
+    if (tmp != 0U) {
+        n += 4U;
+        x = tmp;
+    }
+    return n + log2LUT[x];
+}
+#endif
 
-void SST_schedule_(void);
-
-                                            /* SST interrupt entry and exit */
-#define SST_ISR_ENTRY(pin_, isrPrio_) do { \
-    (pin_) = SST_currPrio_; \
-    SST_currPrio_ = (isrPrio_); \
-    SST_INT_UNLOCK(); \
-} while (0)
-
-#define SST_ISR_EXIT(pin_, EOI_command_) do { \
-    SST_INT_LOCK(); \
-    (EOI_command_); \
-    SST_currPrio_ = (pin_); \
-    SST_schedule_(); \
-} while (0)
-
-
-/* public-scope objects */
-extern uint8_t SST_currPrio_;     /* current priority of the executing task */
-extern uint8_t SST_readySet_;                              /* SST ready-set */
-
-#endif                                                             /* sst_h */
+#endif /* SST_H_ */
