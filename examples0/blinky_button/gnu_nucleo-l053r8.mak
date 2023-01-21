@@ -1,5 +1,5 @@
 ##############################################################################
-# Makefile for SST (Super-Simple Tasker) on NUCLEO-L053R8, GNU-ARM
+# Makefile for SST0 (Super-Simple Tasker 0) on NUCLEO-L053R8, GNU-ARM
 # Last Updated for Version: 2.0.0
 # Date of the Last Update:  2023-01-15
 #
@@ -49,8 +49,8 @@ TARGET  := nucleo-l053r8
 # project directories
 #
 SST_INC_DIR  := ../../include
-SST_SRC_DIR  := ../../src
-SST_PORT_DIR := ../../ports/arm-cm
+SST_SRC_DIR  := ../../src0
+SST_PORT_DIR := ../../ports0/arm-cm
 TARGET_DIR   := ../../targets/$(TARGET)
 
 # list of all source directories used by this project
@@ -81,8 +81,7 @@ C_SRCS := \
 	button2a.c \
 	button2b.c \
 	bsp_nucleo-l053r8.c \
-	sst.c \
-	sst_port.c \
+	sst0.c \
 	system_stm32l0xx.c \
 	startup_stm32l053xx.c
 

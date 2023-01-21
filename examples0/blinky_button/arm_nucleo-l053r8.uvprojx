@@ -339,7 +339,7 @@
               <MiscControls>-Wno-padded</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.;..\..\include;..\..\ports\arm-cm;..\..\targets\nucleo-l053r8</IncludePath>
+              <IncludePath>.;..\..\include;..\..\ports0\arm-cm;..\..\targets\nucleo-l053r8</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -456,27 +456,22 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>sst</GroupName>
+          <GroupName>sst0</GroupName>
           <Files>
             <File>
-              <FileName>sst.c</FileName>
+              <FileName>sst0.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\sst.c</FilePath>
+              <FilePath>..\..\src0\sst0.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>sst_port</GroupName>
+          <GroupName>sst0_port</GroupName>
           <Files>
-            <File>
-              <FileName>sst_port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\ports\arm-cm\sst_port.c</FilePath>
-            </File>
             <File>
               <FileName>sst_port.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\ports\arm-cm\sst_port.h</FilePath>
+              <FilePath>..\..\ports0\arm-cm\sst_port.h</FilePath>
             </File>
           </Files>
         </Group>

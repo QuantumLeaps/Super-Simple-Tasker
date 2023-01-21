@@ -32,6 +32,7 @@ Q_DEFINE_THIS_MODULE("sst_port")
 #define NVIC_EN      ((uint32_t volatile *)0xE000E100U)
 #define NVIC_IP      ((uint32_t volatile *)0xE000E400U)
 #define SCB_SYSPRI   ((uint32_t volatile *)0xE000ED14U)
+#define FPU_FPCCR   *((uint32_t volatile *)0xE000EF34U)
 
 /*..........................................................................*/
 /* # of unused interrupt priority bits in NVIC */
@@ -54,6 +55,12 @@ void SST_init(void) {
         }
     }
     nvic_prio_shift = tmp;
+
+#if (__ARM_FP != 0)
+    /* configure the FPU for SST */
+    FPU_FPCCR |= (1U << 30U)    /* automatic FPU state preservation (ASPEN) */
+                 | (1U << 31U); /* lazy stacking (LSPEN) */
+#endif
 }
 /* SST Task facilities -----------------------------------------------------*/
 void SST_Task_setPrio(SST_Task * const me, SST_TaskPrio prio) {
@@ -90,7 +97,7 @@ void SST_Task_activate(SST_Task * const me) {
     /* NOTE: no critical section because me->tail is accessed only
     * from this task
     */
-    void const *e = me->qBuf[me->tail];
+    SST_Evt const *e = me->qBuf[me->tail];
     if (me->tail == 0U) { /* need to wrap the tail? */
         me->tail = me->end; /* wrap around */
     }

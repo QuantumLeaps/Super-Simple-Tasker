@@ -1,5 +1,5 @@
 /*============================================================================
-* Super-Simple Tasker (SST) Example for STM32 NUCLEO-H743ZI
+* Super-Simple Tasker 0 (SST0) Example for STM32 NUCLEO-L053R8
 *
 * Copyright (C) 2006-2023 Quantum Leaps, <state-machine.com>.
 *
@@ -27,7 +27,7 @@
 #include "bsp.h"
 #include "blinky_button.h"
 
-#include "stm32h743xx.h"  /* CMSIS-compliant header file for the MCU used */
+#include "stm32l0xx.h"  /* CMSIS-compliant header file for the MCU used */
 /* add other drivers if necessary... */
 
 /* Local-scope defines -----------------------------------------------------*/
@@ -61,7 +61,7 @@ void SysTick_Handler(void) {   /* system clock tick ISR */
         uint32_t depressed;
         uint32_t previous;
     } buttons = { 0U, 0U };
-    uint32_t current = 0U; //???~GPIOC->IDR; /* read GPIO PortC */
+    uint32_t current = ~GPIOC->IDR; /* read GPIO PortC */
     uint32_t tmp = buttons.depressed; /* save the debounced depressed */
     buttons.depressed |= (buttons.previous & current); /* set depressed */
     buttons.depressed &= (buttons.previous | current); /* clear released */
@@ -74,6 +74,12 @@ void SysTick_Handler(void) {   /* system clock tick ISR */
                 .super.sig = BUTTON_PRESSED_SIG,
                 .toggles = 60U
             };
+            /* immutable forward-press event */
+            static ButtonWorkEvt const fPressEvt = {
+                .super.sig = FORWARD_PRESSED_SIG,
+                .toggles = 60U
+            };
+            SST_Task_post(AO_Button2a, &fPressEvt.super);
             SST_Task_post(AO_Button2a, &pressEvt.super);
         }
         else { /* B1 is released */
@@ -82,6 +88,12 @@ void SysTick_Handler(void) {   /* system clock tick ISR */
                 .super.sig = BUTTON_RELEASED_SIG,
                 .toggles = 80U
             };
+            /* immutable forward-release event */
+            static ButtonWorkEvt const fReleaseEvt = {
+                .super.sig = FORWARD_RELEASED_SIG,
+                .toggles = 80U
+            };
+            SST_Task_post(AO_Button2a, &fReleaseEvt.super);
             SST_Task_post(AO_Button2a, &releaseEvt.super);
         }
     }
@@ -89,77 +101,52 @@ void SysTick_Handler(void) {   /* system clock tick ISR */
     BSP_d1off();
 }
 
-/* SST task activations ====================================================*/
-/* preprocessor switch to choose between regular and reserved IRQs */
-//#define REGULAR_IRQS
-
-#ifdef REGULAR_IRQS
-/* repurpose regular IRQs for SST Tasks */
-void OTG_FS_EP1_OUT_IRQHandler(void) { SST_Task_activate(AO_Blinky3);  }
-void OTG_FS_EP1_IN_IRQHandler(void)  { SST_Task_activate(AO_Button2b); }
-void OTG_FS_WKUP_IRQHandler(void)    { SST_Task_activate(AO_Button2a); }
-void OTG_FS_IRQHandler(void)         { SST_Task_activate(AO_Blinky1);  }
-#else
-/* use reserved IRQs for SST Tasks */
-void Reserved42_IRQHandler(void);
-void Reserved64_IRQHandler(void);
-void Reserved65_IRQHandler(void);
-void Reserved66_IRQHandler(void);
-void Reserved67_IRQHandler(void);
-void Reserved79_IRQHandler(void);
-void Reserved124_IRQHandler(void);
-void Reserved123_IRQHandler(void);
-void Reserved126_IRQHandler(void);
-void Reserved143_IRQHandler(void);
-void Reserved145_IRQHandler(void);
-void Reserved147_IRQHandler(void);
-void Reserved148_IRQHandler(void);
-
-void Reserved42_IRQHandler(void) { SST_Task_activate(AO_Blinky3);  }
-void Reserved64_IRQHandler(void) { SST_Task_activate(AO_Button2b); }
-void Reserved65_IRQHandler(void) { SST_Task_activate(AO_Button2a); }
-void Reserved66_IRQHandler(void) { SST_Task_activate(AO_Blinky1);  }
-#endif
-
 /* BSP functions ===========================================================*/
 void BSP_init(void) {
-    //SCB_EnableICache(); /* Enable I-Cache */
-    //SCB_EnableDCache(); /* Enable D-Cache */
+    /* enable GPIO port PA clock */
+    RCC->IOPENR |= (1U << 0);
 
-    /* assign IRQs to tasks. NOTE: critical for SST... */
-#ifdef REGULAR_IRQS
-    /* repurpose regular IRQs for SST Tasks */
-    SST_Task_setIRQ(AO_Blinky3,  OTG_FS_EP1_OUT_IRQn);
-    SST_Task_setIRQ(AO_Button2b, OTG_FS_EP1_IN_IRQn);
-    SST_Task_setIRQ(AO_Button2a, OTG_FS_WKUP_IRQn);
-    SST_Task_setIRQ(AO_Blinky1,  OTG_FS_IRQn);
-#else
-    /* use reserved IRQs for SST Tasks */
-    SST_Task_setIRQ(AO_Blinky3,  42U);
-    SST_Task_setIRQ(AO_Button2b, 64U);
-    SST_Task_setIRQ(AO_Button2a, 65U);
-    SST_Task_setIRQ(AO_Blinky1,  66U);
-#endif
+    /* set all used PA pins as push-pull output, no pull-up, pull-down */
+    GPIOA->MODER   &= ~((3U << 2*0) | (3U << 2*1) | (3U << 2*4)
+                        | (3U << 2*5) | (3U << 2*6) | (3U << 2*7));
+    GPIOA->MODER   |=  ((1U << 2*0) | (1U << 2*1) | (1U << 2*4)
+                        | (1U << 2*5) | (1U << 2*6) | (1U << 2*7));
+    GPIOA->OTYPER  &= ~((1U <<   0) |  (1U <<  1) | (1U <<   4)
+                         | (1U <<  5) |  (1U <<  6) | (1U <<   7));
+    GPIOA->OSPEEDR &= ~((3U << 2*0) | (3U << 2*1) | (3U << 2*4)
+                        | (3U << 2*5) | (3U << 2*6) | (3U << 2*7));
+    GPIOA->OSPEEDR |=  ((1U << 2*0) | (1U << 2*1) | (1U << 2*4)
+                        | (1U << 2*5) | (1U << 2*6) | (1U << 2*7));
+    GPIOA->PUPDR   &= ~((3U << 2*0) | (3U << 2*1) | (3U << 2*4)
+                        | (3U << 2*5) | (3U << 2*6) | (3U << 2*7));
 
+    /* enable GPIOC clock port for the Button B1 */
+    RCC->IOPENR |=  (1U << 2);
+
+    /* configure Button (PC.13) pin as input, no pull-up, pull-down */
+    GPIOC->MODER   &= ~(3U << 2*13);
+    GPIOC->OSPEEDR &= ~(3U << 2*13);
+    GPIOC->OSPEEDR |=  (1U << 2*13);
+    GPIOC->PUPDR   &= ~(3U << 2*13);
 }
 /*..........................................................................*/
-void BSP_d1on(void)  {       }
-void BSP_d1off(void) {  }
+void BSP_d1on(void)  { GPIOA->BSRR |= (PIN_PA7);       }
+void BSP_d1off(void) { GPIOA->BSRR |= (PIN_PA7 << 16); }
 /*..........................................................................*/
-void BSP_d2on(void)  {        }
-void BSP_d2off(void) {  }
+void BSP_d2on(void)  { GPIOA->BSRR |= (PIN_PA6);       }
+void BSP_d2off(void) { GPIOA->BSRR |= (PIN_PA6 << 16); }
 /*..........................................................................*/
-void BSP_d3on(void)  {        }
-void BSP_d3off(void) {  }
+void BSP_d3on(void)  { GPIOA->BSRR |= (PIN_PA4);       }
+void BSP_d3off(void) { GPIOA->BSRR |= (PIN_PA4 << 16); }
 /*..........................................................................*/
-void BSP_d4on(void)  {        }
-void BSP_d4off(void) {  }
+void BSP_d4on(void)  { GPIOA->BSRR |= (PIN_PA1);       }
+void BSP_d4off(void) { GPIOA->BSRR |= (PIN_PA1 << 16); }
 /*..........................................................................*/
-void BSP_d5on(void)  {        }
-void BSP_d5off(void) {  }
+void BSP_d5on(void)  { GPIOA->BSRR |= (PIN_PA0);       }
+void BSP_d5off(void) { GPIOA->BSRR |= (PIN_PA0 << 16); }
 /*..........................................................................*/
-void BSP_d6on(void)  {        }
-void BSP_d6off(void) {  }
+void BSP_d6on(void)  { GPIOA->BSRR |= (PIN_PA5);       }
+void BSP_d6off(void) { GPIOA->BSRR |= (PIN_PA5 << 16); }
 
 /*..........................................................................*/
 SST_Evt const *getInitEvtBlinky3(void) {
@@ -192,7 +179,7 @@ void SST_onStart(void) {
     /* ... */
 }
 /*..........................................................................*/
-void SST_onIdle(void) {
+void SST0_onIdle(void) { /* NOTE: called with interrupts DISABLED */
 #ifdef NDEBUG
     /* Put the CPU and peripherals to the low-power mode.
     * you might need to customize the clock management for your application,
@@ -213,6 +200,7 @@ void SST_onIdle(void) {
     BSP_d6on();  /* turn LED2 on */
     BSP_d6off(); /* turn LED2 off */
 #endif
+    SST_PORT_INT_ENABLE();
 }
 
 /* Assertion handler ======================================================*/

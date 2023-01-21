@@ -35,6 +35,9 @@ int  SST_run(void);
 void SST_onStart(void);
 void SST_onIdle(void);
 
+/* special version for cooperative SST0 */
+void SST0_onIdle(void);
+
 /* SST Event facilities ----------------------------------------------------*/
 /*! signal of SST event */
 typedef uint16_t SST_Signal;

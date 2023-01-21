@@ -48,20 +48,21 @@ TARGET  := nucleo-h743zi
 #-----------------------------------------------------------------------------
 # project directories
 #
-SST_DIR      := ../../src
+SST_INC_DIR  := ../../include
+SST_SRC_DIR  := ../../src
 SST_PORT_DIR := ../../ports/arm-cm
 TARGET_DIR   := ../../targets/$(TARGET)
 
 # list of all source directories used by this project
 VPATH = . \
-	$(SST_DIR) \
+	$(SST_SRC_DIR) \
 	$(SST_PORT_DIR) \
 	$(TARGET_DIR) \
 	$(TARGET_DIR)/gnu
 
 # list of all include directories needed by this project
 INCLUDES  = -I. \
-	-I$(SST_DIR) \
+	-I$(SST_INC_DIR) \
 	-I$(SST_PORT_DIR) \
 	-I$(TARGET_DIR)
 
@@ -96,8 +97,7 @@ LIB_DIRS  :=
 LIBS      :=
 
 # defines
-DEFINES   := \
-	-DSTM32H743xx
+DEFINES   := -DSTM32H743xx
 
 # ARM CPU, ARCH, FPU, and Float-ABI types...
 # ARM_CPU:   [cortex-m0 | cortex-m0plus | cortex-m1 | cortex-m3 | cortex-m4]

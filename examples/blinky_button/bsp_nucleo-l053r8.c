@@ -1,5 +1,5 @@
 /*============================================================================
-* Super-Simple Tasker (SST) Example
+* Super-Simple Tasker (SST) Example for STM32 NUCLEO-L053R8
 *
 * Copyright (C) 2006-2023 Quantum Leaps, <state-machine.com>.
 *
@@ -74,6 +74,12 @@ void SysTick_Handler(void) {   /* system clock tick ISR */
                 .super.sig = BUTTON_PRESSED_SIG,
                 .toggles = 60U
             };
+            /* immutable forward-press event */
+            static ButtonWorkEvt const fPressEvt = {
+                .super.sig = FORWARD_PRESSED_SIG,
+                .toggles = 60U
+            };
+            SST_Task_post(AO_Button2a, &fPressEvt.super);
             SST_Task_post(AO_Button2a, &pressEvt.super);
         }
         else { /* B1 is released */
@@ -82,6 +88,12 @@ void SysTick_Handler(void) {   /* system clock tick ISR */
                 .super.sig = BUTTON_RELEASED_SIG,
                 .toggles = 80U
             };
+            /* immutable forward-release event */
+            static ButtonWorkEvt const fReleaseEvt = {
+                .super.sig = FORWARD_RELEASED_SIG,
+                .toggles = 80U
+            };
+            SST_Task_post(AO_Button2a, &fReleaseEvt.super);
             SST_Task_post(AO_Button2a, &releaseEvt.super);
         }
     }

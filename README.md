@@ -29,7 +29,7 @@ SST has been originally published as a cover-story article
 ["Build a Super-Simple Tasker"](sst1/Super-Simple-Tasker.pdf) in the
 Embedded Systems Design magazine in
 [July 2006](https://www.embedded.com/embedded-systems-design-july-2006).
-That original version of SST (now called SST1) is [still available](sst1)
+That original version of SST (now called SST1) is [still available](legacy)
 and is provided for historical reference.
 
 Over the years, more mature and complete SST-like kernels have been

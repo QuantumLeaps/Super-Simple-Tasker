@@ -87,5 +87,4 @@ void SST_Task_post(SST_Task * const me, SST_Evt const * const e) {
     ++me->nUsed;
     SST_PORT_TASK_PEND();
     SST_PORT_CRIT_EXIT();
-
 }

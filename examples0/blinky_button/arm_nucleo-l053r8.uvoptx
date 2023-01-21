@@ -390,7 +390,7 @@
   </Group>
 
   <Group>
-    <GroupName>sst</GroupName>
+    <GroupName>sst0</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
@@ -402,15 +402,15 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\src\sst.c</PathWithFileName>
-      <FilenameWithoutPath>sst.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\src0\sst0.c</PathWithFileName>
+      <FilenameWithoutPath>sst0.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
   </Group>
 
   <Group>
-    <GroupName>sst_port</GroupName>
+    <GroupName>sst0_port</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
@@ -418,23 +418,11 @@
     <File>
       <GroupNumber>4</GroupNumber>
       <FileNumber>15</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\..\ports\arm-cm\sst_port.c</PathWithFileName>
-      <FilenameWithoutPath>sst_port.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>16</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\ports\arm-cm\sst_port.h</PathWithFileName>
+      <PathWithFileName>..\..\ports0\arm-cm\sst_port.h</PathWithFileName>
       <FilenameWithoutPath>sst_port.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

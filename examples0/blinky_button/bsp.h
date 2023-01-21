@@ -23,46 +23,29 @@
 * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 * DEALINGS IN THE SOFTWARE.
 ============================================================================*/
-#ifndef BLINKY_BUTTON_H_
-#define BLINKY_BUTTON_H_
+#ifndef BSP_H_
+#define BSP_H_
 
-#include "qassert.h" /* embedded systems assertions */
+#define BSP_TICKS_PER_SEC 1000U
 
-enum Signals {
-    TICK_SIG,
-    BUTTON_PRESSED_SIG,
-    BUTTON_RELEASED_SIG,
-    BLINKY_WORK_SIG,
-    FORWARD_PRESSED_SIG,
-    FORWARD_RELEASED_SIG,
-    /* ... */
-    MAX_SIG  /* the last signal */
-};
+void BSP_init(void);
 
-typedef struct {
-    SST_Evt super;    /* inherit SST_Evt */
-    uint16_t toggles; /* number of toggles of the signal */
-    uint8_t ticks;    /* number of clock ticks between */
-} BlinkyWorkEvt;
+void BSP_d1on(void);
+void BSP_d1off(void);
 
-typedef struct {
-    SST_Evt super;    /* inherit SST_Evt */
-    uint16_t toggles; /* number of toggles of the signal */
-} ButtonWorkEvt;
+void BSP_d2on(void);
+void BSP_d2off(void);
 
-void Blinky1_ctor(void);
-extern SST_Task * const AO_Blinky1;  /* opaque active object pointer */
+void BSP_d3on(void);
+void BSP_d3off(void);
 
-void Blinky3_ctor(void);
-extern SST_Task * const AO_Blinky3;  /* opaque active object pointer */
+void BSP_d4on(void);
+void BSP_d4off(void);
 
-void Button2a_ctor(void);
-extern SST_Task * const AO_Button2a; /* opaque active object pointer */
+void BSP_d5on(void);
+void BSP_d5off(void);
 
-void Button2b_ctor(void);
-extern SST_Task * const AO_Button2b; /* opaque active object pointer */
+void BSP_d6on(void);
+void BSP_d6off(void);
 
-SST_Evt const *getInitEvtBlinky1(void);
-SST_Evt const *getInitEvtBlinky3(void);
-
-#endif /* BLINKY_BUTTON_H_ */
+#endif /* BSP_H_ */

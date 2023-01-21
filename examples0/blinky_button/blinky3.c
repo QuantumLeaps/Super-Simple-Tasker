@@ -30,71 +30,56 @@
 Q_DEFINE_THIS_FILE
 
 /*..........................................................................*/
-typedef struct {    /* Button2b active object */
+typedef struct {    /* Blinky3 active object */
     SST_Task super; /* inherit SST_Task */
-    /* add internal variables for this AO... */
-} Button2b;
+    uint16_t toggles;
+    uint8_t ticks;
+    uint8_t tick_ctr;
+} Blinky3;
 
-static void Button2b_init(Button2b * const me, SST_Evt const * const e);
-static void Button2b_dispatch(Button2b * const me, SST_Evt const * const e);
-
-/*..........................................................................*/
-static Button2b Button2b_inst; /* the Button2b instance */
-SST_Task * const AO_Button2b = &Button2b_inst.super; /* opaque AO pointer */
+static void Blinky3_init(Blinky3 * const me, SST_Evt const * const ie);
+static void Blinky3_dispatch(Blinky3 * const me, SST_Evt const * const e);
 
 /*..........................................................................*/
-void Button2b_ctor(void) {
-    Button2b * const me = &Button2b_inst;
+static Blinky3 Blinky3_inst; /* the Blinky3 instance */
+SST_Task * const AO_Blinky3 = &Blinky3_inst.super; /* opaque AO pointer */
+
+/*..........................................................................*/
+void Blinky3_ctor(void) {
+    Blinky3 * const me = &Blinky3_inst;
     SST_Task_ctor(
        &me->super,
-       (SST_Handler)&Button2b_init,
-       (SST_Handler)&Button2b_dispatch);
+       (SST_Handler)&Blinky3_init,
+       (SST_Handler)&Blinky3_dispatch);
 }
+/*..........................................................................*/
+static void Blinky3_init(Blinky3 * const me, SST_Evt const * const ie) {
+    /* the initial event must be provided and must be WORKLOAD_SIG */
+    Q_REQUIRE((ie != (SST_Evt const *)0) && (ie->sig == BLINKY_WORK_SIG));
 
-/*..........................................................................*/
-static void Button2b_init(Button2b * const me, SST_Evt const * const ie) {
-    (void)me;
-    (void)ie;
+    me->toggles = SST_EVT_DOWNCAST(BlinkyWorkEvt, ie)->toggles;
+    me->ticks = SST_EVT_DOWNCAST(BlinkyWorkEvt, ie)->ticks;
+    me->tick_ctr = me->ticks;
 }
 /*..........................................................................*/
-static void Button2b_dispatch(Button2b * const me, SST_Evt const * const e) {
+static void Blinky3_dispatch(Blinky3 * const me, SST_Evt const * const e) {
     switch (e->sig) {
-        case FORWARD_PRESSED_SIG: {
-            BSP_d3on();
-            /* immutable event for Blinky3 */
-            static BlinkyWorkEvt const bw1evt = {
-                .super.sig = BLINKY_WORK_SIG,
-                .toggles = 20U,
-                .ticks = 4U,
-            };
-            SST_Task_post(AO_Blinky3, &bw1evt.super); /* Button2b --> Blinky3 */
-            BSP_d3off();
-
-            for (uint16_t i = SST_EVT_DOWNCAST(ButtonWorkEvt, e)->toggles;
-                 i > 0U; --i)
-            {
-                BSP_d3on();
-                BSP_d3off();
+        case TICK_SIG: {
+            --me->tick_ctr;
+            if (me->tick_ctr == 0U) {
+                me->tick_ctr = me->ticks;
+                for (uint16_t i = me->toggles; i > 0U; --i) {
+                    BSP_d2on();
+                    BSP_d2off();
+                }
             }
             break;
         }
-        case FORWARD_RELEASED_SIG: {
-            BSP_d3on();
-            /* immutable event for Blinky3 */
-            static BlinkyWorkEvt const bw2evt = {
-                .super.sig = BLINKY_WORK_SIG,
-                .toggles = 10U,
-                .ticks = 3U,
-            };
-            SST_Task_post(AO_Blinky3, &bw2evt.super); /* Button2b --> Blinky3 */
-            BSP_d3off();
-
-            for (uint16_t i = SST_EVT_DOWNCAST(ButtonWorkEvt, e)->toggles;
-                 i > 0U; --i)
-            {
-                BSP_d3on();
-                BSP_d3off();
-            }
+        case BLINKY_WORK_SIG: {
+            BSP_d2on();
+            me->toggles = SST_EVT_DOWNCAST(BlinkyWorkEvt, e)->toggles;
+            me->ticks = SST_EVT_DOWNCAST(BlinkyWorkEvt, e)->ticks;
+            BSP_d2off();
             break;
         }
         default: {

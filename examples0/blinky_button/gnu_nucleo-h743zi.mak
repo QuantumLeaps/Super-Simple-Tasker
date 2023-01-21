@@ -1,5 +1,5 @@
 ##############################################################################
-# Makefile for SST (Super-Simple Tasker) on NUCLEO-L053R8, GNU-ARM
+# Makefile for SST0 (Super-Simple Tasker 0) on NUCLEO-H743ZI, GNU-ARM
 # Last Updated for Version: 2.0.0
 # Date of the Last Update:  2023-01-15
 #
@@ -30,8 +30,8 @@
 # IN THE SOFTWARE.
 ##############################################################################
 # examples of invoking this Makefile:
-# make -f gnu_nucleo-l053r8
-# make -f gnu_nucleo-l053r8 clean
+# make -f gnu_nucleo-h743zi
+# make -f gnu_nucleo-h743zi clean
 #
 # NOTE:
 # To use this Makefile on Windows, you will need the GNU make utility, which
@@ -43,14 +43,14 @@
 # project and target names
 #
 PROJECT := blinky_button
-TARGET  := nucleo-l053r8
+TARGET  := nucleo-h743zi
 
 #-----------------------------------------------------------------------------
 # project directories
 #
 SST_INC_DIR  := ../../include
-SST_SRC_DIR  := ../../src
-SST_PORT_DIR := ../../ports/arm-cm
+SST_SRC_DIR  := ../../src0
+SST_PORT_DIR := ../../ports0/arm-cm
 TARGET_DIR   := ../../targets/$(TARGET)
 
 # list of all source directories used by this project
@@ -80,11 +80,11 @@ C_SRCS := \
 	blinky3.c \
 	button2a.c \
 	button2b.c \
-	bsp_nucleo-l053r8.c \
+	bsp_nucleo-h743zi.c \
 	sst.c \
 	sst_port.c \
-	system_stm32l0xx.c \
-	startup_stm32l053xx.c
+	startup_stm32h743xx.c \
+	system_stm32h7xx.c
 
 # C++ source files
 CPP_SRCS :=
@@ -97,16 +97,16 @@ LIB_DIRS  :=
 LIBS      :=
 
 # defines
-DEFINES   :=
+DEFINES   := -DSTM32H743xx
 
 # ARM CPU, ARCH, FPU, and Float-ABI types...
 # ARM_CPU:   [cortex-m0 | cortex-m0plus | cortex-m1 | cortex-m3 | cortex-m4]
 # ARM_FPU:   [ | vfp]
 # FLOAT_ABI: [ | soft | softfp | hard]
 #
-ARM_CPU   := -mcpu=cortex-m0plus
-ARM_FPU   :=
-FLOAT_ABI :=
+ARM_CPU   := -mcpu=cortex-m7
+ARM_FPU   := -mfpu=fpv5-d16
+FLOAT_ABI := -mfloat-abi=softfp
 
 #-----------------------------------------------------------------------------
 # GNU-ARM toolset (NOTE: You need to adjust to your machine)
