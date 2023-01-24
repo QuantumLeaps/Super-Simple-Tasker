@@ -193,103 +193,51 @@ static void exerciseFPU(double x) {
 
 /*..........................................................................*/
 void BSP_d1on(void) {  /* LED1-Green */
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << TST1_PIN);
-    SST_PORT_CRIT_EXIT();
+    GPIOB->BSRR = (1U << TST1_PIN);
     /* don't use the FPU in the ISR */
 }
 void BSP_d1off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << (TST1_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-    /* don't use the FPU in the ISR */
+    GPIOB->BSRR = (1U << (TST1_PIN + 16U));
 }
 /*..........................................................................*/
 void BSP_d2on(void) {  /* LED3-Red */
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << TST2_PIN);
-    SST_PORT_CRIT_EXIT();
-
+    GPIOB->BSRR = (1U << TST2_PIN);
     exerciseFPU(-1.2345);
 }
 void BSP_d2off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << (TST2_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-
-    exerciseFPU(1.2345);
+    GPIOB->BSRR = (1U << (TST2_PIN + 16U));
 }
 /*..........................................................................*/
 void BSP_d3on(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << TST3_PIN);
-    SST_PORT_CRIT_EXIT();
-
+    GPIOB->BSRR = (1U << TST3_PIN);
     exerciseFPU(-12.345);
 }
 void BSP_d3off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << (TST3_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-
-    exerciseFPU(12.345);
+    GPIOB->BSRR = (1U << (TST3_PIN + 16U));
 }
 /*..........................................................................*/
 void BSP_d4on(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << TST4_PIN);
-    SST_PORT_CRIT_EXIT();
-
+    GPIOB->BSRR = (1U << TST4_PIN);
     exerciseFPU(3.456);
 }
 void BSP_d4off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << (TST4_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-
-    exerciseFPU(-3.456);
+    GPIOB->BSRR = (1U << (TST4_PIN + 16U));
 }
 /*..........................................................................*/
 void BSP_d5on(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << TST5_PIN);
-    SST_PORT_CRIT_EXIT();
-
+    GPIOB->BSRR = (1U << TST5_PIN);
     exerciseFPU(4.567);
 }
 void BSP_d5off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << (TST5_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-
-    exerciseFPU(-4.567);
+    GPIOB->BSRR = (1U << (TST5_PIN + 16U));
 }
 /*..........................................................................*/
 void BSP_d6on(void) {  /* LED2-Blue */
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << TST6_PIN);
-    SST_PORT_CRIT_EXIT();
-
+    GPIOB->BSRR = (1U << TST6_PIN);
     exerciseFPU(1.2345);
 }
 void BSP_d6off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << (TST6_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-
-    exerciseFPU(-1.2345);
+    GPIOB->BSRR = (1U << (TST6_PIN + 16U));
 }
 
 /*..........................................................................*/

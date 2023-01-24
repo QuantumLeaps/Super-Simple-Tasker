@@ -157,83 +157,23 @@ void init(void) {
     GPIOC->PUPDR &= ~(3U << 2U*B1_PIN);
 }
 //............................................................................
-void d1on(void) {  // LED1-Green */
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOA->BSRR |= (1U << TST1_PIN);
-    SST_PORT_CRIT_EXIT();
-}
-void d1off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOA->BSRR |= (1U << (TST1_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-}
+void d1on(void)  { GPIOA->BSRR = (1U << TST1_PIN);         }
+void d1off(void) { GPIOA->BSRR = (1U << (TST1_PIN + 16U)); }
 //............................................................................
-void d2on(void) {  /* LED3-Red */
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOA->BSRR |= (1U << TST2_PIN);
-    SST_PORT_CRIT_EXIT();
-}
-void d2off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOA->BSRR |= (1U << (TST2_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-}
+void d2on(void)  { GPIOA->BSRR = (1U << TST2_PIN);         }
+void d2off(void) { GPIOA->BSRR = (1U << (TST2_PIN + 16U)); }
 //............................................................................
-void d3on(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOA->BSRR |= (1U << TST3_PIN);
-    SST_PORT_CRIT_EXIT();
-}
-void d3off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOA->BSRR |= (1U << (TST3_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-}
+void d3on(void)  { GPIOA->BSRR = (1U << TST3_PIN);         }
+void d3off(void) { GPIOA->BSRR = (1U << (TST3_PIN + 16U)); }
 //............................................................................
-void d4on(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOA->BSRR |= (1U << TST4_PIN);
-    SST_PORT_CRIT_EXIT();
-}
-void d4off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOA->BSRR |= (1U << (TST4_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-}
+void d4on(void)  { GPIOA->BSRR = (1U << TST4_PIN);         }
+void d4off(void) { GPIOA->BSRR = (1U << (TST4_PIN + 16U)); }
 //............................................................................
-void d5on(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOA->BSRR |= (1U << TST5_PIN);
-    SST_PORT_CRIT_EXIT();
-}
-void d5off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOA->BSRR |= (1U << (TST5_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-}
+void d5on(void)  { GPIOA->BSRR = (1U << TST5_PIN);         }
+void d5off(void) { GPIOA->BSRR = (1U << (TST5_PIN + 16U)); }
 //............................................................................
-void d6on(void) {  /* LED2-Blue */
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOA->BSRR |= (1U << TST6_PIN);
-    SST_PORT_CRIT_EXIT();
-}
-void d6off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOA->BSRR |= (1U << (TST6_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-}
+void d6on(void)  { GPIOA->BSRR = (1U << TST6_PIN);         } // LED2
+void d6off(void) { GPIOA->BSRR = (1U << (TST6_PIN + 16U)); }
 
 //............................................................................
 SST::Evt const *getWorkEvtBlinky1(uint8_t num) {

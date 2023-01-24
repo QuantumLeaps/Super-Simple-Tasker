@@ -189,7 +189,7 @@ void init(void) {
     // enable GPIOB port clock for LEds and test pins
     RCC->AHB4ENR |= RCC_AHB4ENR_GPIOBEN;
 
-    /* set all used GPIOB pins as push-pull output, no pull-up, pull-down */
+    // set all used GPIOB pins as push-pull output, no pull-up, pull-down
     GPIOB->MODER &=
         ~((3U << 2U*TST1_PIN) | (3U << 2U*TST2_PIN) | (3U << 2U*TST3_PIN) |
           (3U << 2U*TST4_PIN) | (3U << 2U*TST5_PIN) | (3U << 2U*TST6_PIN));
@@ -220,104 +220,52 @@ static void exerciseFPU(double x) {
 }
 
 //............................................................................
-void d1on(void) {  // LED1-Green */
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << TST1_PIN);
-    SST_PORT_CRIT_EXIT();
-    /* don't use the FPU in the ISR */
+void d1on(void) {  // LED1-Green
+    GPIOB->BSRR = (1U << TST1_PIN);
+    // don't use the FPU in the ISR
 }
 void d1off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << (TST1_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-    /* don't use the FPU in the ISR */
+    GPIOB->BSRR = (1U << (TST1_PIN + 16U));
 }
 //............................................................................
-void d2on(void) {  /* LED3-Red */
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << TST2_PIN);
-    SST_PORT_CRIT_EXIT();
-
+void d2on(void) {  // LED3-Red
+    GPIOB->BSRR = (1U << TST2_PIN);
     exerciseFPU(-1.2345);
 }
 void d2off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << (TST2_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-
-    exerciseFPU(1.2345);
+    GPIOB->BSRR = (1U << (TST2_PIN + 16U));
 }
 //............................................................................
 void d3on(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << TST3_PIN);
-    SST_PORT_CRIT_EXIT();
-
+    GPIOB->BSRR = (1U << TST3_PIN);
     exerciseFPU(-12.345);
 }
 void d3off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << (TST3_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-
-    exerciseFPU(12.345);
+    GPIOB->BSRR = (1U << (TST3_PIN + 16U));
 }
 //............................................................................
 void d4on(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << TST4_PIN);
-    SST_PORT_CRIT_EXIT();
-
+    GPIOB->BSRR = (1U << TST4_PIN);
     exerciseFPU(3.456);
 }
 void d4off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << (TST4_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-
-    exerciseFPU(-3.456);
+    GPIOB->BSRR = (1U << (TST4_PIN + 16U));
 }
 //............................................................................
 void d5on(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << TST5_PIN);
-    SST_PORT_CRIT_EXIT();
-
+    GPIOB->BSRR = (1U << TST5_PIN);
     exerciseFPU(4.567);
 }
 void d5off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << (TST5_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-
-    exerciseFPU(-4.567);
+    GPIOB->BSRR = (1U << (TST5_PIN + 16U));
 }
 //............................................................................
-void d6on(void) {  /* LED2-Blue */
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << TST6_PIN);
-    SST_PORT_CRIT_EXIT();
-
+void d6on(void) {  // LED2-Blue
+    GPIOB->BSRR = (1U << TST6_PIN);
     exerciseFPU(1.2345);
 }
 void d6off(void) {
-    SST_PORT_CRIT_STAT
-    SST_PORT_CRIT_ENTRY();
-    GPIOB->BSRR |= (1U << (TST6_PIN + 16U));
-    SST_PORT_CRIT_EXIT();
-
-    exerciseFPU(-1.2345);
+    GPIOB->BSRR = (1U << (TST6_PIN + 16U));
 }
 
 //............................................................................
@@ -332,7 +280,7 @@ SST::Evt const *getWorkEvtBlinky1(uint8_t num) {
 }
 //............................................................................
 SST::Evt const *getWorkEvtBlinky3(uint8_t num) {
-    /* immutable work events for Blinky3 */
+    // immutable work events for Blinky3
     static App::BlinkyWorkEvt const workBlinky3[] = {
         { { App::BLINKY_WORK_SIG }, 20U, 5U },
         { { App::BLINKY_WORK_SIG }, 10U, 3U   }
