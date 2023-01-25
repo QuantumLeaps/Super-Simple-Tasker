@@ -28,15 +28,15 @@
 #include "blinky_button.hpp" // application shared interface
 
 #include "stm32h743xx.h"  // CMSIS-compliant header file for the MCU used
-#include <math.h>         // to exercise the FPU
+#include <cmath>          // to exercise the FPU
 // add other drivers if necessary...
 
 // Local-scope defines -------------------------------------------------------
 namespace {
 
-Q_DEFINE_THIS_FILE // for assertions in this file
+DBC_MODULE_NAME("bsp_nucleo-h743zi") // for DBC assertions in this module
 
-}
+} // unnamed workspace
 
 // test pins on GPIO PB
 #define TST1_PIN  0U  /* PB.0  LED1-Green */
@@ -106,12 +106,12 @@ void SysTick_Handler(void) {   // system clock tick ISR
 }
 
 // Assertion handler =========================================================
-void Q_onAssert(char const * const module, int const loc) {
+void DBC_fault_handler(char const * const module, int const label) {
     //
     // NOTE: add here your application-specific error handling
     //
     (void)module;
-    (void)loc;
+    (void)label;
 
     // set PRIMASK to disable interrupts and stop SST right here
     __asm volatile ("cpsid i");
@@ -167,9 +167,11 @@ void init(void) {
 
 //............................................................................
 static void exerciseFPU(double x) {
-    // exercise the FPU by calculating trigonometric identity
+    // exercise the double-precision FPU by calculating the identity:
+    //  sin(x)^2 + cos(x)^2 == 1.0 for any x
+    //
     double tmp = pow(sin(x), 2.0) + pow(cos(x), 2.0);
-    Q_ENSURE(((1.0 - 1e-4) < tmp) && (tmp < (1.0 + 1e-4)));
+    DBC_ENSURE(200, ((1.0 - 1e-4) < tmp) && (tmp < (1.0 + 1e-4)));
 }
 
 //............................................................................
@@ -228,7 +230,7 @@ SST::Evt const *getWorkEvtBlinky1(uint8_t num) {
         { { App::BLINKY_WORK_SIG }, 40U, 5U },
         { { App::BLINKY_WORK_SIG }, 30U, 7U }
     };
-    Q_REQUIRE(num < Q_DIM(workBliny1)); // num must be in range
+    DBC_REQUIRE(500, num < ARRAY_NELEM(workBliny1)); // num must be in range
     return &workBliny1[num].super;
 }
 //............................................................................
@@ -238,7 +240,7 @@ SST::Evt const *getWorkEvtBlinky3(uint8_t num) {
         { { App::BLINKY_WORK_SIG }, 20U, 5U },
         { { App::BLINKY_WORK_SIG }, 10U, 3U   }
     };
-    Q_REQUIRE(num < Q_DIM(workBlinky3)); // num must be in range
+    DBC_REQUIRE(600, num < ARRAY_NELEM(workBlinky3)); // num must be in range
     return &workBlinky3[num].super;
 }
 
@@ -259,17 +261,19 @@ void onStart(void) {
 }
 //............................................................................
 void onIdleCond(void) { // NOTE: called with interrupts DISABLED
+    BSP::d6on();  // turn LED2 on
 #ifdef NDEBUG
     // Put the CPU and peripherals to the low-power mode.
     // you might need to customize the clock management for your application,
     // see the datasheet for your particular Cortex-M MCU.
     //
-    __WFI(); // Wait-For-Interrupt
-#else
-    BSP::d6on();  // turn LED2 on
     BSP::d6off(); // turn LED2 off
+    __WFI(); // Wait-For-Interrupt
+    BSP::d6on();  // turn LED2 on
 #endif
-    SST_PORT_INT_ENABLE(); // NOTE: enable interrupts in every path
+    BSP::d6off(); // turn LED2 off
+    SST_PORT_INT_ENABLE(); // NOTE: enable interrupts for SS0
 }
 
 } // namespace SST
+

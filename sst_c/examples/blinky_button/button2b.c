@@ -27,7 +27,7 @@
 #include "bsp.h"           /* Board Support Package interface */
 #include "blinky_button.h" /* application shared interface */
 
-Q_DEFINE_THIS_FILE
+DBC_MODULE_NAME("button2b") /* for DBC assertions in this module */
 
 /*..........................................................................*/
 typedef struct {    /* Button2b active object */
@@ -88,7 +88,7 @@ static void Button2b_dispatch(Button2b * const me, SST_Evt const * const e) {
             break;
         }
         default: {
-            Q_ERROR(); /* unexpected event */
+            DBC_ERROR(500); /* unexpected event */
             break;
         }
     }

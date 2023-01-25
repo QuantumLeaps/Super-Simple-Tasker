@@ -125,4 +125,10 @@ static inline uint_fast8_t SST_LOG2(uint32_t x) {
 }
 #endif
 
+/* general convenience utilities -------------------------------------------*/
+#ifndef ARRAY_NELEM
+/*! convenience macro to provide the number of elements in the array a_ */
+#define ARRAY_NELEM(a_)  (sizeof(a_) / sizeof((a_)[0]))
+#endif /* ARRAY_NELEM */
+
 #endif /* SST_H_ */

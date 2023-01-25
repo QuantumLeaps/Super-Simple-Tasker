@@ -30,7 +30,7 @@
 #include "stm32l0xx.h"  /* CMSIS-compliant header file for the MCU used */
 /* add other drivers if necessary... */
 
-Q_DEFINE_THIS_FILE /* for assertions in this file */
+DBC_MODULE_NAME("bsp_nucleo-l053r8")
 
 /* Local-scope defines -----------------------------------------------------*/
 
@@ -105,23 +105,54 @@ void SysTick_Handler(void) { /* system clock tick ISR */
     BSP_d1off();
 }
 
+/* Assertion handler ======================================================*/
+void DBC_fault_handler(char const * const module, int const label) {
+    /*
+    * NOTE: add here your application-specific error handling
+    */
+    (void)module;
+    (void)label;
+
+    /* set PRIMASK to disable interrupts and stop SST right here */
+    __asm volatile ("cpsid i");
+
+#ifndef NDEBUG
+    for (;;) { /* keep blinking LED2 */
+        BSP_d6on();  /* turn LED2 on */
+        uint32_t volatile ctr;
+        for (ctr = 10000U; ctr > 0U; --ctr) {
+        }
+        BSP_d6off(); /* turn LED2 off */
+        for (ctr = 10000U; ctr > 0U; --ctr) {
+        }
+    }
+#endif
+    NVIC_SystemReset();
+}
+
 /* SST task activations ====================================================*/
 /* preprocessor switch to choose between regular and reserved IRQs */
-//#define REGULAR_IRQS
+#define REGULAR_IRQS
 
 #ifdef REGULAR_IRQS
 /* repurpose regular IRQs for SST Tasks */
+/* prototypes */
+void PVD_IRQHandler(void);
+void RTC_IRQHandler(void);
+void TSC_IRQHandler(void);
+void I2C2_IRQHandler(void);
+
 void PVD_IRQHandler(void)  { SST_Task_activate(AO_Blinky3);  }
 void RTC_IRQHandler(void)  { SST_Task_activate(AO_Button2b); }
 void TSC_IRQHandler(void)  { SST_Task_activate(AO_Button2a); }
 void I2C2_IRQHandler(void) { SST_Task_activate(AO_Blinky1);  }
-#else
-/* use reserved IRQs for SST Tasks */
-void Reserved14_IRQHandler(void); /* pototype */
-void Reserved16_IRQHandler(void); /* pototype */
-void Reserved18_IRQHandler(void); /* pototype */
-void Reserved19_IRQHandler(void); /* pototype */
-void Reserved21_IRQHandler(void); /* pototype */
+
+#else /* use reserved IRQs for SST Tasks */
+/* prototypes */
+void Reserved14_IRQHandler(void);
+void Reserved16_IRQHandler(void);
+void Reserved18_IRQHandler(void);
+void Reserved19_IRQHandler(void);
 
 void Reserved14_IRQHandler(void) { SST_Task_activate(AO_Blinky3);  }
 void Reserved16_IRQHandler(void) { SST_Task_activate(AO_Button2b); }
@@ -205,7 +236,7 @@ SST_Evt const *BSP_getWorkEvtBlinky1(uint8_t num) {
             .ticks = 7U,
         }
     };
-    Q_REQUIRE(num < Q_DIM(workBliny1)); /* num must be in range */
+    DBC_REQUIRE(500, num < ARRAY_NELEM(workBliny1)); /* must be in range */
     return &workBliny1[num].super;
 }
 /*..........................................................................*/
@@ -223,7 +254,7 @@ SST_Evt const *BSP_getWorkEvtBlinky3(uint8_t num) {
             .ticks = 3U,
         }
     };
-    Q_REQUIRE(num < Q_DIM(workBlinky3)); /* num must be in range */
+    DBC_REQUIRE(600, num < ARRAY_NELEM(workBlinky3)); /* must be in range */
     return &workBlinky3[num].super;
 }
 
@@ -240,49 +271,16 @@ void SST_onStart(void) {
 }
 /*..........................................................................*/
 void SST_onIdle(void) {
+    BSP_d6on();  /* turn LED2 on */
 #ifdef NDEBUG
     /* Put the CPU and peripherals to the low-power mode.
     * you might need to customize the clock management for your application,
     * see the datasheet for your particular Cortex-M MCU.
     */
-    /* !!!CAUTION!!!
-    * The WFI instruction stops the CPU clock, which unfortunately disables
-    * the JTAG port, so the ST-Link debugger can no longer connect to the
-    * board. For that reason, the call to __WFI() has to be used with CAUTION.
-    *
-    * NOTE: If you find your board "frozen" like this, strap BOOT0 to VDD and
-    * reset the board, then connect with ST-Link Utilities and erase the part.
-    * The trick with BOOT(0) is it gets the part to run the System Loader
-    * instead of your broken code. When done disconnect BOOT0, and start over.
-    */
-    __WFI(); /* Wait-For-Interrupt */
-#else
-    BSP_d6on();  /* turn LED2 on */
     BSP_d6off(); /* turn LED2 off */
+    __WFI(); /* Wait-For-Interrupt */
+    BSP_d6on();  /* turn LED2 on */
 #endif
+    BSP_d6off(); /* turn LED2 off */
 }
 
-/* Assertion handler ======================================================*/
-void Q_onAssert(char const * const module, int const loc) {
-    /*
-    * NOTE: add here your application-specific error handling
-    */
-    (void)module;
-    (void)loc;
-
-    /* set PRIMASK to disable interrupts and stop SST right here */
-    __asm volatile ("cpsid i");
-
-#ifndef NDEBUG
-    for (;;) { /* keep blinking LED2 */
-        BSP_d6on();  /* turn LED2 on */
-        uint32_t volatile ctr;
-        for (ctr = 10000U; ctr != 0U; --ctr) {
-        }
-        BSP_d6off(); /* turn LED2 off */
-        for (ctr = 10000U; ctr != 0U; --ctr) {
-        }
-    }
-#endif
-    NVIC_SystemReset();
-}

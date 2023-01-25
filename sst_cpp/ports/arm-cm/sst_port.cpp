@@ -23,8 +23,8 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 //============================================================================
-#include "sst.hpp"   // Super-Simple Tasker (SST/C++)
-#include "qassert.h" // assertions for embedded systems
+#include "sst.hpp"      // Super-Simple Tasker (SST/C++)
+#include "dbc_assert.h" // Design By Contract (DBC) assertions
 
 #define NVIC_PEND    ((uint32_t volatile *)0xE000E200U)
 #define NVIC_EN      ((uint32_t volatile *)0xE000E100U)
@@ -35,7 +35,7 @@
 //............................................................................
 namespace { // unnamed namespace
 
-Q_DEFINE_THIS_MODULE("sst_port")
+DBC_MODULE_NAME("sst_port") // for DBC assertions in this module
 
 // # of unused interrupt priority bits in NVIC
 static std::uint32_t nvic_prio_shift;
@@ -73,7 +73,7 @@ void Task::setPrio(TaskPrio prio) noexcept {
     //! @pre
     //! - the queue storage and length must be provided
     //! - the IRQ number must be already set
-    Q_REQUIRE_ID(200, m_nvic_irq != 0U);
+    DBC_REQUIRE(200, m_nvic_irq != 0U);
 
     // convert the SST direct priority (1,2,..) to NVIC priority...
     std::uint32_t irq_prio = ((0xFFU >> nvic_prio_shift) + 1U - prio)
@@ -98,7 +98,7 @@ void Task::setPrio(TaskPrio prio) noexcept {
 //............................................................................
 void Task::activate(void) {
     //! @pre the queue must have some events
-    Q_REQUIRE_ID(500, m_nUsed > 0U);
+    DBC_REQUIRE(300, m_nUsed > 0U);
 
     // get the event out of the queue
     // NOTE: no critical section because me->tail is accessed only

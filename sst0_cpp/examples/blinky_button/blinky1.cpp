@@ -29,7 +29,7 @@
 
 namespace {
 
-Q_DEFINE_THIS_FILE
+DBC_MODULE_NAME("blinky1")   // for DBC assertions in this module */
 
 } // unnamed namespace
 
@@ -54,7 +54,8 @@ SST::Task * const AO_Blinky1 = &Blinky1::inst; // opaque AO pointer
 //............................................................................
 void Blinky1::init(SST::Evt const * const ie) {
     /* the initial event must be provided and must be WORKLOAD_SIG */
-    Q_REQUIRE((ie != nullptr) && (ie->sig == BLINKY_WORK_SIG));
+    DBC_REQUIRE(300,
+        (ie != nullptr) && (ie->sig == BLINKY_WORK_SIG));
 
     m_toggles = SST::evt_downcast<BlinkyWorkEvt>(ie)->toggles;
     m_ticks = SST::evt_downcast<BlinkyWorkEvt>(ie)->ticks;
@@ -82,7 +83,7 @@ void Blinky1::dispatch(SST::Evt const * const e) {
             break;
         }
         default: {
-            Q_ERROR(); // unexpected event
+            DBC_ERROR(500); // unexpected event
             break;
         }
     }

@@ -1,49 +1,6 @@
-# Prerequisites
-*.d
-
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# uVision temporaries
-*.uvguix.*
-*.htm
-*.lnp
-*.sct
-Debug*/
-
-# IAR temporaries
-*.dep
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# build directories
+build*/
+bin*/
 
 # test directories
 test_priv/

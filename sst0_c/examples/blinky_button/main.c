@@ -39,7 +39,7 @@ int main() {
         AO_Blinky1,     /* AO pointer to start */
         1U,             /* SST-priority */
         blinky1QSto,    /* storage for the AO's queue */
-        Q_DIM(blinky1QSto),   /* queue length */
+        ARRAY_NELEM(blinky1QSto),   /* queue length */
         BSP_getWorkEvtBlinky1(0U)); /* initialization event */
 
     Button2a_ctor();
@@ -48,7 +48,7 @@ int main() {
         AO_Button2a,    /* AO pointer to start */
         2U,             /* SST-priority */
         button2aQSto,   /* storage for the AO's queue */
-        Q_DIM(button2aQSto), /* queue length */
+        ARRAY_NELEM(button2aQSto), /* queue length */
         (SST_Evt const *)0); /* initialization event -- not used */
 
     Button2b_ctor();
@@ -57,7 +57,7 @@ int main() {
         AO_Button2b,    /* AO pointer to start */
         3U,             /* SST-priority */
         button2bQSto,   /* storage for the AO's queue */
-        Q_DIM(button2bQSto), /* queue length */
+        ARRAY_NELEM(button2bQSto), /* queue length */
         (SST_Evt const *)0); /* initialization event -- not used */
 
     Blinky3_ctor();
@@ -66,7 +66,7 @@ int main() {
         AO_Blinky3,     /* AO pointer to start */
         4U,             /* SST-priority */
         blinky3QSto,    /* storage for the AO's queue */
-        Q_DIM(blinky3QSto),   /* queue length */
+        ARRAY_NELEM(blinky3QSto),   /* queue length */
         BSP_getWorkEvtBlinky3(0U)); /* initialization event */
 
     return SST_Task_run(); /* run the SST tasks */

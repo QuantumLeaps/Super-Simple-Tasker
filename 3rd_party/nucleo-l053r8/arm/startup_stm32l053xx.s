@@ -5,7 +5,7 @@
 ;   with this file
 ; - replaced endless loops in exception handlers (denial of service) with
 ;   branches to assert_failed
-; - provided definitions of assert_failed and Q_onAssert
+; - provided definitions of assert_failed and DBC_fault_handler
 ;
 ;
 ; Quantum Leaps, LLC; www.state-machine.com
@@ -321,20 +321,20 @@ __user_initial_stackheap
 ;******************************************************************************
 ; The function assert_failed defines the error/assertion handling policy
 ; for the application. After making sure that the stack is OK, this function
-; calls Q_onAssert, which should NOT return (typically reset the CPU).
+; calls DBC_fault_handler, which should NOT return (typically reset the CPU).
 ;
-; NOTE: the function Q_onAssert should NOT return.
+; NOTE: the function DBC_fault_handler should NOT return.
 ;
-; The C proptotype of the assert_failed() and Q_onAssert() functions are:
+; The C proptotypes of assert_failed() and DBC_fault_handler() are:
 ; void assert_failed(char const *file, int line);
-; void Q_onAssert   (char const *file, int line);
+; void DBC_fault_handler   (char const *file, int line);
 ;******************************************************************************
         EXPORT  assert_failed
-        IMPORT  Q_onAssert
+        IMPORT  DBC_fault_handler
 assert_failed PROC
         LDR     r2,=__initial_sp ; load the original top of stack
         MOV     sp,r2            ; re-set the SP in case of stack overflow
-        BL     Q_onAssert        ; call the application-specific handler
+        BL     DBC_fault_handler ; call the application-specific handler
 
         B       .                ; should never be reached
 

@@ -30,9 +30,13 @@
 #include "stm32l0xx.h"  // CMSIS-compliant header file for the MCU used
 // add other drivers if necessary...
 
-Q_DEFINE_THIS_FILE /* for assertions in this file */
-
 // Local-scope defines -------------------------------------------------------
+namespace {
+
+DBC_MODULE_NAME("bsp_nucleo-l053r8") /* for DBC assertions in this module */
+
+} // unnamed workspace
+
 // test pins on GPIO PA
 #define TST1_PIN  7U
 #define TST2_PIN  6U
@@ -101,12 +105,12 @@ void SysTick_Handler(void) {   // system clock tick ISR
 }
 
 // Assertion handler =========================================================
-void Q_onAssert(char const * const module, int const loc) {
-    //
-    // NOTE: add here your application-specific error handling
-    //
+void DBC_fault_handler(char const * const module, int const label) {
+    /*
+    * NOTE: add here your application-specific error handling
+    */
     (void)module;
-    (void)loc;
+    (void)label;
 
     // set PRIMASK to disable interrupts and stop SST right here
     __asm volatile ("cpsid i");
@@ -131,11 +135,19 @@ void Q_onAssert(char const * const module, int const loc) {
 
 #ifdef REGULAR_IRQS
 // repurpose regular IRQs for SST Tasks
+// prototypes
+void PVD_IRQHandler(void);
+void RTC_IRQHandler(void);
+void TSC_IRQHandler(void);
+void I2C2_IRQHandler(void);
+
 void PVD_IRQHandler(void)  { App::AO_Blinky3->activate();  }
 void RTC_IRQHandler(void)  { App::AO_Button2b->activate(); }
 void TSC_IRQHandler(void)  { App::AO_Button2a->activate(); }
 void I2C2_IRQHandler(void) { App::AO_Blinky1->activate();  }
-#else
+
+#else // use reserved IRQs for SST Tasks
+// prototypes
 void Reserved14_IRQHandler(void); // prototype
 void Reserved16_IRQHandler(void); // prototype
 void Reserved18_IRQHandler(void); // prototype
@@ -220,7 +232,7 @@ SST::Evt const *getWorkEvtBlinky1(uint8_t num) {
         { { App::BLINKY_WORK_SIG }, 40U, 5U },
         { { App::BLINKY_WORK_SIG }, 30U, 7U }
     };
-    Q_REQUIRE(num < Q_DIM(workBliny1)); // num must be in range
+    DBC_REQUIRE(500, num < ARRAY_NELEM(workBliny1)); // num must be in range
     return &workBliny1[num].super;
 }
 //............................................................................
@@ -230,7 +242,7 @@ SST::Evt const *getWorkEvtBlinky3(uint8_t num) {
         { { App::BLINKY_WORK_SIG }, 20U, 5U },
         { { App::BLINKY_WORK_SIG }, 10U, 3U   }
     };
-    Q_REQUIRE(num < Q_DIM(workBlinky3)); // num must be in range
+    DBC_REQUIRE(600, num < ARRAY_NELEM(workBlinky3)); // num must be in range
     return &workBlinky3[num].super;
 }
 
@@ -251,16 +263,18 @@ void onStart(void) {
 }
 //............................................................................
 void onIdle(void) {
+    BSP::d6on();  // turn LED2 on
 #ifdef NDEBUG
     // Put the CPU and peripherals to the low-power mode.
     // you might need to customize the clock management for your application,
     // see the datasheet for your particular Cortex-M MCU.
     //
-    __WFI(); // Wait-For-Interrupt
-#else
-    BSP::d6on();  // turn LED2 on
     BSP::d6off(); // turn LED2 off
+    __WFI(); // Wait-For-Interrupt
+    BSP::d6on();  // turn LED2 on
 #endif
+    BSP::d6off(); // turn LED2 off
 }
 
 } // namespace SST
+

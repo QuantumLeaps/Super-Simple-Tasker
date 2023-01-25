@@ -27,7 +27,7 @@
 #include "bsp.h"           /* Board Support Package interface */
 #include "blinky_button.h" /* application shared interface */
 
-Q_DEFINE_THIS_FILE
+DBC_MODULE_NAME("blinky1")
 
 /*..........................................................................*/
 typedef struct {    /* Blinky active object */
@@ -56,7 +56,8 @@ void Blinky1_ctor(void) {
 /*..........................................................................*/
 static void Blinky1_init(Blinky1 * const me, SST_Evt const * const ie) {
     /* the initial event must be provided and must be WORKLOAD_SIG */
-    Q_REQUIRE((ie != (SST_Evt const *)0) && (ie->sig == BLINKY_WORK_SIG));
+    DBC_REQUIRE(300,
+        (ie != (SST_Evt const *)0) && (ie->sig == BLINKY_WORK_SIG));
 
     me->toggles = SST_EVT_DOWNCAST(BlinkyWorkEvt, ie)->toggles;
     me->ticks = SST_EVT_DOWNCAST(BlinkyWorkEvt, ie)->ticks;
@@ -84,7 +85,7 @@ static void Blinky1_dispatch(Blinky1 * const me, SST_Evt const * const e) {
             break;
         }
         default: {
-            Q_ERROR(); /* unexpected event */
+            DBC_ERROR(500); /* unexpected event */
             break;
         }
     }

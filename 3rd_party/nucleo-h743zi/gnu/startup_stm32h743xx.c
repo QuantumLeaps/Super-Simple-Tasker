@@ -62,7 +62,7 @@ void Default_Handler(void);  /* Default empty handler */
 void Reset_Handler(void);    /* Reset Handler */
 void SystemInit(void);       /* CMSIS system initialization */
 __attribute__ ((noreturn))
-void Q_onAssert(char const *module, int loc); /* QP assertion handler */
+void DBC_fault_handler(char const *module, int loc); /* QP assertion handler */
 
 /*----------------------------------------------------------------------------
 * weak aliases for each Exception handler to the Default_Handler.
@@ -522,9 +522,9 @@ void Default_Handler(void) {
 /*****************************************************************************
 * The function assert_failed defines the error/assertion handling policy
 * for the application. After making sure that the stack is OK, this function
-* calls Q_onAssert, which should NOT return (typically reset the CPU).
+* calls DBC_fault_handler, which should NOT return (typically reset the CPU).
 *
-* NOTE: the function Q_onAssert should NOT return.
+* NOTE: the function DBC_fault_handler should NOT return.
 *****************************************************************************/
 __attribute__ ((naked, noreturn))
 void assert_failed(char const *module, int loc) {
@@ -533,7 +533,7 @@ void assert_failed(char const *module, int loc) {
         "  MOV sp,%0\n\t"
         : : "r" (&__stack_end__));
 
-    Q_onAssert(module, loc); /* call the application-specific QP handler */
+    DBC_fault_handler(module, loc); /* call the application-specific handler */
 
     for (;;) { /* should not be reached, but just in case loop forever... */
     }

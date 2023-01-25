@@ -37,28 +37,28 @@ int main() {
     App::AO_Blinky1->start(
         1U,           // SST-priority
         blinky1QSto,  // storage for the AO's queue
-        Q_DIM(blinky1QSto), // queue length
+        ARRAY_NELEM(blinky1QSto), // queue length
         BSP::getWorkEvtBlinky1(0U)); // initialization event
 
     static SST::Evt const *button2aQSto[8]; // Event queue storage
     App::AO_Button2a->start(
         2U,           // SST-priority
         button2aQSto, // storage for the AO's queue
-        Q_DIM(button2aQSto), // queue length
+        ARRAY_NELEM(button2aQSto), // queue length
         nullptr);     // initialization event
 
     static SST::Evt const *button2bQSto[6]; // Event queue storage
     App::AO_Button2b->start(
         2U,           // SST-priority
         button2bQSto, // storage for the AO's queue
-        Q_DIM(button2bQSto), // queue length
+        ARRAY_NELEM(button2bQSto), // queue length
         nullptr);     // initialization event
 
     static SST::Evt const *blinky3QSto[4]; // Event queue storage
     App::AO_Blinky3->start(
         3U,           // SST-priority
         blinky3QSto,  // storage for the AO's queue
-        Q_DIM(blinky3QSto), // queue length
+        ARRAY_NELEM(blinky3QSto), // queue length
         BSP::getWorkEvtBlinky3(0U)); // initialization event
 
     return SST::Task::run(); // run the SST tasks

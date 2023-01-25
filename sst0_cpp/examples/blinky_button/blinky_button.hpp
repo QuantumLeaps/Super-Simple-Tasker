@@ -26,7 +26,7 @@
 #ifndef BLINKY_BUTTON_HPP_
 #define BLINKY_BUTTON_HPP_
 
-#include "qassert.h" // embedded systems assertions
+#include "dbc_assert.h" /* Design By Contract (DBC) assertions */
 
 namespace App {
 

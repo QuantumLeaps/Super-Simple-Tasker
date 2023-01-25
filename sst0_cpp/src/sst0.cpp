@@ -23,13 +23,13 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 //============================================================================
-#include "sst.hpp"   // Super-Simple Tasker (SST) in C++
-#include "qassert.h" // assertions for embedded systems
+#include "sst.hpp"      // Super-Simple Tasker (SST) in C++
+#include "dbc_assert.h" // Design By Contract (DBC) assertions
 
 //............................................................................
 namespace { // unnamed namespace
 
-Q_DEFINE_THIS_MODULE("sst0")
+DBC_MODULE_NAME("sst0") // for DBC assertions in this module
 
 static SST::ReadySet task_readySet;
 
@@ -56,7 +56,7 @@ int Task::run(void) { // static
             SST_PORT_INT_ENABLE();
 
             // the task must have some events in the queue
-            Q_ASSERT_ID(100, task->m_nUsed > 0U);
+            DBC_ASSERT(100, task->m_nUsed > 0U);
 
             // get the event out of the queue
             // NOTE: no critical section because task->m_tail is accessed
@@ -112,7 +112,7 @@ void Task::start(
     // - the queue length must not be zero
     // - the priority must not be in use
     //
-    Q_REQUIRE_ID(300,
+    DBC_REQUIRE(200,
         (0U < prio) && (prio <= SST_PORT_MAX_TASK)
         && (qBuf != nullptr) && (qLen > 0U)
         && (task_registry[prio] == nullptr));
@@ -133,7 +133,7 @@ void Task::start(
 //............................................................................
 void Task::post(Evt const * const e) noexcept {
     //! @pre the queue must be sized adequately and cannot overflow
-    Q_REQUIRE_ID(400, m_nUsed <= m_end);
+    DBC_REQUIRE(300, m_nUsed <= m_end);
 
     SST_PORT_CRIT_STAT
     SST_PORT_CRIT_ENTRY();

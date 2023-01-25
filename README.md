@@ -148,10 +148,14 @@ Super-Simple-Tasker/
 For **every** of these cases the examples are built for the following
 embedded boards:
 
-<p align="center"><img src="img/bd-nucleos.png"/></p>
+<p align="center">
+<img src="img/bd-nucleos.png"/>
+<img src="img/bd_EK-TM4C123GXL.jpg"/>
+</p>
 
 - **STM32 NUCLEO-L053R8** (ARM Cortex-M0+)
 - **STM32 NUCLEO-H743ZI** (ARM Cortex-M7 with double-precision FPU)
+- **TivaC LaunchPad (EK-TM4C123GXL)** (ARM Cortex-M4 with single-precision FPU)
 
 # Licensing
 The SST source code and examples are released under the terms of the

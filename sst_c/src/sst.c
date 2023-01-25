@@ -23,10 +23,10 @@
 * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 * DEALINGS IN THE SOFTWARE.
 ===========================================================================*/
-#include "sst.h"     /* Super-Simple Tasker (SST) */
-#include "qassert.h" /* assertions for embedded systems */
+#include "sst.h"        /* Super-Simple Tasker (SST) */
+#include "dbc_assert.h" /* Design By Contract (DBC) assertions */
 
-Q_DEFINE_THIS_MODULE("sst")
+DBC_MODULE_NAME("sst")  /* for DBC assertions in this module */
 
 /*..........................................................................*/
 int SST_Task_run(void) {
@@ -57,7 +57,7 @@ void SST_Task_start(
     * - the queue storage must be provided
     * - the queue length must not be zero
     */
-    Q_REQUIRE_ID(300,
+    DBC_REQUIRE(200,
         (0U < prio) && (prio <= SST_PORT_MAX_TASK)
         && (qBuf != (SST_Evt const **)0) && (qLen > 0U));
 
@@ -76,7 +76,7 @@ void SST_Task_start(
 /*..........................................................................*/
 void SST_Task_post(SST_Task * const me, SST_Evt const * const e) {
     /*! @pre the queue must be sized adequately and cannot overflow */
-    Q_REQUIRE_ID(400, me->nUsed <= me->end);
+    DBC_REQUIRE(300, me->nUsed <= me->end);
 
     SST_PORT_CRIT_STAT
     SST_PORT_CRIT_ENTRY();

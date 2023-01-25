@@ -29,7 +29,7 @@
 
 namespace {
 
-Q_DEFINE_THIS_FILE
+DBC_MODULE_NAME("button2a")  // for DBC assertions in this module
 
 } // unnamed namespace
 
@@ -98,7 +98,7 @@ void Button2a::dispatch(SST::Evt const * const e) {
             break;
         }
         default: {
-            Q_ERROR(); // unexpected event
+            DBC_ERROR(500); // unexpected event
             break;
         }
     }

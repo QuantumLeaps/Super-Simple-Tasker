@@ -27,7 +27,7 @@
 #include "bsp.h"           /* Board Support Package interface */
 #include "blinky_button.h" /* application shared interface */
 
-Q_DEFINE_THIS_FILE
+DBC_MODULE_NAME("button2a")
 
 /*..........................................................................*/
 typedef struct {    /* Button2a active object */
@@ -58,6 +58,7 @@ static void Button2a_init(Button2a * const me, SST_Evt const * const ie) {
 }
 /*..........................................................................*/
 static void Button2a_dispatch(Button2a * const me, SST_Evt const * const e) {
+    (void)me;
     switch (e->sig) {
         case BUTTON_PRESSED_SIG: {
             BSP_d4on();
@@ -102,7 +103,7 @@ static void Button2a_dispatch(Button2a * const me, SST_Evt const * const e) {
             break;
         }
         default: {
-            Q_ERROR(); /* unexpected event */
+            DBC_ERROR(500); /* unexpected event */
             break;
         }
     }

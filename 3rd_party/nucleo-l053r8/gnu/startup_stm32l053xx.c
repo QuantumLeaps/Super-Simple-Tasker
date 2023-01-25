@@ -62,7 +62,7 @@ void Default_Handler(void);  /* Default empty handler */
 void Reset_Handler(void);    /* Reset Handler */
 void SystemInit(void);       /* CMSIS system initialization */
 __attribute__ ((noreturn))
-void Q_onAssert(char const *module, int loc); /* QP assertion handler */
+void DBC_fault_handler(char const * module, int label);
 
 /*----------------------------------------------------------------------------
 * weak aliases for each Exception handler to the Default_Handler.
@@ -283,8 +283,8 @@ __asm volatile (
 
 /*--------------------------------------------------------------------------*/
 /* The function assert_failed() provides a low-level handler for assertion
-* failures. It ultimately transfers control to Q_onAssert(), which defines
-* the error/assertion handling policy for the application.
+* failures. It ultimately transfers control to DBC_fault_handler(), which
+* defines the error/assertion handling policy for the application.
 *
 * assert_failed() re-sets the stack pointer (MSP) to the original setting.
 * This is necessary to avoid cascading exceptions in case the stack was
@@ -294,7 +294,7 @@ __attribute__ ((naked, noreturn))
 void assert_failed(char const *module, int loc) {
     /* re-set the SP in case of stack overflow */
     __asm volatile ("  MOV sp,%0" : : "r" (&__stack_end__));
-    Q_onAssert(module, loc); /* call the app-specific handler */
+    DBC_fault_handler(module, loc); /* call the app-specific handler */
     for (;;) {
     }
 }

@@ -632,11 +632,11 @@
                 </option>
                 <option>
                     <name>OCOutputOverride</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>OOCOutputFile</name>
-                    <state>nucleo-h743zi.bin</state>
+                    <state>blinky_button.bin</state>
                 </option>
                 <option>
                     <name>OOCCommandLineProducer</name>
@@ -683,7 +683,7 @@
                 </option>
                 <option>
                     <name>IlinkOutputFile</name>
-                    <state>iar_nucleo-h743zi.out</state>
+                    <state>blinky_button.out</state>
                 </option>
                 <option>
                     <name>IlinkDebugInfoEnable</name>

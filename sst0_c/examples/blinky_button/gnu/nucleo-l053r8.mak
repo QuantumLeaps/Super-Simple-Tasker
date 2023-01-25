@@ -133,8 +133,6 @@ BIN   := $(GNU_ARM)/bin/arm-none-eabi-objcopy
 
 MKDIR := mkdir
 RM    := rm
-CP    := cp
-SLEEP := sleep
 
 #-----------------------------------------------------------------------------
 # build options

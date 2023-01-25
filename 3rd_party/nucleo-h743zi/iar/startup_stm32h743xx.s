@@ -683,20 +683,20 @@ str_Undefined
 ;*****************************************************************************
 ; The function assert_failed defines the error/assertion handling policy
 ; for the application. After making sure that the stack is OK, this function
-; calls Q_onAssert, which should NOT return (typically reset the CPU).
+; calls DBC_fault_handler, which should NOT return (typically reset the CPU).
 ;
-; NOTE: the function Q_onAssert should NOT return.
+; NOTE: the function DBC_fault_handler should NOT return.
 ;
-; The C proptotype of the assert_failed() and Q_onAssert() functions are:
+; The C proptotypes of assert_failed() and DBC_fault_handler() are:
 ; void assert_failed(char const *file, int line);
-; void Q_onAssert   (char const *file, int line);
+; void DBC_fault_handler(char const *file, int line);
 ;*****************************************************************************
         PUBLIC  assert_failed
-        EXTERN  Q_onAssert
+        EXTERN  DBC_fault_handler
 assert_failed
         LDR    r2,=sfe(CSTACK)   ; load the original top of stack
         MOV    sp,r2             ; re-set the SP in case of stack overflow
-        BL     Q_onAssert        ; call the application-specific handler
+        BL     DBC_fault_handler ; call the application-specific handler
 
         B      .                 ; should not be reached, but just in case...
 
