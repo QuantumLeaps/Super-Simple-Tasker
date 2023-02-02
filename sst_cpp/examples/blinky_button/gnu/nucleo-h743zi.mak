@@ -30,8 +30,8 @@
 # IN THE SOFTWARE.
 ##############################################################################
 # examples of invoking this Makefile:
-# make -f gnu_nucleo-h743zi
-# make -f gnu_nucleo-h743zi clean
+# make -f nucleo-h743zi.mak
+# make -f nucleo-h743zi.mak clean
 #
 # NOTE:
 # To use this Makefile on Windows, you will need the GNU make utility, which

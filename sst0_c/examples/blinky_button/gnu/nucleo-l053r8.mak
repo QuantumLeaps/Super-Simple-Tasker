@@ -30,8 +30,8 @@
 # IN THE SOFTWARE.
 ##############################################################################
 # examples of invoking this Makefile:
-# make -f gnu_nucleo-l053r8
-# make -f gnu_nucleo-l053r8 clean
+# make -f nucleo-l053r8.mak
+# make -f nucleo-l053r8.mak clean
 #
 # NOTE:
 # To use this Makefile on Windows, you will need the GNU make utility, which
