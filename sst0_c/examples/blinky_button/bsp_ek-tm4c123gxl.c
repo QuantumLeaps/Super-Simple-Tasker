@@ -1,7 +1,11 @@
 /*============================================================================
 * Super-Simple Tasker (SST0/C) Example for TivaC TM4C123GXL
 *
-* Copyright (C) 2006-2023 Quantum Leaps, <state-machine.com>.
+*                    Q u a n t u m  L e a P s
+*                    ------------------------
+*                    Modern Embedded Software
+*
+* Copyright (C) 2005 Quantum Leaps, <state-machine.com>.
 *
 * SPDX-License-Identifier: MIT
 *
@@ -27,8 +31,8 @@
 #include "bsp.h"
 #include "blinky_button.h"
 
-#include "TM4C123GH6PM.h" /* the device specific header (TI) */
-#include <math.h>         /* to exercise the FPU */
+#include "TM4C123GH6PM.h"  /* the device specific header (TI) */
+#include <math.h>          /* to exercise the FPU */
 /* add other drivers if necessary... */
 
 DBC_MODULE_NAME("bsp_ek-tm4c123gxl") /* for DBC assertions in this module */
@@ -61,7 +65,6 @@ void SysTick_Handler(void) { /* system clock tick ISR */
     SST_Task_post(AO_Blinky1, &tickEvt); /* every tick is fast for Blinky1 */
     SST_Task_post(AO_Blinky3, &tickEvt);
 
-    /* get state of the user button */
     /* Perform the debouncing of buttons. The algorithm for debouncing
     * adapted from the book "Embedded Systems Dictionary" by Jack Ganssle
     * and Michael Barr, page 71.
@@ -111,6 +114,7 @@ void SysTick_Handler(void) { /* system clock tick ISR */
 }
 
 /* Assertion handler ======================================================*/
+DBC_NORETURN
 void DBC_fault_handler(char const * const module, int const label) {
     /*
     * NOTE: add here your application-specific error handling
@@ -134,8 +138,29 @@ void DBC_fault_handler(char const * const module, int const label) {
 #endif
     NVIC_SystemReset();
 }
+/*..........................................................................*/
+void assert_failed(char const * const module, int const label);/* prototype */
+void assert_failed(char const * const module, int const label) {
+    DBC_fault_handler(module, label);
+}
+
 /* BSP functions ===========================================================*/
 void BSP_init(void) {
+    /* Configure the MPU to prevent NULL-pointer dereferencing
+    * see: www.state-machine.com/null-pointer-protection-with-arm-cortex-m-mpu
+    */
+    MPU->RBAR = 0x0U                          /* base address (NULL) */
+                | MPU_RBAR_VALID_Msk          /* valid region */
+                | (MPU_RBAR_REGION_Msk & 7U); /* region #7 */
+    MPU->RASR = (7U << MPU_RASR_SIZE_Pos)     /* 2^(7+1) region */
+                | (0x0U << MPU_RASR_AP_Pos)   /* no-access region */
+                | MPU_RASR_ENABLE_Msk;        /* region enable */
+
+    MPU->CTRL = MPU_CTRL_PRIVDEFENA_Msk       /* enable background region */
+                | MPU_CTRL_ENABLE_Msk;        /* enable the MPU */
+    __ISB();
+    __DSB();
+
 
     SYSCTL->RCGCGPIO  |= (1U << 5U); /* enable Run mode for GPIOF */
     SYSCTL->RCGCGPIO  |= (1U << 3U); /* enable Run mode for GPIOD */
@@ -240,8 +265,7 @@ SST_Evt const *BSP_getWorkEvtBlinky1(uint8_t num) {
             .ticks = 7U,
         }
     };
-    DBC_REQUIRE(500,
-        num < ARRAY_NELEM(workBliny1)); /* num must be in range */
+    DBC_REQUIRE(500, num < ARRAY_NELEM(workBliny1)); /* must be in range */
     return &workBliny1[num].super;
 }
 /*..........................................................................*/
@@ -259,8 +283,7 @@ SST_Evt const *BSP_getWorkEvtBlinky3(uint8_t num) {
             .ticks = 3U,
         }
     };
-    DBC_REQUIRE(600,
-        num < ARRAY_NELEM(workBlinky3)); /* num must be in range */
+    DBC_REQUIRE(600, num < ARRAY_NELEM(workBlinky3)); /* must be in range */
     return &workBlinky3[num].super;
 }
 

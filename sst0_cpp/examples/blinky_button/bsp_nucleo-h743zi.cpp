@@ -1,7 +1,12 @@
 //============================================================================
 // Super-Simple Tasker (SST0/C++) Example for STM32 NUCLEO-H74cZI
 //
-// Copyright (C) 2006-2023 Quantum Leaps, <state-machine.com>.
+//
+//                    Q u a n t u m  L e a P s
+//                    ------------------------
+//                    Modern Embedded Software
+//
+// Copyright (C) 2005 Quantum Leaps, <state-machine.com>.
 //
 // SPDX-License-Identifier: MIT
 //
@@ -120,14 +125,19 @@ void DBC_fault_handler(char const * const module, int const label) {
     for (;;) { // keep blinking LED2
         BSP::d6on();  // turn LED2 on
         uint32_t volatile ctr;
-        for (ctr = 10000U; ctr != 0U; --ctr) {
+        for (ctr = 1000000U; ctr > 0U; --ctr) {
         }
         BSP::d6off(); // turn LED2 off
-        for (ctr = 10000U; ctr != 0U; --ctr) {
+        for (ctr = 1000000U; ctr > 0U; --ctr) {
         }
     }
 #endif
     NVIC_SystemReset();
+}
+//............................................................................
+void assert_failed(char const * const module, int const label);// prototype
+void assert_failed(char const * const module, int const label) {
+    DBC_fault_handler(module, label);
 }
 
 } // extern "C"
@@ -136,6 +146,21 @@ namespace BSP {
 
 // BSP functions =============================================================
 void init(void) {
+    // Configure the MPU to prevent NULL-pointer dereferencing
+    // see: www.state-machine.com/null-pointer-protection-with-arm-cortex-m-mpu
+    //
+    MPU->RBAR = 0x0U                          // base address (NULL)
+                | MPU_RBAR_VALID_Msk          // valid region
+                | (MPU_RBAR_REGION_Msk & 7U); // region #7
+    MPU->RASR = (7U << MPU_RASR_SIZE_Pos)     // 2^(7+1) region
+                | (0x0U << MPU_RASR_AP_Pos)   // no-access region
+                | MPU_RASR_ENABLE_Msk;        // region enable
+
+    MPU->CTRL = MPU_CTRL_PRIVDEFENA_Msk       // enable background region
+                | MPU_CTRL_ENABLE_Msk;        // enable the MPU
+    __ISB();
+    __DSB();
+
     SCB_EnableICache(); // Enable I-Cache
     SCB_EnableDCache(); // Enable D-Cache
 
@@ -160,9 +185,9 @@ void init(void) {
     RCC->AHB4ENR |= RCC_AHB4ENR_GPIOCEN;
 
     // configure Button B1 pin on GPIOC as input, no pull-up, pull-down
-    GPIOC->MODER   &= ~(3U << 2U*B1_PIN);
-    GPIOC->PUPDR   &= ~(GPIO_PUPDR_PUPD0 << 2U*B1_PIN);
-    GPIOC->PUPDR   |=  (2U << 2U*B1_PIN);
+    GPIOC->MODER &= ~(3U << 2U*B1_PIN);
+    GPIOC->PUPDR &= ~(GPIO_PUPDR_PUPD0 << 2U*B1_PIN);
+    GPIOC->PUPDR |=  (2U << 2U*B1_PIN);
 }
 
 //............................................................................

@@ -30,8 +30,8 @@
 # IN THE SOFTWARE.
 ##############################################################################
 # examples of invoking this Makefile:
-# make -f gnu_ek-tm4c123gxl
-# make -f gnu_ek-tm4c123gxl clean
+# make -f ek-tm4c123gxl
+# make -f ek-tm4c123gxl clean
 #
 # NOTE:
 # To use this Makefile on Windows, you will need the GNU make utility, which

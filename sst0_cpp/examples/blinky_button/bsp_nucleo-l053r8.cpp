@@ -1,7 +1,12 @@
 //============================================================================
 // Super-Simple Tasker (SST0/C++) Example for STM32 NUCLEO-L053R8
 //
-// Copyright (C) 2006-2023 Quantum Leaps, <state-machine.com>.
+//
+//                    Q u a n t u m  L e a P s
+//                    ------------------------
+//                    Modern Embedded Software
+//
+// Copyright (C) 2005 Quantum Leaps, <state-machine.com>.
 //
 // SPDX-License-Identifier: MIT
 //
@@ -33,7 +38,7 @@
 // Local-scope defines -------------------------------------------------------
 namespace {
 
-DBC_MODULE_NAME("bsp_nucleo-l053r8") /* for DBC assertions in this module */
+DBC_MODULE_NAME("bsp_nucleo-l053r8") // for DBC assertions in this module
 
 } // unnamed workspace
 
@@ -51,7 +56,8 @@ DBC_MODULE_NAME("bsp_nucleo-l053r8") /* for DBC assertions in this module */
 // ISRs used in the application ==============================================
 extern "C" {
 
-void SysTick_Handler(void) {   // system clock tick ISR
+void SysTick_Handler(void);  // prototype
+void SysTick_Handler(void) { // system clock tick ISR
     BSP::d1on();
 
     // immutable timeout event
@@ -106,9 +112,9 @@ void SysTick_Handler(void) {   // system clock tick ISR
 
 // Assertion handler =========================================================
 void DBC_fault_handler(char const * const module, int const label) {
-    /*
-    * NOTE: add here your application-specific error handling
-    */
+    //
+    // NOTE: add here your application-specific error handling
+    //
     (void)module;
     (void)label;
 
@@ -119,14 +125,19 @@ void DBC_fault_handler(char const * const module, int const label) {
     for (;;) { // keep blinking LED2
         BSP::d6on();  // turn LED2 on
         uint32_t volatile ctr;
-        for (ctr = 10000U; ctr != 0U; --ctr) {
+        for (ctr = 10000U; ctr > 0U; --ctr) {
         }
         BSP::d6off(); // turn LED2 off
-        for (ctr = 10000U; ctr != 0U; --ctr) {
+        for (ctr = 10000U; ctr > 0U; --ctr) {
         }
     }
 #endif
     NVIC_SystemReset();
+}
+//............................................................................
+void assert_failed(char const * const module, int const label);// prototype
+void assert_failed(char const * const module, int const label) {
+    DBC_fault_handler(module, label);
 }
 
 } // extern "C"
@@ -135,6 +146,21 @@ namespace BSP {
 
 // BSP functions =============================================================
 void init(void) {
+    // Configure the MPU to prevent NULL-pointer dereferencing
+    // see: www.state-machine.com/null-pointer-protection-with-arm-cortex-m-mpu
+    //
+    MPU->RBAR = 0x0U                          // base address (NULL)
+                | MPU_RBAR_VALID_Msk          // valid region
+                | (MPU_RBAR_REGION_Msk & 7U); // region #7
+    MPU->RASR = (7U << MPU_RASR_SIZE_Pos)     // 2^(7+1) region
+                | (0x0U << MPU_RASR_AP_Pos)   // no-access region
+                | MPU_RASR_ENABLE_Msk;        // region enable
+
+    MPU->CTRL = MPU_CTRL_PRIVDEFENA_Msk       // enable background region
+                | MPU_CTRL_ENABLE_Msk;        // enable the MPU
+    __ISB();
+    __DSB();
+
 
     // enable GPIO port PA clock
     RCC->IOPENR |= (1U << 0U);
@@ -191,7 +217,7 @@ SST::Evt const *getWorkEvtBlinky1(uint8_t num) {
 }
 //............................................................................
 SST::Evt const *getWorkEvtBlinky3(uint8_t num) {
-    /* immutable work events for Blinky3 */
+    // immutable work events for Blinky3
     static App::BlinkyWorkEvt const workBlinky3[] = {
         { { App::BLINKY_WORK_SIG }, 20U, 5U },
         { { App::BLINKY_WORK_SIG }, 10U, 3U   }

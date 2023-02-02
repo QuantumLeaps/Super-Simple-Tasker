@@ -1,7 +1,11 @@
 /*============================================================================
 * Super-Simple Tasker (SST/C) Example for STM32 NUCLEO-H743ZI
 *
-* Copyright (C) 2006-2023 Quantum Leaps, <state-machine.com>.
+*                    Q u a n t u m  L e a P s
+*                    ------------------------
+*                    Modern Embedded Software
+*
+* Copyright (C) 2005 Quantum Leaps, <state-machine.com>.
 *
 * SPDX-License-Identifier: MIT
 *
@@ -31,7 +35,7 @@
 #include <math.h>         /* to exercise the FPU */
 /* add other drivers if necessary... */
 
-DBC_MODULE_NAME("bsp_nucleo-h743zi")
+DBC_MODULE_NAME("bsp_nucleo-h743zi") /* for DBC assertions in this module */
 
 /* Local-scope defines -----------------------------------------------------*/
 
@@ -57,7 +61,6 @@ void SysTick_Handler(void) { /* system clock tick ISR */
     SST_Task_post(AO_Blinky1, &tickEvt); /* every tick is fast for Blinky1 */
     SST_Task_post(AO_Blinky3, &tickEvt);
 
-    /* get state of the user button */
     /* Perform the debouncing of buttons. The algorithm for debouncing
     * adapted from the book "Embedded Systems Dictionary" by Jack Ganssle
     * and Michael Barr, page 71.
@@ -107,6 +110,7 @@ void SysTick_Handler(void) { /* system clock tick ISR */
 }
 
 /* Assertion handler ======================================================*/
+DBC_NORETURN
 void DBC_fault_handler(char const * const module, int const label) {
     /*
     * NOTE: add here your application-specific error handling
@@ -129,6 +133,11 @@ void DBC_fault_handler(char const * const module, int const label) {
     }
 #endif
     NVIC_SystemReset();
+}
+/*..........................................................................*/
+void assert_failed(char const * const module, int const label);/* prototype */
+void assert_failed(char const * const module, int const label) {
+    DBC_fault_handler(module, label);
 }
 
 /* SST task activations ====================================================*/
@@ -163,6 +172,21 @@ void Reserved66_IRQHandler(void) { SST_Task_activate(AO_Blinky1);  }
 
 /* BSP functions ===========================================================*/
 void BSP_init(void) {
+    /* Configure the MPU to prevent NULL-pointer dereferencing
+    * see: www.state-machine.com/null-pointer-protection-with-arm-cortex-m-mpu
+    */
+    MPU->RBAR = 0x0U                          /* base address (NULL) */
+                | MPU_RBAR_VALID_Msk          /* valid region */
+                | (MPU_RBAR_REGION_Msk & 7U); /* region #7 */
+    MPU->RASR = (7U << MPU_RASR_SIZE_Pos)     /* 2^(7+1) region */
+                | (0x0U << MPU_RASR_AP_Pos)   /* no-access region */
+                | MPU_RASR_ENABLE_Msk;        /* region enable */
+
+    MPU->CTRL = MPU_CTRL_PRIVDEFENA_Msk       /* enable background region */
+                | MPU_CTRL_ENABLE_Msk;        /* enable the MPU */
+    __ISB();
+    __DSB();
+
     SCB_EnableICache(); /* Enable I-Cache */
     SCB_EnableDCache(); /* Enable D-Cache */
 
@@ -213,7 +237,7 @@ static void exerciseFPU(double x) {
     *  sin(x)^2 + cos(x)^2 == 1.0 for any x
     */
     double tmp = pow(sin(x), 2.0) + pow(cos(x), 2.0);
-    DBC_ENSURE(200, (1.0 - 1e-4 <= tmp) && (tmp <= 1.0 + 1e-4));
+    DBC_ENSURE(200, (1.0 - 1e-4 < tmp) && (tmp < 1.0 + 1e-4));
 }
 
 /*..........................................................................*/
@@ -280,8 +304,7 @@ SST_Evt const *BSP_getWorkEvtBlinky1(uint8_t num) {
             .ticks = 7U,
         }
     };
-    DBC_REQUIRE(500,
-        num < ARRAY_NELEM(workBliny1)); /* num must be in range */
+    DBC_REQUIRE(500, num < ARRAY_NELEM(workBliny1)); /* must be in range */
     return &workBliny1[num].super;
 }
 /*..........................................................................*/
@@ -299,8 +322,7 @@ SST_Evt const *BSP_getWorkEvtBlinky3(uint8_t num) {
             .ticks = 3U,
         }
     };
-    DBC_REQUIRE(600,
-        num < ARRAY_NELEM(workBlinky3)); /* num must be in range */
+    DBC_REQUIRE(600, num < ARRAY_NELEM(workBlinky3)); /* must be in range */
     return &workBlinky3[num].super;
 }
 

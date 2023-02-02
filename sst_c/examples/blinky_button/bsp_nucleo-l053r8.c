@@ -1,7 +1,11 @@
 /*============================================================================
 * Super-Simple Tasker (SST/C) Example for STM32 NUCLEO-L053R8
 *
-* Copyright (C) 2006-2023 Quantum Leaps, <state-machine.com>.
+*                    Q u a n t u m  L e a P s
+*                    ------------------------
+*                    Modern Embedded Software
+*
+* Copyright (C) 2005 Quantum Leaps, <state-machine.com>.
 *
 * SPDX-License-Identifier: MIT
 *
@@ -30,7 +34,7 @@
 #include "stm32l0xx.h"  /* CMSIS-compliant header file for the MCU used */
 /* add other drivers if necessary... */
 
-DBC_MODULE_NAME("bsp_nucleo-l053r8")
+DBC_MODULE_NAME("bsp_nucleo-l053r8") /* for DBC assertions in this module */
 
 /* Local-scope defines -----------------------------------------------------*/
 
@@ -56,7 +60,6 @@ void SysTick_Handler(void) { /* system clock tick ISR */
     SST_Task_post(AO_Blinky1, &tickEvt); /* every tick is fast for Blinky1 */
     SST_Task_post(AO_Blinky3, &tickEvt);
 
-    /* get state of the user button */
     /* Perform the debouncing of buttons. The algorithm for debouncing
     * adapted from the book "Embedded Systems Dictionary" by Jack Ganssle
     * and Michael Barr, page 71.
@@ -106,6 +109,7 @@ void SysTick_Handler(void) { /* system clock tick ISR */
 }
 
 /* Assertion handler ======================================================*/
+DBC_NORETURN
 void DBC_fault_handler(char const * const module, int const label) {
     /*
     * NOTE: add here your application-specific error handling
@@ -128,6 +132,11 @@ void DBC_fault_handler(char const * const module, int const label) {
     }
 #endif
     NVIC_SystemReset();
+}
+/*..........................................................................*/
+void assert_failed(char const * const module, int const label);/* prototype */
+void assert_failed(char const * const module, int const label) {
+    DBC_fault_handler(module, label);
 }
 
 /* SST task activations ====================================================*/
@@ -162,6 +171,21 @@ void Reserved19_IRQHandler(void) { SST_Task_activate(AO_Blinky1);  }
 
 /* BSP functions ===========================================================*/
 void BSP_init(void) {
+    /* Configure the MPU to prevent NULL-pointer dereferencing
+    * see: www.state-machine.com/null-pointer-protection-with-arm-cortex-m-mpu
+    */
+    MPU->RBAR = 0x0U                          /* base address (NULL) */
+                | MPU_RBAR_VALID_Msk          /* valid region */
+                | (MPU_RBAR_REGION_Msk & 7U); /* region #7 */
+    MPU->RASR = (7U << MPU_RASR_SIZE_Pos)     /* 2^(7+1) region */
+                | (0x0U << MPU_RASR_AP_Pos)   /* no-access region */
+                | MPU_RASR_ENABLE_Msk;        /* region enable */
+
+    MPU->CTRL = MPU_CTRL_PRIVDEFENA_Msk       /* enable background region */
+                | MPU_CTRL_ENABLE_Msk;        /* enable the MPU */
+    __ISB();
+    __DSB();
+
     /* assign IRQs to tasks. NOTE: critical for SST... */
 #ifdef REGULAR_IRQS
     /* repurpose regular IRQs for SST Tasks */
