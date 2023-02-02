@@ -153,6 +153,7 @@ embedded boards:
 <img src="img/bd_EK-TM4C123GXL.jpg"/>
 </p>
 
+- **STM32 NUCLEO-C031R6** (ARM Cortex-M0+)
 - **STM32 NUCLEO-L053R8** (ARM Cortex-M0+)
 - **STM32 NUCLEO-H743ZI** (ARM Cortex-M7 with double-precision FPU)
 - **TivaC LaunchPad (EK-TM4C123GXL)** (ARM Cortex-M4 with single-precision FPU)
