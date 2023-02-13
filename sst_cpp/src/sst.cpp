@@ -36,8 +36,8 @@ DBC_MODULE_NAME("sst")  // for DBC assertions in this module
 namespace SST {
 
 // SST kernel facilities -----------------------------------------------------
-//............................................................................
 int Task::run(void) {
+    SST::start(); // port-specific start of multitasking
     onStart(); // configure and start the interrupts
 
     for (;;) { // idle loop of the SST kernel

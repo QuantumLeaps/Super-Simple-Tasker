@@ -91,6 +91,7 @@ int  SST_Task_run(void); /* run SST tasks static */
 
 /* SST Kernel facilities ---------------------------------------------------*/
 void SST_init(void);
+void SST_start(void);
 void SST_onStart(void);
 
 #ifndef SST_LOG2

@@ -30,7 +30,8 @@ DBC_MODULE_NAME("sst")  /* for DBC assertions in this module */
 
 /*..........................................................................*/
 int SST_Task_run(void) {
-    SST_onStart(); /* configure and start the interrupts */
+    SST_start();   /* port-specific start of multitasking */
+    SST_onStart(); /* application callback to config & start interrupts */
 
     for (;;) { /* idle loop of the SST kernel */
         SST_onIdle();

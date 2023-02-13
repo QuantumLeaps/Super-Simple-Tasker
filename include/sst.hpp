@@ -87,6 +87,7 @@ public:
 
 // SST Kernel facilities -----------------------------------------------------
 void init(void);
+void start(void);
 void onStart(void);
 void onIdle(void);
 

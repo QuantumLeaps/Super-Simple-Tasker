@@ -32,6 +32,7 @@ DBC_MODULE_NAME("sst_port") /* for DBC assertions in this module */
 #define NVIC_EN      ((uint32_t volatile *)0xE000E100U)
 #define NVIC_IP      ((uint32_t volatile *)0xE000E400U)
 #define SCB_SYSPRI   ((uint32_t volatile *)0xE000ED14U)
+#define SCB_AIRCR   *((uint32_t volatile *)0xE000ED0CU)
 #define FPU_FPCCR   *((uint32_t volatile *)0xE000EF34U)
 
 /*..........................................................................*/
@@ -62,6 +63,22 @@ void SST_init(void) {
                  | (1U << 31U); /* lazy stacking (LSPEN) */
 #endif
 }
+/*..........................................................................*/
+void SST_start(void) {
+    /* Set the NVIC priority grouping to default 0
+    *
+    * NOTE:
+    * Typically the SST port to ARM Cortex-M should waste no NVIC priority
+    * bits for grouping. This code ensures this setting, but priority
+    * grouping can be still overridden in the application-specific
+    * callback SST_onStart().
+    */
+    uint32_t tmp = SCB_AIRCR;
+    /* clear the key bits 31:16 and priority grouping bits 10:8 */
+    tmp &= ~((0xFFFFU << 16U) | (0x7U << 8U));
+    SCB_AIRCR = (0x05FAU << 16U) | tmp;
+}
+
 /* SST Task facilities -----------------------------------------------------*/
 void SST_Task_setPrio(SST_Task * const me, SST_TaskPrio prio) {
 
