@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>__FPU_PRESENT</Define>
               <Undefine></Undefine>
-              <IncludePath>..;..\..\..\..\include;..\..\..\ports\arm-cm;..\..\..\..\3rd_party\ek-tm4c123gxl</IncludePath>
+              <IncludePath>..;..\..\..\..\include;..\..\..\ports\arm-cm;..\..\..\..\3rd_party\CMSIS\Include;..\..\..\..\3rd_party\ek-tm4c123gxl</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

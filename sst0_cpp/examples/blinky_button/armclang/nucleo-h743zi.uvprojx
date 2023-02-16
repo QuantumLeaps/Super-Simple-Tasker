@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>STM32H743xx</Define>
               <Undefine></Undefine>
-              <IncludePath>.;..\..\..\..\include;..\..\..\ports\arm-cm;..\..\..\..\3rd_party\nucleo-h743zi</IncludePath>
+              <IncludePath>.;..\..\..\..\include;..\..\..\ports\arm-cm;..\..\..\..\3rd_party\CMSIS\Include;..\..\..\..\3rd_party\nucleo-h743zi</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

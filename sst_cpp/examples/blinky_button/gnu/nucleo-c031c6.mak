@@ -50,7 +50,8 @@ TARGET  := nucleo-c031c6
 #
 SST_DIR      := ../../..
 SST_PORT_DIR := $(SST_DIR)/ports/arm-cm
-TARGET_DIR   := $(SST_DIR)/../3rd_party/$(TARGET)
+CMSIS_DIR    := ../../../../3rd_party/CMSIS
+TARGET_DIR   := ../../../../3rd_party/$(TARGET)
 
 # list of all source directories used by this project
 VPATH = .. \
@@ -63,6 +64,7 @@ VPATH = .. \
 INCLUDES  = -I. \
 	-I$(SST_DIR)/../include \
 	-I$(SST_PORT_DIR) \
+	-I$(CMSIS_DIR)/Include \
 	-I$(TARGET_DIR)
 
 #-----------------------------------------------------------------------------
@@ -88,7 +90,7 @@ CPP_SRCS := \
 	button2b.cpp \
 	bsp_nucleo-c031c6.cpp
 
-LD_SCRIPT  := $(TARGET_DIR)/$(TARGET).ld
+LD_SCRIPT  := $(TARGET_DIR)/gnu/$(TARGET).ld
 
 OUTPUT    := $(PROJECT)
 

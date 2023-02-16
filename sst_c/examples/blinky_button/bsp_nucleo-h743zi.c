@@ -292,7 +292,7 @@ void BSP_d6off(void) {
 /*..........................................................................*/
 SST_Evt const *BSP_getWorkEvtBlinky1(uint8_t num) {
     /* immutable work events for Blinky1 */
-    static BlinkyWorkEvt const workBliny1[] = {
+    static BlinkyWorkEvt const workBlinky1[] = {
         {
             .super.sig = BLINKY_WORK_SIG,
             .toggles = 40U,
@@ -304,8 +304,8 @@ SST_Evt const *BSP_getWorkEvtBlinky1(uint8_t num) {
             .ticks = 7U,
         }
     };
-    DBC_REQUIRE(500, num < ARRAY_NELEM(workBliny1)); /* must be in range */
-    return &workBliny1[num].super;
+    DBC_REQUIRE(500, num < ARRAY_NELEM(workBlinky1)); /* must be in range */
+    return &workBlinky1[num].super;
 }
 /*..........................................................................*/
 SST_Evt const *BSP_getWorkEvtBlinky3(uint8_t num) {

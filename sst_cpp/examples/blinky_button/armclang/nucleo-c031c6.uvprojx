@@ -339,7 +339,7 @@
               <MiscControls>-Wconditional-uninitialized -Wsometimes-uninitialized</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.;..\..\..\..\include;..\..\..\ports\arm-cm;..\..\..\..\3rd_party\nucleo-c031c6</IncludePath>
+              <IncludePath>.;..\..\..\..\include;..\..\..\ports\arm-cm;..\..\..\..\3rd_party\CMSIS\Include;..\..\..\..\3rd_party\nucleo-c031c6</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

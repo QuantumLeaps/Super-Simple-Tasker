@@ -44,7 +44,7 @@ The preemptive SST and non-preemptive SST0 implement actually *the same*
 
 ## Hardware RTOS for ARM Cortex-M
 [SST for ARM Cortex-M](sst_c/ports/arm-cm) provides a unique
-**hardware implementation** of SST for ARM Cortex-M (M0, M0+, M3,
+**hardware implementation** of the SST API for ARM Cortex-M (M0, M0+, M3,
 M4, M7, M23, M33). The SST "hardware RTOS" for ARM Cortex-M is fully
 compatible with the requirements of
 [Rate Monotonic Analysis/Scheduling (RMA/RMS)](https://youtu.be/kLxxXNCrY60).
@@ -65,39 +65,39 @@ That original version of SST (now called "Legacy SST") is
 [still available](legacy) and is provided for historical reference.
 
 Over the years, more complete SST-like kernels have been developed
-for a number of embedded processors, such as: ARM Cortex-M (M0-M7),
-MSP430, PIC24/dsPIC, PIC32, etc. Examples include:
-[QP Real-Time Embedded Frameworks](https://www.state-machine.com/products/qp)
+for a number of embedded processors, such as: ARM7TDMI, ARM Cortex-M (M0-M7),
+ARM Cortex-R, MSP430, PIC24/dsPIC, PIC32, etc. All these kernels are now
+included in the
+[QP/C and QP/C++ Real-Time Embedded Frameworks](https://www.state-machine.com/products/qp):
 
-- [QK](https://www.state-machine.com/qpc/srs_qk.html),
-which  works like SST and is available as one of the built-in kernels in the
+- [QK preemptive, priority-based, non-blocking kernel](https://www.state-machine.com/qpc/srs_qk.html)
+works like SST and is available as one of the built-in kernels in the
 [QP Real-Time Embedded Frameworks (RTEFs)](https://www.state-machine.com/products/qp).
 
-- [QXK](https://www.state-machine.com/qpc/srs_qxk.html),
-which combines the basic-tasks of SST with traditional blocking tasks (a.k.a.
+- [QXK preemptive, dual-mode kernel](https://www.state-machine.com/qpc/srs_qxk.html)
+combines the basic-tasks of SST with traditional blocking tasks (a.k.a.
 **extended tasks** in OSEK/VDX) and is available as one of the
 built-in kernels in the
 [QP Real-Time Embedded Frameworks (RTEFs)](https://www.state-machine.com/products/qp)
 
-- [QV](https://www.state-machine.com/qpc/srs_qv.html),
-which works like [SST0](#non-preemptive-sst0) and is available as one
-of the built-in kernels in the
+- [QV priority-based, cooperative kernel](https://www.state-machine.com/qpc/srs_qv.html)
+works like [SST0](#non-preemptive-sst0) and is available as one of the built-in
+kernels in the
 [QP Real-Time Embedded Frameworks (RTEFs)](https://www.state-machine.com/products)
 
 
 # Non-Preemptive SST0
 This repository contains also the non-preemptive implementation of the
-SST API, called **SST0**. SST0 is also a **priority-based
-RTOS kernel**, but the scheduling is non-preemptive. SST0 scheduler always
-executes the higest-priority basic task ready to run, but the scheduling
-is performed only after every the completion of the task (run-to-completion
-execution).
+SST API, called **SST0**. SST0 is also a **priority-based RTOS kernel**,
+but the scheduling is non-preemptive. SST0 scheduler always executes the
+higest-priority basic task ready to run, but the scheduling is performed
+only after voluntary completion of each task (run-to-completion execution).
 
 <p align="center"><img src="img/logo_sst0-chip.png"/></p>
 
 SST0 provides the following features:
 - basic tasks (non-blocking, run-to-completion)
-- priority-based, non-preemptive, cooperative scheduling
+- priority-based, non-preemptive (cooperative) scheduling
 - only one task per prioriy level
 - multiple "activations" per task (event queues)
 
@@ -145,8 +145,8 @@ Super-Simple-Tasker/
 |   |    |    +----iar/        // project for IAR EWARM
 |
 ```
-For **every** of these cases the examples are built for the following
-embedded boards:
+For **every** of these cases the projects to build the examples are provided
+for the following embedded boards:
 
 <p align="center">
 <img src="img/bd-nucleos.png"/>

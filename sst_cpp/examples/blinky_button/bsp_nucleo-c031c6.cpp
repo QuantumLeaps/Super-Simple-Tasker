@@ -260,12 +260,12 @@ void d6off(void) { GPIOA->BSRR = (1U << (TST6_PIN + 16U)); }
 //............................................................................
 SST::Evt const *getWorkEvtBlinky1(uint8_t num) {
     // immutable work events for Blinky1
-    static App::BlinkyWorkEvt const workBliny1[] = {
+    static App::BlinkyWorkEvt const workBlinky1[] = {
         { { App::BLINKY_WORK_SIG }, 40U, 5U },
         { { App::BLINKY_WORK_SIG }, 30U, 7U }
     };
-    DBC_REQUIRE(500, num < ARRAY_NELEM(workBliny1)); // num must be in range
-    return &workBliny1[num].super;
+    DBC_REQUIRE(500, num < ARRAY_NELEM(workBlinky1)); // num must be in range
+    return &workBlinky1[num].super;
 }
 //............................................................................
 SST::Evt const *getWorkEvtBlinky3(uint8_t num) {
