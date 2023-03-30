@@ -19,5 +19,5 @@ Complete Downloads
 To reduce the size of the distribution, this CMSIS folder contains only the
 Include sub-directory. The complete CMSIS-5 is available at:
 
-https://github.com/ARM-software/CMSIS_5 
+https://github.com/ARM-software/CMSIS_5
 

@@ -39,22 +39,55 @@
 #define SST_PORT_CRIT_ENTRY() SST_PORT_INT_DISABLE()
 #define SST_PORT_CRIT_EXIT()  SST_PORT_INT_ENABLE()
 
-#if (__ARM_ARCH > 6) /* ARMv7-M or higher? */
+typedef uint32_t SST_ReadySet;
 
-/* ARMv7-M+ have CLZ instruction for fast LOG2 computations */
+/* special idle callback to handle the "idle condition" in SST0 */
+void SST_onIdleCond(void);
+
+#if (__ARM_ARCH == 6) /* ARMv6-M? */
+
+/* SST_LOG2() implementation for ARMv6-M (no CLZ instruction) */
+static inline uint_fast8_t SST_LOG2(uint32_t x) {
+    static uint8_t const log2LUT[16] = {
+        0U, 1U, 2U, 2U, 3U, 3U, 3U, 3U,
+        4U, 4U, 4U, 4U, 4U, 4U, 4U, 4U
+    };
+    uint_fast8_t n = 0U;
+    SST_ReadySet tmp;
+
+    #if (SST_PORT_MAX_TASK > 16U)
+    tmp = (SST_ReadySet)(x >> 16U);
+    if (tmp != 0U) {
+        n += 16U;
+        x = tmp;
+    }
+    #endif
+    #if (SST_PORT_MAX_TASK > 8U)
+    tmp = (x >> 8U);
+    if (tmp != 0U) {
+        n += 8U;
+        x = tmp;
+    }
+    #endif
+    tmp = (x >> 4U);
+    if (tmp != 0U) {
+        n += 4U;
+        x = tmp;
+    }
+    return n + log2LUT[x];
+}
+
+#else /* ARMv7-M+ have CLZ instruction for fast LOG2 computations */
+
 #if defined __ARMCC_VERSION
     #define SST_LOG2(x_) ((uint_fast8_t)(32U - __builtin_clz((unsigned)(x_))))
 #elif defined __GNUC__
     #define SST_LOG2(x_) ((uint_fast8_t)(32U - __builtin_clz((unsigned)(x_))))
 #elif defined __ICCARM__
-    #define QF_LOG2(n_) ((uint_fast8_t)(32U - __CLZ((unsigned long)(n_))))
+    #include <intrinsics.h>
+    #define SST_LOG2(x_) ((uint_fast8_t)(32U - __CLZ((unsigned long)(x_))))
 #endif /* compiler type */
 
 #endif
-
-typedef uint32_t SST_ReadySet;
-
-/* special idle callback to handle the "idle condition" in SST0 */
-void SST_onIdleCond(void);
 
 #endif /* SST_PORT_H_ */

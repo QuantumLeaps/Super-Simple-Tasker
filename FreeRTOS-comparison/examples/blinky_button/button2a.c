@@ -23,7 +23,7 @@
 * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 * DEALINGS IN THE SOFTWARE.
 ============================================================================*/
-#include "FreeRTOS.h"   /* Free Active Object interface */
+#include "FreeRTOS.h"   /* FreeRTOS API */
 #include "task.h"       /* FreeRTOS task API */
 #include "queue.h"      /* FreeRTOS queue API */
 
@@ -31,7 +31,7 @@
 #include "bsp.h"           /* Board Support Package interface */
 
 /*..........................................................................*/
-typedef struct {    /* Button2a active object */
+typedef struct {    /* Button2a task */
     /* add internal variables for this AO... */
 } Button2a;
 

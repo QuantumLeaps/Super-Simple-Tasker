@@ -151,3 +151,67 @@ void SST_Task_post(SST_Task * const me, SST_Evt const * const e) {
     task_readySet |= (1U << (me->prio - 1U));
     SST_PORT_CRIT_EXIT();
 }
+
+/*--------------------------------------------------------------------------*/
+static SST_TimeEvt *timeEvt_head = (SST_TimeEvt *)0;
+
+/*..........................................................................*/
+void SST_TimeEvt_ctor(
+    SST_TimeEvt * const me,
+    SST_Signal sig,
+    SST_Task *task)
+{
+    me->super.sig = sig;
+    me->task = task;
+    me->ctr = 0U;
+    me->interval = 0U;
+
+    /* insert time event "me" into the linked-list */
+    me->next = timeEvt_head;
+    timeEvt_head = me;
+}
+/*..........................................................................*/
+void SST_TimeEvt_arm(
+    SST_TimeEvt * const me,
+    SST_TCtr ctr,
+    SST_TCtr interval)
+{
+    SST_PORT_CRIT_STAT
+    SST_PORT_CRIT_ENTRY();
+    me->ctr = ctr;
+    me->interval = interval;
+    SST_PORT_CRIT_EXIT();
+}
+/*..........................................................................*/
+bool SST_TimeEvt_disarm(SST_TimeEvt * const me) {
+    SST_PORT_CRIT_STAT
+    SST_PORT_CRIT_ENTRY();
+    bool status = (me->ctr != 0U);
+    me->ctr = 0U;
+    me->interval = 0U;
+    SST_PORT_CRIT_EXIT();
+    return status;
+}
+/*..........................................................................*/
+void SST_TimeEvt_tick(void) {
+    for (SST_TimeEvt *t = timeEvt_head;
+         t != (SST_TimeEvt *)0;
+         t = t->next)
+    {
+        SST_PORT_CRIT_STAT
+        SST_PORT_CRIT_ENTRY();
+        if (t->ctr == 0U) { /* disarmed? (most frequent case) */
+            SST_PORT_CRIT_EXIT();
+        }
+        else if (t->ctr == 1U) { /* expiring? */
+            t->ctr = t->interval;
+            SST_PORT_CRIT_EXIT();
+
+            SST_Task_post(t->task, &t->super);
+        }
+        else { /* timing out */
+            --t->ctr;
+            SST_PORT_CRIT_EXIT();
+        }
+    }
+}

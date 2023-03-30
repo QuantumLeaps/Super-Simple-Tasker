@@ -27,6 +27,7 @@
 #define SST_H_
 
 #include <stdint.h>   /* standard C99 integer types */
+#include <stdbool.h>  /* standard C99 Boolean */
 #include "sst_port.h" /* SST port for specific CPU */
 
 /* SST Event facilities ----------------------------------------------------*/
@@ -89,42 +90,40 @@ int  SST_Task_run(void); /* run SST tasks static */
     SST_PORT_TASK_OPER
 #endif
 
+/* SST Time Event facilities -----------------------------------------------*/
+/*! SST internal time-event tick counter */
+typedef uint16_t SST_TCtr;
+
+/*! SST time event class */
+typedef struct SST_TimeEvt SST_TimeEvt;
+struct SST_TimeEvt {
+    SST_Evt super;
+
+    SST_TimeEvt *next; /*! link to next time event in a link-list */
+    SST_Task *task;    /*! the owner task to post time event to */
+    SST_TCtr ctr;      /*! time event down-counter */
+    SST_TCtr interval; /*! interval for periodic time event */
+};
+
+void SST_TimeEvt_ctor(
+    SST_TimeEvt * const me,
+    SST_Signal sig,
+    SST_Task *task);
+
+void SST_TimeEvt_arm(
+    SST_TimeEvt * const me,
+    SST_TCtr ctr,
+    SST_TCtr interval);
+
+bool SST_TimeEvt_disarm(
+    SST_TimeEvt * const me);
+
+void SST_TimeEvt_tick(void); /* static handle all instantiated time events */
+
 /* SST Kernel facilities ---------------------------------------------------*/
 void SST_init(void);
 void SST_start(void);
 void SST_onStart(void);
-
-#ifndef SST_LOG2
-static inline uint_fast8_t SST_LOG2(uint32_t x) {
-    static uint8_t const log2LUT[16] = {
-        0U, 1U, 2U, 2U, 3U, 3U, 3U, 3U,
-        4U, 4U, 4U, 4U, 4U, 4U, 4U, 4U
-    };
-    uint_fast8_t n = 0U;
-    SST_ReadySet tmp;
-
-    #if (SST_PORT_MAX_TASK > 16U)
-    tmp = (SST_ReadySet)(x >> 16U);
-    if (tmp != 0U) {
-        n += 16U;
-        x = tmp;
-    }
-    #endif
-    #if (SST_PORT_MAX_TASK > 8U)
-    tmp = (x >> 8U);
-    if (tmp != 0U) {
-        n += 8U;
-        x = tmp;
-    }
-    #endif
-    tmp = (x >> 4U);
-    if (tmp != 0U) {
-        n += 4U;
-        x = tmp;
-    }
-    return n + log2LUT[x];
-}
-#endif
 
 /* general convenience utilities -------------------------------------------*/
 #ifndef ARRAY_NELEM

@@ -30,7 +30,7 @@
 DBC_MODULE_NAME("button2a")
 
 /*..........................................................................*/
-typedef struct {    /* Button2a active object */
+typedef struct {    /* Button2a task */
     SST_Task super; /* inherit SST_Task */
     /* add internal variables for this AO... */
 } Button2a;

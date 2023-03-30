@@ -33,7 +33,7 @@ int main() {
     BSP_init(); /* initialize the Board Support Package */
 
     /* instantiate and start all SST tasks... */
-    Blinky1_ctor();
+    Blinky1_instantiate();
     static SST_Evt const *blinky1QSto[10]; /* Event queue storage */
     SST_Task_start(
         AO_Blinky1,     /* AO pointer to start */
@@ -42,7 +42,7 @@ int main() {
         ARRAY_NELEM(blinky1QSto),   /* queue length */
         BSP_getWorkEvtBlinky1(0U)); /* initialization event */
 
-    Button2a_ctor();
+    Button2a_instantiate();
     static SST_Evt const *button2aQSto[8]; /* Event queue storage */
     SST_Task_start(
         AO_Button2a,    /* AO pointer to start */
@@ -51,7 +51,7 @@ int main() {
         ARRAY_NELEM(button2aQSto), /* queue length */
         (SST_Evt const *)0); /* initialization event -- not used */
 
-    Button2b_ctor();
+    Button2b_instantiate();
     static SST_Evt const *button2bQSto[6]; /* Event queue storage */
     SST_Task_start(
         AO_Button2b,    /* AO pointer to start */
@@ -60,7 +60,7 @@ int main() {
         ARRAY_NELEM(button2bQSto), /* queue length */
         (SST_Evt const *)0); /* initialization event -- not used */
 
-    Blinky3_ctor();
+    Blinky3_instantiate();
     static SST_Evt const *blinky3QSto[4]; /* Event queue storage */
     SST_Task_start(
         AO_Blinky3,     /* AO pointer to start */

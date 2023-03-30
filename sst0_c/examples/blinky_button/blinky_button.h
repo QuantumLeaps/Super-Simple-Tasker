@@ -51,15 +51,15 @@ typedef struct {
 } ButtonWorkEvt;
 
 void Blinky1_ctor(void);
-extern SST_Task * const AO_Blinky1;  /* opaque active object pointer */
+extern SST_Task * const AO_Blinky1;  /* opaque task pointer */
 
 void Blinky3_ctor(void);
-extern SST_Task * const AO_Blinky3;  /* opaque active object pointer */
+extern SST_Task * const AO_Blinky3;  /* opaque task pointer */
 
 void Button2a_ctor(void);
-extern SST_Task * const AO_Button2a; /* opaque active object pointer */
+extern SST_Task * const AO_Button2a; /* opaque task pointer */
 
 void Button2b_ctor(void);
-extern SST_Task * const AO_Button2b; /* opaque active object pointer */
+extern SST_Task * const AO_Button2b; /* opaque task pointer */
 
 #endif /* BLINKY_BUTTON_H_ */

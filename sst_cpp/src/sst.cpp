@@ -52,11 +52,11 @@ void Task::start(
     Evt const * const ie)
 {
     //! @pre
+    //! - the priority must be greater than zero
     //! - the queue storage and length must be provided
-    //! - the IRQ number must be already set
     DBC_REQUIRE(200,
-        (qBuf != nullptr) && (qLen > 0U)
-        && (m_nvic_irq != 0U));
+        (0U < prio)
+        && (qBuf != nullptr) && (qLen > 0U));
 
     m_qBuf  = qBuf;
     m_end   = qLen - 1U;
@@ -88,6 +88,59 @@ void Task::post(Evt const * const e) noexcept {
     ++m_nUsed;
     SST_PORT_TASK_PEND();
     SST_PORT_CRIT_EXIT();
+}
+
+//----------------------------------------------------------------------------
+static TimeEvt *timeEvt_head = nullptr;
+
+//............................................................................
+TimeEvt::TimeEvt(Signal sig, Task *task) {
+    this->sig  = sig;
+    m_task     = task;
+    m_ctr      = 0U;
+    m_interval = 0U;
+
+    // insert this time event into the linked-list
+    m_next = timeEvt_head;
+    timeEvt_head = this;
+}
+//............................................................................
+void TimeEvt::arm(TCtr ctr, TCtr interval) {
+    SST_PORT_CRIT_STAT
+    SST_PORT_CRIT_ENTRY();
+    m_ctr      = ctr;
+    m_interval = interval;
+    SST_PORT_CRIT_EXIT();
+}
+//............................................................................
+bool TimeEvt::disarm(void) {
+    SST_PORT_CRIT_STAT
+    SST_PORT_CRIT_ENTRY();
+    bool status = (m_ctr != 0U);
+    m_ctr       = 0U;
+    m_interval  = 0U;
+    SST_PORT_CRIT_EXIT();
+    return status;
+}
+//............................................................................
+void TimeEvt::tick(void) {
+    for (TimeEvt *t = timeEvt_head; t != nullptr; t = t->m_next) {
+        SST_PORT_CRIT_STAT
+        SST_PORT_CRIT_ENTRY();
+        if (t->m_ctr == 0U) { // disarmed? (most frequent case)
+            SST_PORT_CRIT_EXIT();
+        }
+        else if (t->m_ctr == 1U) { // expiring?
+            t->m_ctr = t->m_interval;
+            SST_PORT_CRIT_EXIT();
+
+            t->m_task->post(t);
+        }
+        else { // timing out
+            --t->m_ctr;
+            SST_PORT_CRIT_EXIT();
+        }
+    }
 }
 
 } // namespace SST

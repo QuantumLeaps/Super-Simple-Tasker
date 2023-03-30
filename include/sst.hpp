@@ -85,43 +85,31 @@ public:
 #endif
 };
 
+// SST Time Event facilities -------------------------------------------------
+//! SST internal time-event tick counter
+using TCtr = std::uint16_t;
+
+//! SST time event class
+class TimeEvt : public Evt {
+private:
+    TimeEvt *m_next; //! link to next time event in a link-list
+    Task *m_task;    //! the owner task to post time event to
+    TCtr m_ctr;      //! time event down-counter
+    TCtr m_interval; //! interval for periodic time event
+
+public:
+    TimeEvt(Signal sig, Task *task);
+    void arm(TCtr ctr, TCtr interval);
+    bool disarm(void);
+
+    static void tick(void);
+};
+
 // SST Kernel facilities -----------------------------------------------------
 void init(void);
 void start(void);
 void onStart(void);
 void onIdle(void);
-
-#ifndef SST_LOG2
-inline uint_fast8_t SST_LOG2(std::uint32_t x) {
-    static std::uint8_t const log2LUT[16] = {
-        0U, 1U, 2U, 2U, 3U, 3U, 3U, 3U,
-        4U, 4U, 4U, 4U, 4U, 4U, 4U, 4U
-    };
-    std::uint_fast8_t n = 0U;
-    SST::ReadySet tmp;
-
-    #if (SST_PORT_MAX_TASK > 16U)
-    tmp = static_cast<std::uint32_t>(x >> 16U);
-    if (tmp != 0U) {
-        n += 16U;
-        x = tmp;
-    }
-    #endif
-    #if (SST_PORT_MAX_TASK > 8U)
-    tmp = (x >> 8U);
-    if (tmp != 0U) {
-        n += 8U;
-        x = tmp;
-    }
-    #endif
-    tmp = (x >> 4U);
-    if (tmp != 0U) {
-        n += 4U;
-        x = tmp;
-    }
-    return n + log2LUT[x];
-}
-#endif
 
 } // namespace SST
 
