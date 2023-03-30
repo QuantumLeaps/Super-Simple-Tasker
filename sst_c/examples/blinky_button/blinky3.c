@@ -30,13 +30,13 @@
 DBC_MODULE_NAME("blinky3") /* for DBC assertions in this module */
 
 /*..........................................................................*/
-typedef struct {    /* Blinky3 active object */
-    SST_Task super; /* inherit SST_Task */
-    uint16_t toggles;
-    uint8_t ticks;
-    uint8_t tick_ctr;
+typedef struct {      /* Blinky3 task */
+    SST_Task super;   /* inherit SST_Task */
+    SST_TimeEvt te;   /* time event for generating TIMEOUT events */
+    uint16_t toggles; /* number of toggles to perform for TIMEOUT event */
 } Blinky3;
 
+static void Blinky3_ctor(Blinky3 * const me);
 static void Blinky3_init(Blinky3 * const me, SST_Evt const * const ie);
 static void Blinky3_dispatch(Blinky3 * const me, SST_Evt const * const e);
 
@@ -44,13 +44,17 @@ static void Blinky3_dispatch(Blinky3 * const me, SST_Evt const * const e);
 static Blinky3 Blinky3_inst; /* the Blinky3 instance */
 SST_Task * const AO_Blinky3 = &Blinky3_inst.super; /* opaque AO pointer */
 
+void Blinky3_instantiate(void) {
+    Blinky3_ctor(&Blinky3_inst);
+}
+
 /*..........................................................................*/
-void Blinky3_ctor(void) {
-    Blinky3 * const me = &Blinky3_inst;
+static void Blinky3_ctor(Blinky3 * const me) {
     SST_Task_ctor(
        &me->super,
        (SST_Handler)&Blinky3_init,
        (SST_Handler)&Blinky3_dispatch);
+    SST_TimeEvt_ctor(&me->te, TIMEOUT_SIG, &me->super);
 }
 /*..........................................................................*/
 static void Blinky3_init(Blinky3 * const me, SST_Evt const * const ie) {
@@ -58,28 +62,27 @@ static void Blinky3_init(Blinky3 * const me, SST_Evt const * const ie) {
     DBC_REQUIRE(300,
         (ie != (SST_Evt const *)0) && (ie->sig == BLINKY_WORK_SIG));
 
+    SST_TimeEvt_arm(&me->te,
+        SST_EVT_DOWNCAST(BlinkyWorkEvt, ie)->ticks,
+        SST_EVT_DOWNCAST(BlinkyWorkEvt, ie)->ticks);
     me->toggles = SST_EVT_DOWNCAST(BlinkyWorkEvt, ie)->toggles;
-    me->ticks = SST_EVT_DOWNCAST(BlinkyWorkEvt, ie)->ticks;
-    me->tick_ctr = me->ticks;
 }
 /*..........................................................................*/
 static void Blinky3_dispatch(Blinky3 * const me, SST_Evt const * const e) {
     switch (e->sig) {
-        case TICK_SIG: {
-            --me->tick_ctr;
-            if (me->tick_ctr == 0U) {
-                me->tick_ctr = me->ticks;
-                for (uint16_t i = me->toggles; i > 0U; --i) {
-                    BSP_d2on();
-                    BSP_d2off();
-                }
+        case TIMEOUT_SIG: {
+            for (uint16_t i = me->toggles; i > 0U; --i) {
+                BSP_d2on();
+                BSP_d2off();
             }
             break;
         }
         case BLINKY_WORK_SIG: {
             BSP_d2on();
+            SST_TimeEvt_arm(&me->te,
+                SST_EVT_DOWNCAST(BlinkyWorkEvt, e)->ticks,
+                SST_EVT_DOWNCAST(BlinkyWorkEvt, e)->ticks);
             me->toggles = SST_EVT_DOWNCAST(BlinkyWorkEvt, e)->toggles;
-            me->ticks = SST_EVT_DOWNCAST(BlinkyWorkEvt, e)->ticks;
             BSP_d2off();
             break;
         }

@@ -87,9 +87,11 @@ void start(void) {
 // SST Task facilities -------------------------------------------------------
 void Task::setPrio(TaskPrio prio) noexcept {
     //! @pre
-    //! - the queue storage and length must be provided
     //! - the IRQ number must be already set
-    DBC_REQUIRE(200, m_nvic_irq != 0U);
+    //! - the priority must fit in the NVIC
+    DBC_REQUIRE(200,
+                (m_nvic_irq != 0U)
+                && (prio <= (0xFFU >> nvic_prio_shift)));
 
     // convert the SST direct priority (1,2,..) to NVIC priority...
     std::uint32_t irq_prio = ((0xFFU >> nvic_prio_shift) + 1U - prio)

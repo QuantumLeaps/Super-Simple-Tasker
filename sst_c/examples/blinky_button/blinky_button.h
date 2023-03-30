@@ -29,7 +29,7 @@
 #include "dbc_assert.h" /* Design By Contract (DBC) assertions */
 
 enum Signals {
-    TICK_SIG,
+    TIMEOUT_SIG,
     BUTTON_PRESSED_SIG,
     BUTTON_RELEASED_SIG,
     BLINKY_WORK_SIG,
@@ -50,16 +50,16 @@ typedef struct {
     uint16_t toggles; /* number of toggles of the signal */
 } ButtonWorkEvt;
 
-void Blinky1_ctor(void);
-extern SST_Task * const AO_Blinky1;  /* opaque active object pointer */
+void Blinky1_instantiate(void);
+extern SST_Task * const AO_Blinky1;  /* opaque task pointer */
 
-void Blinky3_ctor(void);
-extern SST_Task * const AO_Blinky3;  /* opaque active object pointer */
+void Blinky3_instantiate(void);
+extern SST_Task * const AO_Blinky3;  /* opaque task pointer */
 
-void Button2a_ctor(void);
-extern SST_Task * const AO_Button2a; /* opaque active object pointer */
+void Button2a_instantiate(void);
+extern SST_Task * const AO_Button2a; /* opaque task pointer */
 
-void Button2b_ctor(void);
-extern SST_Task * const AO_Button2b; /* opaque active object pointer */
+void Button2b_instantiate(void);
+extern SST_Task * const AO_Button2b; /* opaque task pointer */
 
 #endif /* BLINKY_BUTTON_H_ */

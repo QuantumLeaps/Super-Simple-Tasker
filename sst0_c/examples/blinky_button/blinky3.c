@@ -30,7 +30,7 @@
 DBC_MODULE_NAME("blinky3")
 
 /*..........................................................................*/
-typedef struct {    /* Blinky3 active object */
+typedef struct {    /* Blinky3 task */
     SST_Task super; /* inherit SST_Task */
     uint16_t toggles;
     uint8_t ticks;

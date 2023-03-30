@@ -26,8 +26,6 @@
 #ifndef SST_PORT_HPP_
 #define SST_PORT_HPP_
 
-#define SST_PORT_MAX_TASK 32U
-
 // additional SST-PORT task attributes for ARM Cortex-M
 #define SST_PORT_TASK_ATTR \
     std::uint32_t volatile *m_nvic_pend; \
@@ -48,9 +46,6 @@
 // NOTE: executed inside SST critical section.
 //
 #define SST_PORT_TASK_PEND()  *m_nvic_pend = m_nvic_irq
-
-// empty definition because SST_LOG2 is not needed in this port
-#define SST_LOG2
 
 namespace SST {
     void onIdle(void);

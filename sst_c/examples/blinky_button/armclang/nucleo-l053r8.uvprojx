@@ -313,7 +313,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>0</interw>
-            <Optim>0</Optim>
+            <Optim>5</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -457,6 +457,11 @@
               <FileName>sst.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\src\sst.c</FilePath>
+            </File>
+            <File>
+              <FileName>sst.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\..\..\include\sst.h</FilePath>
             </File>
           </Files>
         </Group>

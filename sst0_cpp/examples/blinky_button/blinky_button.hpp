@@ -54,10 +54,10 @@ struct ButtonWorkEvt {
     std::uint16_t toggles; // number of toggles of the signal
 };
 
-extern SST::Task * const AO_Blinky1;  // opaque active object pointer
-extern SST::Task * const AO_Blinky3;  // opaque active object pointer
-extern SST::Task * const AO_Button2a; // opaque active object pointer
-extern SST::Task * const AO_Button2b; // opaque active object pointer
+extern SST::Task * const AO_Blinky1;  // opaque task pointer
+extern SST::Task * const AO_Blinky3;  // opaque task pointer
+extern SST::Task * const AO_Button2a; // opaque task pointer
+extern SST::Task * const AO_Button2b; // opaque task pointer
 
 } // namespace App
 

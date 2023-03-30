@@ -123,7 +123,7 @@ Super-Simple-Tasker/
 |   |    |    +----gnu/        // makefile for GNU-ARM
 |   |    |    +----iar/        // project for IAR EWARM
 |
-+---sst_c/                     // preemptive SST/C++
++---sst_cpp/                   // preemptive SST/C++
 |   +----examples/             // examples for SST/C++
 |   |    +----blinky_button/   // "blinky-button" example
 |   |    |    +----armclang/   // project for ARM/KEIL
@@ -173,6 +173,18 @@ intended to remain the home of SST. To contribute, please clone, fork,
 and submit **pull requests** to incorporate your changes.
 
 
+# Related Approaches
+The SST RTOS kernel is related to, although *not* based on, the following
+approaches:
+
+- [Operating System - OSEK VDX](https://www.osek-vdx.org/mirror/os21r1.pdf)
+- [A Stack-Based Resource Allocation Policy for Realtime Processes](https://ieeexplore.ieee.org/document/128747)
+- [Real-Time For the Masses](https://www.diva-portal.org/smash/get/diva2:1005680/FULLTEXT01.pdf)
+- [Rust's Real Time For the Masses (RTFM)](https://lonesometraveler.github.io/2020/05/22/RTFM.html)
+- [crect: A C++, compile-time, reactive RTOS](https://github.com/korken89/crect)
+- [Real-Time Interrupt-driven Concurrency (RTIC)](https://rtic.rs/1/book/en)
+
+
 # How to Help this Project?
 If you like this project, please **spread the word** about SST on various
 forums, social media, and other venues frequented by embedded folks!
@@ -183,4 +195,3 @@ Also, please give [this repository](https://github.com/QuantumLeaps/Super-Simple
 a star (in the upper-right corner of your browser window)
 
 <p align="center"><img src="img/github-star.jpg"/></p>
-

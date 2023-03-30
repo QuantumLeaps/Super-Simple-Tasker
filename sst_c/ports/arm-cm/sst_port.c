@@ -82,8 +82,13 @@ void SST_start(void) {
 /* SST Task facilities -----------------------------------------------------*/
 void SST_Task_setPrio(SST_Task * const me, SST_TaskPrio prio) {
 
-    /*! @pre the IRQ number must be already set */
-    DBC_REQUIRE(200, me->nvic_irq != 0U);
+    /*! @pre
+    * - the IRQ number must be already set
+    * - the priority must fit in the NVIC
+    */
+    DBC_REQUIRE(200,
+                (me->nvic_irq != 0U)
+                && (prio <= (0xFFU >> nvic_prio_shift)));
 
     /* convert the SST direct priority (1,2,..) to NVIC priority... */
     uint32_t irq_prio = ((0xFFU >> nvic_prio_shift) + 1U - prio)

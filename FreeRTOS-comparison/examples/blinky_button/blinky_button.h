@@ -68,19 +68,19 @@ typedef struct {
 /* Tasks and event queues for this application... */
 
 void Blinky1_task(void *pvParameters);
-extern void * const AO_Blinky1;  /* opaque active object pointer */
+extern void * const AO_Blinky1;  /* opaque task pointer */
 extern QueueHandle_t QUEUE_Blinky1; /* queue handle */
 
 void Blinky3_task(void *pvParameters);
-extern void * const AO_Blinky3;  /* opaque active object pointer */
+extern void * const AO_Blinky3;  /* opaque task pointer */
 extern QueueHandle_t QUEUE_Blinky3; /* queue handle */
 
 void Button2a_task(void *pvParameters);
-extern void * const AO_Button2a;  /* opaque active object pointer */
+extern void * const AO_Button2a;  /* opaque task pointer */
 extern QueueHandle_t QUEUE_Button2a; /* queue handle */
 
 void Button2b_task(void *pvParameters);
-extern void * const AO_Button2b;  /* opaque active object pointer */
+extern void * const AO_Button2b;  /* opaque task pointer */
 extern QueueHandle_t QUEUE_Button2b; /* queue handle */
 
 /* general convenience utilities -------------------------------------------*/
