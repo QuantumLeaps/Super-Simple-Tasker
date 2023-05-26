@@ -11,7 +11,10 @@ real-time operating system (RTOS) kernel that is fully compatible with
 the requirements of
 [Rate Monotonic Analysis/Scheduling (RMA/RMS)](https://youtu.be/kLxxXNCrY60).
 
-<p align="center"><img src="img/logo_sst_c-cpp.png"/></p>
+<p align="center">
+<a href="https://youtu.be/PTcauYl994A" target="_blank" title="SST video">
+<img src="img/logo_sst_c-cpp.png"/></p>
+</a></p>
 
 The tasks in SST are non-blocking and run-to-completion, which are also known
 as **basic tasks** in the
@@ -54,6 +57,16 @@ compatible with the requirements of
 > **NOTE**<br>
 The SST hardware implementation is likely the most performant and efficient
 **hard-real time RTOS** kernel for ARM Cortex-M.
+
+
+# SST Videos
+SST has been presented at the Embedded Online Conference 2023 and the videos
+are available on YouTube:
+
+<p align="center">
+<a href="https://youtu.be/PTcauYl994A" target="_blank" title="SST video">
+<img src="img/sst-video.jpg"/>
+</a></p>
 
 
 # SST History
