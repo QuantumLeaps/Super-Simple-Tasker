@@ -31,7 +31,7 @@
 namespace App {
 
 enum Signals {
-    TICK_SIG,
+    TIMEOUT_SIG,
     BUTTON_PRESSED_SIG,
     BUTTON_RELEASED_SIG,
     BLINKY_WORK_SIG,

@@ -24,6 +24,8 @@ SST provides the following features:
 - preemptive, priority-based scheduling
 - multiple tasks per prioriy level
 - multiple "activations" per task (event queues)
+- selective scheduler locking according to "Stack Resource Policy" (SRP)<br>
+  (a non-blocking mutual exclusion mechansim for protecting shared resources)
 
 > **NOTE**<br>
 The execution profile of SST tasks perfectly matches the non-blocking and

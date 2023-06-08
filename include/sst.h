@@ -26,7 +26,7 @@
 #ifndef SST_H_
 #define SST_H_
 
-#include <stdint.h>   /* standard C99 integer types */
+#include <stdint.h>   /* standard C99 integers */
 #include <stdbool.h>  /* standard C99 Boolean */
 #include "sst_port.h" /* SST port for specific CPU */
 
@@ -89,6 +89,12 @@ int  SST_Task_run(void); /* run SST tasks static */
     /* additional Task operations needed by the specific SST port */
     SST_PORT_TASK_OPER
 #endif
+
+/* lock the SST task scheduler up to the provided priority ceiling (SRP) */
+SST_LockKey SST_Task_lock(SST_TaskPrio ceiling);
+
+/* unlock the SST task scheduler with the provided lock key */
+void SST_Task_unlock(SST_LockKey lock_key);
 
 /* SST Time Event facilities -----------------------------------------------*/
 /*! SST internal time-event tick counter */

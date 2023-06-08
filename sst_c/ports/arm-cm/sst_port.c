@@ -91,7 +91,7 @@ void SST_Task_setPrio(SST_Task * const me, SST_TaskPrio prio) {
                 && (prio <= (0xFFU >> nvic_prio_shift)));
 
     /* convert the SST direct priority (1,2,..) to NVIC priority... */
-    uint32_t irq_prio = ((0xFFU >> nvic_prio_shift) + 1U - prio)
+    uint32_t nvic_prio = ((0xFFU >> nvic_prio_shift) + 1U - prio)
                          << nvic_prio_shift;
 
     SST_PORT_CRIT_STAT
@@ -99,7 +99,7 @@ void SST_Task_setPrio(SST_Task * const me, SST_TaskPrio prio) {
     /* set the Task priority of the associated IRQ */
     uint32_t tmp = NVIC_IP[me->nvic_irq >> 2U];
     tmp &= ~(0xFFU << ((me->nvic_irq & 3U) << 3U));
-    tmp |= (irq_prio << ((me->nvic_irq & 3U) << 3U));
+    tmp |= (nvic_prio << ((me->nvic_irq & 3U) << 3U));
     NVIC_IP[me->nvic_irq >> 2U] = tmp;
 
     /* enable the IRQ associated with the Task */
@@ -140,4 +140,44 @@ void SST_Task_activate(SST_Task * const me) {
 /*..........................................................................*/
 void SST_Task_setIRQ(SST_Task * const me, uint8_t irq) {
     me->nvic_irq = irq;
+}
+
+/*..........................................................................*/
+SST_LockKey SST_Task_lock(SST_TaskPrio ceiling) {
+#if (__ARM_ARCH == 6) /* ARMv6-M? */
+    /* NOTE:
+    * ARMv6-M (Cortex-M0/M0+/M1) do NOT support the BASEPRI register.
+    * and simple selective scheduler locking is not possible.
+    * Instead, on this architectures, SST scheduler lock is implemented
+    * by temporarily raising the current task priority to the ceiling
+    * level.
+    */
+    /* TBD... */
+    (void)ceiling; /* unused param */
+    return 0U;
+#else  /* ARMv7-M+ */
+    /* NOTE:
+    * ARMv7-M+ support the BASEPRI register and the selective SST scheduler
+    * locking is implemented by setting BASEPRI to the ceiling level.
+    */
+    uint32_t nvic_prio = ((0xFFU >> nvic_prio_shift) + 1U - ceiling)
+                         << nvic_prio_shift;
+    SST_LockKey basepri_;
+    __asm volatile ("mrs %0,BASEPRI" : "=r" (basepri_) :: );
+    __asm volatile ("cpsid i\n msr BASEPRI,%0\n cpsie i"
+                    :: "r" (nvic_prio) : );
+    return basepri_;
+#endif
+}
+/*..........................................................................*/
+void SST_Task_unlock(SST_LockKey lock_key) {
+#if (__ARM_ARCH == 6) /* ARMv6-M? */
+    /* TBD... */
+#else  /* ARMv7-M+ */
+    /* NOTE:
+    * ARMv7-M+ support the BASEPRI register and the selective SST scheduler
+    * unlocking is implemented by restoring BASEPRI to the lock_key level.
+    */
+    __asm volatile ("msr BASEPRI,%0" :: "r" (lock_key) : );
+#endif
 }

@@ -60,10 +60,7 @@ void SysTick_Handler(void);  /* prototype */
 void SysTick_Handler(void) { /* system clock tick ISR */
     BSP_d1on();
 
-    /* immutable timeout event */
-    static SST_Evt const tickEvt = { TICK_SIG };
-    SST_Task_post(AO_Blinky1, &tickEvt); /* every tick is fast for Blinky1 */
-    SST_Task_post(AO_Blinky3, &tickEvt);
+    SST_TimeEvt_tick(); /* process all SST time events */
 
     /* Perform the debouncing of buttons. The algorithm for debouncing
     * adapted from the book "Embedded Systems Dictionary" by Jack Ganssle

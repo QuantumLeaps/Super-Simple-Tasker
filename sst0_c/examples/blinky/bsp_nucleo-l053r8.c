@@ -45,7 +45,7 @@
 void SysTick_Handler(void);  /* prototype */
 
 void SysTick_Handler(void) { /* system clock tick ISR */
-    SST_TimeEvt_tick();
+    SST_TimeEvt_tick(); /* process all SST time events */
 }
 
 /* Assertion handler ======================================================*/

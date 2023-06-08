@@ -37,14 +37,14 @@ namespace App {
 
 //............................................................................
 class Blinky1 : public SST::Task {
+    SST::TimeEvt m_te;
     std::uint16_t m_toggles;
-    std::uint8_t m_ticks;
-    std::uint8_t m_tick_ctr;
 
 public:
-    static Blinky1 inst;
+    Blinky1(void);
     void init(SST::Evt const * const ie) override;
     void dispatch(SST::Evt const * const e) override;
+    static Blinky1 inst;
 };
 
 //............................................................................
@@ -52,33 +52,39 @@ Blinky1 Blinky1::inst; // the Blinky1 instance
 SST::Task * const AO_Blinky1 = &Blinky1::inst; // opaque AO pointer
 
 //............................................................................
+Blinky1::Blinky1(void)
+  : m_te(TIMEOUT_SIG, this)
+{}
+//............................................................................
 void Blinky1::init(SST::Evt const * const ie) {
     /* the initial event must be provided and must be WORKLOAD_SIG */
     DBC_REQUIRE(300,
         (ie != nullptr) && (ie->sig == BLINKY_WORK_SIG));
 
+    m_te.arm(
+        SST::evt_downcast<BlinkyWorkEvt>(ie)->ticks,
+        SST::evt_downcast<BlinkyWorkEvt>(ie)->ticks);
     m_toggles = SST::evt_downcast<BlinkyWorkEvt>(ie)->toggles;
-    m_ticks = SST::evt_downcast<BlinkyWorkEvt>(ie)->ticks;
-    m_tick_ctr = m_ticks;
 }
 //............................................................................
 void Blinky1::dispatch(SST::Evt const * const e) {
     switch (e->sig) {
-        case TICK_SIG: {
-            --m_tick_ctr;
-            if (m_tick_ctr == 0U) {
-                m_tick_ctr = m_ticks;
-                for (uint16_t i = m_toggles; i > 0U; --i) {
-                    BSP::d5on();
-                    BSP::d5off();
-                }
+        case TIMEOUT_SIG: {
+            for (std::uint16_t i = m_toggles; i > 0U; --i) {
+                // just to exercise SST task scheduler lock...
+                SST::LockKey key = lock(3U);
+                BSP::d5on();
+                BSP::d5off();
+                unlock(key);
             }
             break;
         }
         case BLINKY_WORK_SIG: {
             BSP::d5on();
+            m_te.arm(
+                SST::evt_downcast<BlinkyWorkEvt>(e)->ticks,
+                SST::evt_downcast<BlinkyWorkEvt>(e)->ticks);
             m_toggles = SST::evt_downcast<BlinkyWorkEvt>(e)->toggles;
-            m_ticks = SST::evt_downcast<BlinkyWorkEvt>(e)->ticks;
             BSP::d5off();
             break;
         }

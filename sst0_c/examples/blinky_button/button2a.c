@@ -27,7 +27,7 @@
 #include "bsp.h"           /* Board Support Package interface */
 #include "blinky_button.h" /* application shared interface */
 
-DBC_MODULE_NAME("button2a")
+DBC_MODULE_NAME("button2a") /* for DBC assertions in this module */
 
 /*..........................................................................*/
 typedef struct {    /* Button2a task */
@@ -35,6 +35,7 @@ typedef struct {    /* Button2a task */
     /* add internal variables for this AO... */
 } Button2a;
 
+static void Button2a_ctor(Button2a * const me);
 static void Button2a_init(Button2a * const me, SST_Evt const * const ie);
 static void Button2a_dispatch(Button2a * const me, SST_Evt const * const e);
 
@@ -42,15 +43,17 @@ static void Button2a_dispatch(Button2a * const me, SST_Evt const * const e);
 static Button2a Button2a_inst; /* the Button2a instance */
 SST_Task * const AO_Button2a = &Button2a_inst.super; /* opaque AO pointer */
 
+void Button2a_instantiate(void) {
+    Button2a_ctor(&Button2a_inst);
+}
+
 /*..........................................................................*/
-void Button2a_ctor(void) {
-    Button2a * const me = &Button2a_inst;
+static void Button2a_ctor(Button2a * const me) {
     SST_Task_ctor(
        &me->super,
        (SST_Handler)&Button2a_init,
        (SST_Handler)&Button2a_dispatch);
 }
-
 /*..........................................................................*/
 static void Button2a_init(Button2a * const me, SST_Evt const * const ie) {
     (void)me;
