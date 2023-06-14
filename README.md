@@ -47,7 +47,20 @@ The preemptive SST and non-preemptive SST0 implement actually *the same*
 [SST API](https://github.com/QuantumLeaps/Super-Simple-Tasker/tree/main/include)
 (either in C or C++).
 
-## Hardware RTOS for ARM Cortex-M
+
+## Related Approaches
+The SST RTOS kernel is related to, although *not* based on, the following
+approaches:
+
+- [Operating System - OSEK VDX](https://www.osek-vdx.org/mirror/os21r1.pdf)
+- [A Stack-Based Resource Allocation Policy for Realtime Processes](https://ieeexplore.ieee.org/document/128747)
+- [Real-Time For the Masses](https://www.diva-portal.org/smash/get/diva2:1005680/FULLTEXT01.pdf)
+- [crect: A C++, compile-time, reactive RTOS](https://github.com/korken89/crect)
+- [Rust's Real Time For the Masses (RTFM)](https://lonesometraveler.github.io/2020/05/22/RTFM.html)
+- [Real-Time Interrupt-driven Concurrency (RTIC)](https://rtic.rs/1/book/en)
+
+
+# Hardware RTOS for ARM Cortex-M
 [SST for ARM Cortex-M](sst_c/ports/arm-cm) provides a unique
 **hardware implementation** of the SST API for ARM Cortex-M (M0, M0+, M3,
 M4, M7, M23, M33). The SST "hardware RTOS" for ARM Cortex-M is fully
@@ -59,7 +72,6 @@ compatible with the requirements of
 > **NOTE**<br>
 The SST hardware implementation is likely the most performant and efficient
 **hard-real time RTOS** kernel for ARM Cortex-M.
-
 
 # SST Videos
 SST has been presented at the Embedded Online Conference 2023 and the videos
@@ -186,18 +198,6 @@ port it to other processors, integrate it with other embedded software,
 add interesting examples, etc. To avoid fragmentation, this repository is
 intended to remain the home of SST. To contribute, please clone, fork,
 and submit **pull requests** to incorporate your changes.
-
-
-# Related Approaches
-The SST RTOS kernel is related to, although *not* based on, the following
-approaches:
-
-- [Operating System - OSEK VDX](https://www.osek-vdx.org/mirror/os21r1.pdf)
-- [A Stack-Based Resource Allocation Policy for Realtime Processes](https://ieeexplore.ieee.org/document/128747)
-- [Real-Time For the Masses](https://www.diva-portal.org/smash/get/diva2:1005680/FULLTEXT01.pdf)
-- [Rust's Real Time For the Masses (RTFM)](https://lonesometraveler.github.io/2020/05/22/RTFM.html)
-- [crect: A C++, compile-time, reactive RTOS](https://github.com/korken89/crect)
-- [Real-Time Interrupt-driven Concurrency (RTIC)](https://rtic.rs/1/book/en)
 
 
 # How to Help this Project?

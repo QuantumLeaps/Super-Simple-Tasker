@@ -23,7 +23,7 @@
 * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 * DEALINGS IN THE SOFTWARE.
 ===========================================================================*/
-#include "sst.h"     /* Super-Simple Tasker (SST/C) */
+#include "sst.h"        /* Super-Simple Tasker (SST/C) */
 #include "dbc_assert.h" /* Design By Contract (DBC) assertions */
 
 DBC_MODULE_NAME("sst_port") /* for DBC assertions in this module */
@@ -146,14 +146,14 @@ void SST_Task_setIRQ(SST_Task * const me, uint8_t irq) {
 SST_LockKey SST_Task_lock(SST_TaskPrio ceiling) {
 #if (__ARM_ARCH == 6) /* ARMv6-M? */
     /* NOTE:
-    * ARMv6-M (Cortex-M0/M0+/M1) do NOT support the BASEPRI register.
+    * ARMv6-M (Cortex-M0/M0+/M1) do NOT support the BASEPRI register
     * and simple selective scheduler locking is not possible.
-    * Instead, on this architectures, SST scheduler lock is implemented
-    * by temporarily raising the current task priority to the ceiling
-    * level.
+    * Instead, on this architectures, SST scheduler lock can be
+    * implemented by temporarily raising the current task priority
+    * to the ceiling level.
     */
     /* TBD... */
-    (void)ceiling; /* unused param */
+    (void)ceiling; /* unused param for now */
     return 0U;
 #else  /* ARMv7-M+ */
     /* NOTE:
@@ -164,8 +164,13 @@ SST_LockKey SST_Task_lock(SST_TaskPrio ceiling) {
                          << nvic_prio_shift;
     SST_LockKey basepri_;
     __asm volatile ("mrs %0,BASEPRI" : "=r" (basepri_) :: );
-    __asm volatile ("cpsid i\n msr BASEPRI,%0\n cpsie i"
-                    :: "r" (nvic_prio) : );
+    if (basepri_ > nvic_prio) { /* current priority lower than the ceiling? */
+        __asm volatile ("cpsid i\n msr BASEPRI,%0\n cpsie i"
+                        :: "r" (nvic_prio) : );
+    }
+    else {
+        basepri_ = nvic_prio;
+    }
     return basepri_;
 #endif
 }
@@ -173,6 +178,7 @@ SST_LockKey SST_Task_lock(SST_TaskPrio ceiling) {
 void SST_Task_unlock(SST_LockKey lock_key) {
 #if (__ARM_ARCH == 6) /* ARMv6-M? */
     /* TBD... */
+    (void)lock_key; /* unused param for now */
 #else  /* ARMv7-M+ */
     /* NOTE:
     * ARMv7-M+ support the BASEPRI register and the selective SST scheduler
