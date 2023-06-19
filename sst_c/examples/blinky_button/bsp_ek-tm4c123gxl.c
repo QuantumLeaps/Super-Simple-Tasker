@@ -61,7 +61,7 @@ void SysTick_Handler(void) { /* system clock tick ISR */
     BSP_d1on();
 
     /* immutable timeout event */
-    static SST_Evt const tickEvt = { TICK_SIG };
+    static SST_Evt const tickEvt = { TIMEOUT_SIG };
     SST_Task_post(AO_Blinky1, &tickEvt); /* every tick is fast for Blinky1 */
     SST_Task_post(AO_Blinky3, &tickEvt);
 
