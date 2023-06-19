@@ -44,6 +44,9 @@ typedef uint32_t SST_ReadySet;
 /* special idle callback to handle the "idle condition" in SST0 */
 void SST_onIdleCond(void);
 
+/* the SST scheduler lock key type */
+typedef uint32_t SST_LockKey;
+
 #if (__ARM_ARCH == 6) /* ARMv6-M? */
 
 /* SST_LOG2() implementation for ARMv6-M (no CLZ instruction) */

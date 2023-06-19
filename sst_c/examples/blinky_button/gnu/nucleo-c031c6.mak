@@ -222,7 +222,7 @@ ifneq ($(MAKECMDGOALS),clean)
 endif
 
 
-clean :
+clean:
 	-$(RM) $(BIN_DIR)/*.o \
 	$(BIN_DIR)/*.d \
 	$(BIN_DIR)/*.bin \

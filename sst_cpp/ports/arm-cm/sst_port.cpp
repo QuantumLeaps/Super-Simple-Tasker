@@ -141,8 +141,54 @@ void Task::activate(void) {
     // TBD: implement event recycling
 }
 //............................................................................
-void SST::Task::setIRQ(std::uint32_t irq) noexcept {
+void Task::setIRQ(std::uint32_t irq) noexcept {
     m_nvic_irq = irq;
+}
+
+//............................................................................
+LockKey Task::lock(TaskPrio ceiling) {
+#if (__ARM_ARCH == 6) // ARMv6-M?
+    // NOTE:
+    // ARMv6-M (Cortex-M0/M0+/M1) do NOT support the BASEPRI register
+    // and simple selective scheduler locking is not possible.
+    // Instead, on this architectures, SST scheduler lock can be
+    // implemented by temporarily raising the current task priority
+    // to the ceiling level.
+    //
+    /// TBD...
+    static_cast<void>(ceiling); // unused param for now
+    return 0U;
+#else  // ARMv7-M+
+    // NOTE:
+    // ARMv7-M+ support the BASEPRI register and the selective SST scheduler
+    // locking is implemented by setting BASEPRI to the ceiling level.
+    //
+    uint32_t nvic_prio = ((0xFFU >> nvic_prio_shift) + 1U - ceiling)
+                         << nvic_prio_shift;
+    LockKey basepri_;
+    __asm volatile ("mrs %0,BASEPRI" : "=r" (basepri_) :: );
+    if (basepri_ > nvic_prio) { // current priority lower than the ceiling?
+        __asm volatile ("cpsid i\n msr BASEPRI,%0\n cpsie i"
+                        :: "r" (nvic_prio) : );
+    }
+    else {
+        basepri_ = nvic_prio;
+    }
+    return basepri_;
+#endif
+}
+//............................................................................
+void Task::unlock(LockKey lock_key) {
+#if (__ARM_ARCH == 6) // ARMv6-M?
+    // TBD...
+    static_cast<void>(lock_key); // unused param for now
+#else  // ARMv7-M+
+    // NOTE:
+    // ARMv7-M+ support the BASEPRI register and the selective SST scheduler
+    // unlocking is implemented by restoring BASEPRI to the lock_key level.
+    //
+    __asm volatile ("msr BASEPRI,%0" :: "r" (lock_key) : );
+#endif
 }
 
 } // namespace SST

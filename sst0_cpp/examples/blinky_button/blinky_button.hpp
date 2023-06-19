@@ -26,12 +26,12 @@
 #ifndef BLINKY_BUTTON_HPP_
 #define BLINKY_BUTTON_HPP_
 
-#include "dbc_assert.h" /* Design By Contract (DBC) assertions */
+#include "dbc_assert.h" // Design By Contract (DBC) assertions
 
 namespace App {
 
 enum Signals {
-    TICK_SIG,
+    TIMEOUT_SIG,
     BUTTON_PRESSED_SIG,
     BUTTON_RELEASED_SIG,
     BLINKY_WORK_SIG,

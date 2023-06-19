@@ -61,7 +61,7 @@ void Button2b::dispatch(SST::Evt const * const e) {
             AO_Blinky3->post(BSP::getWorkEvtBlinky3(1U));
             BSP::d3off();
 
-            for (uint16_t i = SST::evt_downcast<ButtonWorkEvt>(e)->toggles;
+            for (std::uint16_t i = SST::evt_downcast<ButtonWorkEvt>(e)->toggles;
                  i > 0U; --i)
             {
                 BSP::d3on();

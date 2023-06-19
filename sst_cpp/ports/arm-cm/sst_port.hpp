@@ -49,6 +49,9 @@
 
 namespace SST {
     void onIdle(void);
+
+    //! SST lock key
+    using LockKey = std::uint32_t;
 }
 
 #endif // SST_PORT_HPP_

@@ -60,10 +60,7 @@ extern "C" {
 void SysTick_Handler(void) {   // system clock tick ISR
     BSP::d1on();
 
-    // immutable timeout event
-    static SST::Evt const tickEvt = { App::TICK_SIG };
-    App::AO_Blinky1->post(&tickEvt); // every tick is (too) fast for Blinky1
-    App::AO_Blinky3->post(&tickEvt);
+    SST::TimeEvt::tick();
 
     // get state of the user button
     // Perform the debouncing of buttons. The algorithm for debouncing

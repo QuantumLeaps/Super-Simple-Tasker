@@ -45,9 +45,12 @@
 /* SST-PORT pend the Task after posting an event
 * NOTE: executed inside SST critical section.
 */
-#define SST_PORT_TASK_PEND()  *me->nvic_pend = me->nvic_irq
+#define SST_PORT_TASK_PEND()  (*me->nvic_pend = me->nvic_irq)
 
 /* the idle SST callback for this SST port */
 void SST_onIdle(void);
+
+/* the SST scheduler lock key type */
+typedef uint32_t SST_LockKey;
 
 #endif /* SST_PORT_H_ */

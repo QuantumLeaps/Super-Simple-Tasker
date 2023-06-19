@@ -66,7 +66,7 @@ int main() {
         AO_Blinky3,     /* AO pointer to start */
         3U,             /* SST-priority */
         blinky3QSto,    /* storage for the AO's queue */
-        ARRAY_NELEM(blinky3QSto), /* queue length */
+        ARRAY_NELEM(blinky3QSto),   /* queue length */
         BSP_getWorkEvtBlinky3(0U)); /* initialization event */
 
     return SST_Task_run(); /* run the SST tasks */

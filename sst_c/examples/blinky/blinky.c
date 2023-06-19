@@ -68,19 +68,26 @@ void Blinky_ctor(Blinky * const me) {
 
 static void Blinky_init(Blinky * const me, SST_Evt const * const ie) {
     (void)ie; /* unused parameter */
+
     SST_TimeEvt_arm(&me->te1, 1U, 0U);
 }
 /*..........................................................................*/
 static void Blinky_dispatch(Blinky * const me, SST_Evt const * const e) {
     switch (e->sig) {
-        case TIMEOUT1_SIG:
+        case TIMEOUT1_SIG: {
             BSP_ledOn();
             SST_TimeEvt_arm(&me->te2, BSP_TICKS_PER_SEC / 4U, 0U);
             break;
-        case TIMEOUT2_SIG:
+        }
+        case TIMEOUT2_SIG: {
             BSP_ledOff();
             SST_TimeEvt_arm(&me->te1, BSP_TICKS_PER_SEC * 3U/4U, 0U);
             break;
+        }
+        default: {
+            DBC_ERROR(200);
+            break;
+        }
     }
 }
 
@@ -96,12 +103,18 @@ static void Blinky_init(Blinky * const me, SST_Evt const * const ie) {
 /*..........................................................................*/
 static void Blinky_dispatch(Blinky * const me, SST_Evt const * const e) {
     switch (e->sig) {
-        case TIMEOUT1_SIG:
+        case TIMEOUT1_SIG: {
             BSP_ledOn();
             break;
-        case TIMEOUT2_SIG:
+        }
+        case TIMEOUT2_SIG: {
             BSP_ledOff();
             break;
+        }
+        default: {
+            DBC_ERROR(200);
+            break;
+        }
     }
 }
 

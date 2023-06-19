@@ -44,6 +44,9 @@
 namespace SST {
     using ReadySet = std::uint32_t;
 
+    //! SST lock key
+    using LockKey = std::uint32_t;
+
     // special idle callback to handle the "idle condition" in SST0
     void onIdleCond(void);
 }

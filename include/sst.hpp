@@ -77,6 +77,9 @@ public:
     virtual void init(Evt const * const ie) = 0;
     virtual void dispatch(Evt const * const e) = 0;
 
+    static LockKey lock(TaskPrio ceiling);
+    static void unlock(LockKey key);
+
     static int run(void);
 
 #ifdef SST_PORT_TASK_OPER

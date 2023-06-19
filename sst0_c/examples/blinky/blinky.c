@@ -29,8 +29,8 @@
 
 DBC_MODULE_NAME("blinky")  /* for DBC assertions in this module */
 
-/*..........................................................................*/
-typedef struct {    /* Blinky task */
+/* Blinky event-driven task ------------------------------------------------*/
+typedef struct {
     SST_Task super; /* inherit SST_Task */
 
     SST_TimeEvt te1;
@@ -45,6 +45,7 @@ static void Blinky_dispatch(Blinky * const me, SST_Evt const * const e);
 static Blinky Blinky_inst; /* the Blinky instance */
 SST_Task * const AO_Blinky = &Blinky_inst.super; /* opaque AO pointer */
 
+/*..........................................................................*/
 void Blinky_instantiate(void) {
     Blinky_ctor(&Blinky_inst);
 }
@@ -58,7 +59,13 @@ void Blinky_ctor(Blinky * const me) {
     SST_TimeEvt_ctor(&me->te2, TIMEOUT2_SIG, &me->super);
 }
 
-/*..........................................................................*/
+/* macro to select the Blinky implementation */
+#define BLINKY_IMPL 2
+
+/*--------------------------------------------------------------------------*/
+#if BLINKY_IMPL == 1
+/* Blinky implementation closest matching the traditional blocking approach */
+
 static void Blinky_init(Blinky * const me, SST_Evt const * const ie) {
     (void)ie; /* unused parameter */
 
@@ -68,18 +75,50 @@ static void Blinky_init(Blinky * const me, SST_Evt const * const ie) {
 static void Blinky_dispatch(Blinky * const me, SST_Evt const * const e) {
     switch (e->sig) {
         case TIMEOUT1_SIG: {
-            BSP_ledOff();
-            SST_TimeEvt_arm(&me->te2, BSP_TICKS_PER_SEC*3U/4U, 0U);
+            BSP_ledOn();
+            SST_TimeEvt_arm(&me->te2, BSP_TICKS_PER_SEC / 4U, 0U);
             break;
         }
         case TIMEOUT2_SIG: {
-            BSP_ledOn();
-            SST_TimeEvt_arm(&me->te1, BSP_TICKS_PER_SEC/4U, 0U);
+            BSP_ledOff();
+            SST_TimeEvt_arm(&me->te1, BSP_TICKS_PER_SEC * 3U/4U, 0U);
             break;
         }
         default: {
-            DBC_ERROR(500); /* unexpected event */
+            DBC_ERROR(200);
             break;
         }
     }
 }
+
+/*--------------------------------------------------------------------------*/
+#elif BLINKY_IMPL == 2
+/* Blinky implementation with two periodic time events with offset */
+
+static void Blinky_init(Blinky * const me, SST_Evt const * const ie) {
+    (void)ie; /* unused parameter */
+    SST_TimeEvt_arm(&me->te1, 1U,                          BSP_TICKS_PER_SEC);
+    SST_TimeEvt_arm(&me->te2, 1U + (BSP_TICKS_PER_SEC/4U), BSP_TICKS_PER_SEC);
+}
+/*..........................................................................*/
+static void Blinky_dispatch(Blinky * const me, SST_Evt const * const e) {
+    switch (e->sig) {
+        case TIMEOUT1_SIG: {
+            BSP_ledOn();
+            break;
+        }
+        case TIMEOUT2_SIG: {
+            BSP_ledOff();
+            break;
+        }
+        default: {
+            DBC_ERROR(200);
+            break;
+        }
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+#else
+    #error "Wrong definition of the macro BLINKY_VERSION"
+#endif
