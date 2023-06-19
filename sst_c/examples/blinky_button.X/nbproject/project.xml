@@ -13,6 +13,10 @@
                 <sourceRootElem>D:\projs\Super-Simple-Tasker\include</sourceRootElem>
                 <sourceRootElem>D:\projs\Super-Simple-Tasker\sst_c\src</sourceRootElem>
                 <sourceRootElem>D:\projs\Super-Simple-Tasker\sst_c\ports\dspic</sourceRootElem>
+                <sourceRootElem>../../src</sourceRootElem>
+                <sourceRootElem>../../ports/dspic</sourceRootElem>
+                <sourceRootElem>../../../include</sourceRootElem>
+                <sourceRootElem>.</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

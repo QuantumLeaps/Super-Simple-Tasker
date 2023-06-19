@@ -4,8 +4,9 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>D:/projs/blinky_button.X/blinky_button.h</itemPath>
-      <itemPath>D:/projs/blinky_button.X/bsp.h</itemPath>
+      <itemPath>blinky_button.h</itemPath>
+      <itemPath>bsp.h</itemPath>
+      <itemPath>configuration_bits.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -14,39 +15,41 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>D:/projs/blinky_button.X/blinky1.c</itemPath>
-      <itemPath>D:/projs/blinky_button.X/blinky3.c</itemPath>
-      <itemPath>D:/projs/blinky_button.X/button2b.c</itemPath>
-      <itemPath>D:/projs/blinky_button.X/bsp_dspic33ep128gs804.c</itemPath>
-      <itemPath>D:/projs/blinky_button.X/button2a.c</itemPath>
+      <itemPath>blinky1.c</itemPath>
+      <itemPath>blinky3.c</itemPath>
+      <itemPath>bsp_dspic33ep128gs804.c</itemPath>
+      <itemPath>button2a.c</itemPath>
+      <itemPath>button2b.c</itemPath>
     </logicalFolder>
     <logicalFolder name="include" displayName="sst_include" projectFiles="true">
-      <itemPath>D:/projs/Super-Simple-Tasker/include/dbc_assert.h</itemPath>
-      <itemPath>D:/projs/Super-Simple-Tasker/include/sst.h</itemPath>
-      <itemPath>D:/projs/Super-Simple-Tasker/include/sst.hpp</itemPath>
+      <itemPath>../../../include/dbc_assert.h</itemPath>
+      <itemPath>../../../include/sst.h</itemPath>
     </logicalFolder>
     <logicalFolder name="dspic" displayName="sst_port_dspic" projectFiles="true">
-      <itemPath>D:/projs/Super-Simple-Tasker/sst_c/ports/dspic/sst_port.c</itemPath>
-      <itemPath>D:/projs/Super-Simple-Tasker/sst_c/ports/dspic/sst_port.h</itemPath>
+      <itemPath>../../ports/dspic/sst_port.c</itemPath>
+      <itemPath>../../ports/dspic/sst_port.h</itemPath>
     </logicalFolder>
     <logicalFolder name="src" displayName="sst_src" projectFiles="true">
-      <itemPath>D:/projs/Super-Simple-Tasker/sst_c/src/sst.c</itemPath>
+      <itemPath>../../src/sst.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
                    projectFiles="false">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
-    <itemPath>D:/projs/blinky_button.X/main.c</itemPath>
-    <itemPath>D:/projs/blinky_button.X/system_dspic33ep128gs804.c</itemPath>
-    <itemPath>D:/projs/blinky_button.X/system_dspic33ep128gs804.h</itemPath>
-    <itemPath>D:/projs/blinky_button.X/configuration_bits.h</itemPath>
+    <itemPath>main.c</itemPath>
+    <itemPath>system_dspic33ep128gs804.c</itemPath>
+    <itemPath>system_dspic33ep128gs804.h</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>D:\projs\blinky_button.X</Elem>
     <Elem>D:\projs\Super-Simple-Tasker\include</Elem>
     <Elem>D:\projs\Super-Simple-Tasker\sst_c\src</Elem>
     <Elem>D:\projs\Super-Simple-Tasker\sst_c\ports\dspic</Elem>
+    <Elem>../../src</Elem>
+    <Elem>../../ports/dspic</Elem>
+    <Elem>../../../include</Elem>
+    <Elem>.</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -56,7 +59,7 @@
         <targetDevice>dsPIC33EP128GS804</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>PICkit3PlatformTool</platformTool>
+        <platformTool>noID</platformTool>
         <languageToolchain>XC16</languageToolchain>
         <languageToolchainVersion>2.10</languageToolchainVersion>
         <platform>3</platform>
@@ -109,7 +112,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="expand-pragma-config" value="false"/>
         <property key="extra-include-directories"
-                  value="..\Super-Simple-Tasker\include;..\Super-Simple-Tasker\sst_c\ports\dspic"/>
+                  value="..\..\..\include;..\..\ports\dspic"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>
@@ -263,7 +266,6 @@
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

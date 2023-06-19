@@ -18,15 +18,15 @@ Command:
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33C/gld \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33E/gld \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33F/gld \
-  build/default/production/_ext/1889579238/blinky1.o \
-  build/default/production/_ext/1889579238/blinky3.o \
-  build/default/production/_ext/1889579238/button2b.o \
-  build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o \
-  build/default/production/_ext/1889579238/button2a.o \
-  build/default/production/_ext/149885617/sst_port.o \
-  build/default/production/_ext/1731567061/sst.o \
-  build/default/production/_ext/1889579238/main.o \
-  build/default/production/_ext/1889579238/system_dspic33ep128gs804.o \
+  build/default/production/_ext/1445274692/sst.o \
+  build/default/production/_ext/1564044098/sst_port.o \
+  build/default/production/main.o \
+  build/default/production/system_dspic33ep128gs804.o \
+  build/default/production/blinky1.o \
+  build/default/production/blinky3.o \
+  build/default/production/bsp_dspic33ep128gs804.o \
+  build/default/production/button2a.o \
+  build/default/production/button2b.o \
   --local-stack \
   --defsym=__MPLAB_BUILD=1 \
   -Tp33EP128GS804.gld.00 \
@@ -62,21 +62,21 @@ c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normalep.Meo)
                               (__crt_start_mode_normal)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.EP_o)
-                              build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o (___lesf2)
+                              build/default/production/bsp_dspic33ep128gs804.o (___lesf2)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.EP_o)
-                              build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o (___gesf2)
+                              build/default/production/bsp_dspic33ep128gs804.o (___gesf2)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.EP_o)
-                              build/default/production/_ext/1889579238/system_dspic33ep128gs804.o (___fixunssfsi)
+                              build/default/production/system_dspic33ep128gs804.o (___fixunssfsi)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.EP_o)
-                              build/default/production/_ext/1889579238/system_dspic33ep128gs804.o (___floatunsisf)
+                              build/default/production/system_dspic33ep128gs804.o (___floatunsisf)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.EP_o)
                               c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.EP_o) (__funpack)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.EP_o)
-                              build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o (___subsf3)
+                              build/default/production/bsp_dspic33ep128gs804.o (___subsf3)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.EP_o)
-                              build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o (___divsf3)
+                              build/default/production/system_dspic33ep128gs804.o (___divsf3)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.EP_o)
-                              build/default/production/_ext/1889579238/system_dspic33ep128gs804.o (___mulsf3)
+                              build/default/production/system_dspic33ep128gs804.o (___mulsf3)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.EP_o)
                               c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.EP_o) (__dnrmpackf)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.EP_o)
@@ -100,7 +100,7 @@ c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.EP_o)
                               c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.EP_o) (__funpack2)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libm-elf.a(sqrtf.EP_o)
-                              build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o (_sqrtf)
+                              build/default/production/bsp_dspic33ep128gs804.o (_sqrtf)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__errno_location.EP_o)
                               c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libm-elf.a(sqrtf.EP_o) (___errno_val)
 
@@ -149,9 +149,9 @@ section                    address   length (PC units)   length (bytes) (dec)
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.nbss                       0x1000                   0            0x10  (16)
-.ndata                      0x1010                   0             0x8  (8)
-.nbss                       0x1018                   0             0x6  (6)
+.nbss                       0x1000                   0            0x14  (20)
+.ndata                      0x1014                   0             0x8  (8)
+.nbss                       0x101c                   0             0x2  (2)
 .bss                        0x101e                   0            0x82  (130)
 
                  Total "data" memory used (bytes):           0xa0  (160) 1%
@@ -171,28 +171,28 @@ Info: Project is using a large data memory model when small data memory model is
 
 External Symbols in Data Memory (by address):
 
-                    0x1010                  _AO_Blinky1
-                    0x1012                  _AO_Blinky3
-                    0x1014                  _AO_Button2b
-                    0x1016                  _AO_Button2a
-                    0x1018                  _g_crit_counter
+                    0x1012                  _g_crit_counter
+                    0x1014                  _AO_Blinky1
+                    0x1016                  _AO_Blinky3
+                    0x1018                  _AO_Button2a
+                    0x101a                  _AO_Button2b
                     0x109e                  ___errno_val
 
 External Symbols in Data Memory (by name):
 
-                    0x1010                  _AO_Blinky1
-                    0x1012                  _AO_Blinky3
-                    0x1016                  _AO_Button2a
-                    0x1014                  _AO_Button2b
+                    0x1014                  _AO_Blinky1
+                    0x1016                  _AO_Blinky3
+                    0x1018                  _AO_Button2a
+                    0x101a                  _AO_Button2b
                     0x109e                  ___errno_val
-                    0x1018                  _g_crit_counter
+                    0x1012                  _g_crit_counter
 
 External Symbols in Program Memory (by address):
 
                   0x000200                  __resetPRI
                   0x00023c                  __psv_init
-                  0x000248                  __data_init_extended
                   0x000248                  __data_init
+                  0x000248                  __data_init_extended
                   0x00031a                  __T1Interrupt
                   0x000338                  __PTG0Interrupt
                   0x000358                  __PTG1Interrupt
@@ -200,10 +200,10 @@ External Symbols in Program Memory (by address):
                   0x000398                  __PTG3Interrupt
                   0x0003b8                  __DefaultInterrupt
                   0x0003be                  ___ltsf2
-                  0x0003be                  ___eqsf2
                   0x0003be                  ___lesf2
-                  0x0003c2                  ___gesf2
+                  0x0003be                  ___eqsf2
                   0x0003c2                  ___gtsf2
+                  0x0003c2                  ___gesf2
                   0x0003c6                  ___fixunssfsi
                   0x0003fc                  ___floatunsisf
                   0x000400                  __funpack
@@ -211,11 +211,11 @@ External Symbols in Program Memory (by address):
                   0x00042a                  ___subsf3x
                   0x00043c                  ___addsf3
                   0x00043c                  ___addsf3x
-                  0x000606                  ___divsf3x
                   0x000606                  ___divsf3
+                  0x000606                  ___divsf3x
                   0x000798                  __sdivf
-                  0x0007c4                  ___mulsf3
                   0x0007c4                  ___mulsf3x
+                  0x0007c4                  ___mulsf3
                   0x0008d0                  __dnrmpackf
                   0x000924                  __unpackdnrmf
                   0x000982                  __typef
@@ -269,17 +269,17 @@ External Symbols in Program Memory (by address):
                   0x0015c0                  _SST_Task_activate
                   0x001646                  _SST_Task_setIRQ
                   0x001658                  _Button2a_instantiate
-                  0x001672                  build/default/production/_ext/1889579238/button2a.o:_Button2a_init
-                  0x00167c                  build/default/production/_ext/1889579238/button2a.o:_Button2a_dispatch
+                  0x001672                  build/default/production/button2a.o:_Button2a_init
+                  0x00167c                  build/default/production/button2a.o:_Button2a_dispatch
                   0x00170e                  _Blinky1_instantiate
-                  0x001734                  build/default/production/_ext/1889579238/blinky1.o:_Blinky1_init
-                  0x00176c                  build/default/production/_ext/1889579238/blinky1.o:_Blinky1_dispatch
+                  0x001734                  build/default/production/blinky1.o:_Blinky1_init
+                  0x00176c                  build/default/production/blinky1.o:_Blinky1_dispatch
                   0x0017c2                  _Blinky3_instantiate
-                  0x0017e8                  build/default/production/_ext/1889579238/blinky3.o:_Blinky3_init
-                  0x001820                  build/default/production/_ext/1889579238/blinky3.o:_Blinky3_dispatch
+                  0x0017e8                  build/default/production/blinky3.o:_Blinky3_init
+                  0x001820                  build/default/production/blinky3.o:_Blinky3_dispatch
                   0x001876                  _Button2b_instantiate
-                  0x001890                  build/default/production/_ext/1889579238/button2b.o:_Button2b_init
-                  0x00189a                  build/default/production/_ext/1889579238/button2b.o:_Button2b_dispatch
+                  0x001890                  build/default/production/button2b.o:_Button2b_init
+                  0x00189a                  build/default/production/button2b.o:_Button2b_dispatch
                   0x00196a                  _main
                   0x015780                  __FSEC.sec
 
@@ -370,14 +370,14 @@ External Symbols in Program Memory (by name):
                   0x00124e                  _interrupt_SetPriority
                   0x00196a                  _main
                   0x000bc4                  _sqrtf
-                  0x00176c                  build/default/production/_ext/1889579238/blinky1.o:_Blinky1_dispatch
-                  0x001734                  build/default/production/_ext/1889579238/blinky1.o:_Blinky1_init
-                  0x001820                  build/default/production/_ext/1889579238/blinky3.o:_Blinky3_dispatch
-                  0x0017e8                  build/default/production/_ext/1889579238/blinky3.o:_Blinky3_init
-                  0x00167c                  build/default/production/_ext/1889579238/button2a.o:_Button2a_dispatch
-                  0x001672                  build/default/production/_ext/1889579238/button2a.o:_Button2a_init
-                  0x00189a                  build/default/production/_ext/1889579238/button2b.o:_Button2b_dispatch
-                  0x001890                  build/default/production/_ext/1889579238/button2b.o:_Button2b_init
+                  0x00176c                  build/default/production/blinky1.o:_Blinky1_dispatch
+                  0x001734                  build/default/production/blinky1.o:_Blinky1_init
+                  0x001820                  build/default/production/blinky3.o:_Blinky3_dispatch
+                  0x0017e8                  build/default/production/blinky3.o:_Blinky3_init
+                  0x00167c                  build/default/production/button2a.o:_Button2a_dispatch
+                  0x001672                  build/default/production/button2a.o:_Button2a_init
+                  0x00189a                  build/default/production/button2b.o:_Button2b_dispatch
+                  0x001890                  build/default/production/button2b.o:_Button2b_init
 
 Memory Configuration
 
@@ -405,15 +405,15 @@ FBTSEQ           0x0157fc           0x000002
 
 Linker script and memory map
 
-LOAD build/default/production/_ext/1889579238/blinky1.o
-LOAD build/default/production/_ext/1889579238/blinky3.o
-LOAD build/default/production/_ext/1889579238/button2b.o
-LOAD build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
-LOAD build/default/production/_ext/1889579238/button2a.o
-LOAD build/default/production/_ext/149885617/sst_port.o
-LOAD build/default/production/_ext/1731567061/sst.o
-LOAD build/default/production/_ext/1889579238/main.o
-LOAD build/default/production/_ext/1889579238/system_dspic33ep128gs804.o
+LOAD build/default/production/_ext/1445274692/sst.o
+LOAD build/default/production/_ext/1564044098/sst_port.o
+LOAD build/default/production/main.o
+LOAD build/default/production/system_dspic33ep128gs804.o
+LOAD build/default/production/blinky1.o
+LOAD build/default/production/blinky3.o
+LOAD build/default/production/bsp_dspic33ep128gs804.o
+LOAD build/default/production/button2a.o
+LOAD build/default/production/button2b.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD p33EP128GS804
 LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
@@ -455,7 +455,7 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
  *(.handle)
  .handle          0x0002fa         0x20 jump_table
  *(.isr*)
- .isr.text        0x00031a         0x9e build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
+ .isr.text        0x00031a         0x9e build/default/production/bsp_dspic33ep128gs804.o
                   0x00031a                  __T1Interrupt
                   0x000338                  __PTG0Interrupt
                   0x000358                  __PTG1Interrupt
@@ -568,121 +568,121 @@ __FBTSEQ
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x5bcc
+.debug_info       0x000000       0x5c01
  *(.debug_info)
- .debug_info      0x000000        0x598 build/default/production/_ext/1889579238/blinky1.o
- .debug_info      0x000598        0x598 build/default/production/_ext/1889579238/blinky3.o
- .debug_info      0x000b30        0x528 build/default/production/_ext/1889579238/button2b.o
- .debug_info      0x001058       0x16de build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
- .debug_info      0x002736        0x542 build/default/production/_ext/1889579238/button2a.o
- .debug_info      0x002c78        0x5e3 build/default/production/_ext/149885617/sst_port.o
- .debug_info      0x00325b        0x7bc build/default/production/_ext/1731567061/sst.o
- .debug_info      0x003a17        0x3c2 build/default/production/_ext/1889579238/main.o
- .debug_info      0x003dd9       0x1366 build/default/production/_ext/1889579238/system_dspic33ep128gs804.o
- .debug_info      0x00513f         0x8d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.EP_o)
- .debug_info      0x0051cc         0x8b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.EP_o)
- .debug_info      0x005257         0x90 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.EP_o)
- .debug_info      0x0052e7         0x91 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.EP_o)
- .debug_info      0x005378         0x8d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.EP_o)
- .debug_info      0x005405         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.EP_o)
- .debug_info      0x0054a2         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.EP_o)
- .debug_info      0x00553f         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.EP_o)
- .debug_info      0x0055dc         0xa0 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.EP_o)
- .debug_info      0x00567c         0xa2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.EP_o)
- .debug_info      0x00571e         0x9c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.EP_o)
- .debug_info      0x0057ba         0x9f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.EP_o)
- .debug_info      0x005859         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.EP_o)
- .debug_info      0x0058f6         0x9e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.EP_o)
- .debug_info      0x005994         0x8e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.EP_o)
- .debug_info      0x005a22         0x91 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.EP_o)
- .debug_info      0x005ab3         0x8b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.EP_o)
- .debug_info      0x005b3e         0x8e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.EP_o)
+ .debug_info      0x000000        0x7bc build/default/production/_ext/1445274692/sst.o
+ .debug_info      0x0007bc        0x5e3 build/default/production/_ext/1564044098/sst_port.o
+ .debug_info      0x000d9f        0x3c6 build/default/production/main.o
+ .debug_info      0x001165       0x1383 build/default/production/system_dspic33ep128gs804.o
+ .debug_info      0x0024e8        0x59c build/default/production/blinky1.o
+ .debug_info      0x002a84        0x59c build/default/production/blinky3.o
+ .debug_info      0x003020       0x16e2 build/default/production/bsp_dspic33ep128gs804.o
+ .debug_info      0x004702        0x546 build/default/production/button2a.o
+ .debug_info      0x004c48        0x52c build/default/production/button2b.o
+ .debug_info      0x005174         0x8d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.EP_o)
+ .debug_info      0x005201         0x8b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.EP_o)
+ .debug_info      0x00528c         0x90 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.EP_o)
+ .debug_info      0x00531c         0x91 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.EP_o)
+ .debug_info      0x0053ad         0x8d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.EP_o)
+ .debug_info      0x00543a         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.EP_o)
+ .debug_info      0x0054d7         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.EP_o)
+ .debug_info      0x005574         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.EP_o)
+ .debug_info      0x005611         0xa0 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.EP_o)
+ .debug_info      0x0056b1         0xa2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.EP_o)
+ .debug_info      0x005753         0x9c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.EP_o)
+ .debug_info      0x0057ef         0x9f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.EP_o)
+ .debug_info      0x00588e         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.EP_o)
+ .debug_info      0x00592b         0x9e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.EP_o)
+ .debug_info      0x0059c9         0x8e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.EP_o)
+ .debug_info      0x005a57         0x91 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.EP_o)
+ .debug_info      0x005ae8         0x8b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.EP_o)
+ .debug_info      0x005b73         0x8e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.EP_o)
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0xd18
+.debug_abbrev     0x000000        0xd1a
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x117 build/default/production/_ext/1889579238/blinky1.o
- .debug_abbrev    0x000117        0x117 build/default/production/_ext/1889579238/blinky3.o
- .debug_abbrev    0x00022e        0x133 build/default/production/_ext/1889579238/button2b.o
- .debug_abbrev    0x000361        0x1fa build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
- .debug_abbrev    0x00055b        0x133 build/default/production/_ext/1889579238/button2a.o
- .debug_abbrev    0x00068e        0x174 build/default/production/_ext/149885617/sst_port.o
- .debug_abbrev    0x000802        0x187 build/default/production/_ext/1731567061/sst.o
- .debug_abbrev    0x000989         0xd4 build/default/production/_ext/1889579238/main.o
- .debug_abbrev    0x000a5d        0x153 build/default/production/_ext/1889579238/system_dspic33ep128gs804.o
- .debug_abbrev    0x000bb0         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.EP_o)
- .debug_abbrev    0x000bc4         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.EP_o)
- .debug_abbrev    0x000bd8         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.EP_o)
- .debug_abbrev    0x000bec         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.EP_o)
- .debug_abbrev    0x000c00         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.EP_o)
- .debug_abbrev    0x000c14         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.EP_o)
- .debug_abbrev    0x000c28         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.EP_o)
- .debug_abbrev    0x000c3c         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.EP_o)
- .debug_abbrev    0x000c50         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.EP_o)
- .debug_abbrev    0x000c64         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.EP_o)
- .debug_abbrev    0x000c78         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.EP_o)
- .debug_abbrev    0x000c8c         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.EP_o)
- .debug_abbrev    0x000ca0         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.EP_o)
- .debug_abbrev    0x000cb4         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.EP_o)
- .debug_abbrev    0x000cc8         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.EP_o)
- .debug_abbrev    0x000cdc         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.EP_o)
- .debug_abbrev    0x000cf0         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.EP_o)
- .debug_abbrev    0x000d04         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.EP_o)
+ .debug_abbrev    0x000000        0x187 build/default/production/_ext/1445274692/sst.o
+ .debug_abbrev    0x000187        0x174 build/default/production/_ext/1564044098/sst_port.o
+ .debug_abbrev    0x0002fb         0xd4 build/default/production/main.o
+ .debug_abbrev    0x0003cf        0x155 build/default/production/system_dspic33ep128gs804.o
+ .debug_abbrev    0x000524        0x117 build/default/production/blinky1.o
+ .debug_abbrev    0x00063b        0x117 build/default/production/blinky3.o
+ .debug_abbrev    0x000752        0x1fa build/default/production/bsp_dspic33ep128gs804.o
+ .debug_abbrev    0x00094c        0x133 build/default/production/button2a.o
+ .debug_abbrev    0x000a7f        0x133 build/default/production/button2b.o
+ .debug_abbrev    0x000bb2         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.EP_o)
+ .debug_abbrev    0x000bc6         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.EP_o)
+ .debug_abbrev    0x000bda         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.EP_o)
+ .debug_abbrev    0x000bee         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.EP_o)
+ .debug_abbrev    0x000c02         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.EP_o)
+ .debug_abbrev    0x000c16         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.EP_o)
+ .debug_abbrev    0x000c2a         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.EP_o)
+ .debug_abbrev    0x000c3e         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.EP_o)
+ .debug_abbrev    0x000c52         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.EP_o)
+ .debug_abbrev    0x000c66         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.EP_o)
+ .debug_abbrev    0x000c7a         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.EP_o)
+ .debug_abbrev    0x000c8e         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.EP_o)
+ .debug_abbrev    0x000ca2         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.EP_o)
+ .debug_abbrev    0x000cb6         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.EP_o)
+ .debug_abbrev    0x000cca         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.EP_o)
+ .debug_abbrev    0x000cde         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.EP_o)
+ .debug_abbrev    0x000cf2         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.EP_o)
+ .debug_abbrev    0x000d06         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.EP_o)
 
-.debug_line       0x000000       0x1441
+.debug_line       0x000000       0x12e8
  *(.debug_line)
- .debug_line      0x000000         0xfa build/default/production/_ext/1889579238/blinky1.o
- .debug_line      0x0000fa         0xfa build/default/production/_ext/1889579238/blinky3.o
- .debug_line      0x0001f4         0xf8 build/default/production/_ext/1889579238/button2b.o
- .debug_line      0x0002ec        0x230 build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
- .debug_line      0x00051c        0x101 build/default/production/_ext/1889579238/button2a.o
- .debug_line      0x00061d        0x189 build/default/production/_ext/149885617/sst_port.o
- .debug_line      0x0007a6        0x19c build/default/production/_ext/1731567061/sst.o
- .debug_line      0x000942         0xe4 build/default/production/_ext/1889579238/main.o
- .debug_line      0x000a26        0x194 build/default/production/_ext/1889579238/system_dspic33ep128gs804.o
- .debug_line      0x000bba         0x37 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.EP_o)
- .debug_line      0x000bf1         0x35 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.EP_o)
- .debug_line      0x000c26         0x53 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.EP_o)
- .debug_line      0x000c79         0x3b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.EP_o)
- .debug_line      0x000cb4         0x4a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.EP_o)
- .debug_line      0x000cfe        0x136 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.EP_o)
- .debug_line      0x000e34        0x124 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.EP_o)
- .debug_line      0x000f58         0xcc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.EP_o)
- .debug_line      0x001024         0x72 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.EP_o)
- .debug_line      0x001096         0x7a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.EP_o)
- .debug_line      0x001110         0x5e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.EP_o)
- .debug_line      0x00116e         0x51 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.EP_o)
- .debug_line      0x0011bf         0x98 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.EP_o)
- .debug_line      0x001257         0x79 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.EP_o)
- .debug_line      0x0012d0         0x1a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(errno.EP_o)
- .debug_line      0x0012ea         0x53 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.EP_o)
- .debug_line      0x00133d         0x6c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.EP_o)
- .debug_line      0x0013a9         0x5a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.EP_o)
- .debug_line      0x001403         0x3e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.EP_o)
+ .debug_line      0x000000        0x171 build/default/production/_ext/1445274692/sst.o
+ .debug_line      0x000171        0x15e build/default/production/_ext/1564044098/sst_port.o
+ .debug_line      0x0002cf         0xbd build/default/production/main.o
+ .debug_line      0x00038c        0x17b build/default/production/system_dspic33ep128gs804.o
+ .debug_line      0x000507         0xd3 build/default/production/blinky1.o
+ .debug_line      0x0005da         0xd3 build/default/production/blinky3.o
+ .debug_line      0x0006ad        0x209 build/default/production/bsp_dspic33ep128gs804.o
+ .debug_line      0x0008b6         0xda build/default/production/button2a.o
+ .debug_line      0x000990         0xd1 build/default/production/button2b.o
+ .debug_line      0x000a61         0x37 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.EP_o)
+ .debug_line      0x000a98         0x35 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.EP_o)
+ .debug_line      0x000acd         0x53 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.EP_o)
+ .debug_line      0x000b20         0x3b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.EP_o)
+ .debug_line      0x000b5b         0x4a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.EP_o)
+ .debug_line      0x000ba5        0x136 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.EP_o)
+ .debug_line      0x000cdb        0x124 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.EP_o)
+ .debug_line      0x000dff         0xcc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.EP_o)
+ .debug_line      0x000ecb         0x72 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.EP_o)
+ .debug_line      0x000f3d         0x7a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.EP_o)
+ .debug_line      0x000fb7         0x5e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.EP_o)
+ .debug_line      0x001015         0x51 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.EP_o)
+ .debug_line      0x001066         0x98 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.EP_o)
+ .debug_line      0x0010fe         0x79 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.EP_o)
+ .debug_line      0x001177         0x1a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(errno.EP_o)
+ .debug_line      0x001191         0x53 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.EP_o)
+ .debug_line      0x0011e4         0x6c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.EP_o)
+ .debug_line      0x001250         0x5a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.EP_o)
+ .debug_line      0x0012aa         0x3e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.EP_o)
 
 .debug_frame      0x000000        0x830
  *(.debug_frame)
- .debug_frame     0x000000         0x7c build/default/production/_ext/1889579238/blinky1.o
- .debug_frame     0x00007c         0x7c build/default/production/_ext/1889579238/blinky3.o
- .debug_frame     0x0000f8         0x7c build/default/production/_ext/1889579238/button2b.o
- .debug_frame     0x000174        0x380 build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
- .debug_frame     0x0004f4         0x7c build/default/production/_ext/1889579238/button2a.o
- .debug_frame     0x000570         0xca build/default/production/_ext/149885617/sst_port.o
- .debug_frame     0x00063a         0xe4 build/default/production/_ext/1731567061/sst.o
- .debug_frame     0x00071e         0x2e build/default/production/_ext/1889579238/main.o
- .debug_frame     0x00074c         0xe4 build/default/production/_ext/1889579238/system_dspic33ep128gs804.o
+ .debug_frame     0x000000         0xe4 build/default/production/_ext/1445274692/sst.o
+ .debug_frame     0x0000e4         0xca build/default/production/_ext/1564044098/sst_port.o
+ .debug_frame     0x0001ae         0x2e build/default/production/main.o
+ .debug_frame     0x0001dc         0xe4 build/default/production/system_dspic33ep128gs804.o
+ .debug_frame     0x0002c0         0x7c build/default/production/blinky1.o
+ .debug_frame     0x00033c         0x7c build/default/production/blinky3.o
+ .debug_frame     0x0003b8        0x380 build/default/production/bsp_dspic33ep128gs804.o
+ .debug_frame     0x000738         0x7c build/default/production/button2a.o
+ .debug_frame     0x0007b4         0x7c build/default/production/button2b.o
 
 .debug_str        0x000000        0x186
  *(.debug_str)
- .debug_str       0x000000         0x15 build/default/production/_ext/1889579238/blinky1.o
- .debug_str       0x000015         0x15 build/default/production/_ext/1889579238/blinky3.o
- .debug_str       0x00002a         0x14 build/default/production/_ext/1889579238/button2b.o
- .debug_str       0x00003e         0x64 build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
- .debug_str       0x0000a2         0x20 build/default/production/_ext/1889579238/button2a.o
- .debug_str       0x0000c2         0x24 build/default/production/_ext/149885617/sst_port.o
- .debug_str       0x0000e6         0x42 build/default/production/_ext/1731567061/sst.o
- .debug_str       0x000128         0x37 build/default/production/_ext/1889579238/main.o
- .debug_str       0x00015f         0x27 build/default/production/_ext/1889579238/system_dspic33ep128gs804.o
+ .debug_str       0x000000         0x42 build/default/production/_ext/1445274692/sst.o
+ .debug_str       0x000042         0x24 build/default/production/_ext/1564044098/sst_port.o
+ .debug_str       0x000066         0x37 build/default/production/main.o
+ .debug_str       0x00009d         0x27 build/default/production/system_dspic33ep128gs804.o
+ .debug_str       0x0000c4         0x15 build/default/production/blinky1.o
+ .debug_str       0x0000d9         0x15 build/default/production/blinky3.o
+ .debug_str       0x0000ee         0x64 build/default/production/bsp_dspic33ep128gs804.o
+ .debug_str       0x000152         0x20 build/default/production/button2a.o
+ .debug_str       0x000172         0x14 build/default/production/button2b.o
 
 .debug_loc
  *(.debug_loc)
@@ -694,23 +694,23 @@ __FBTSEQ
                   0x000000        0x49f
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x39 build/default/production/_ext/1889579238/blinky1.o
+                  0x000000         0xaf build/default/production/_ext/1445274692/sst.o
  .debug_pubnames
-                  0x000039         0x39 build/default/production/_ext/1889579238/blinky3.o
+                  0x0000af         0x7f build/default/production/_ext/1564044098/sst_port.o
  .debug_pubnames
-                  0x000072         0x3b build/default/production/_ext/1889579238/button2b.o
+                  0x00012e         0x1b build/default/production/main.o
  .debug_pubnames
-                  0x0000ad        0x1ad build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
+                  0x000149         0xc1 build/default/production/system_dspic33ep128gs804.o
  .debug_pubnames
-                  0x00025a         0x3b build/default/production/_ext/1889579238/button2a.o
+                  0x00020a         0x39 build/default/production/blinky1.o
  .debug_pubnames
-                  0x000295         0x7f build/default/production/_ext/149885617/sst_port.o
+                  0x000243         0x39 build/default/production/blinky3.o
  .debug_pubnames
-                  0x000314         0xaf build/default/production/_ext/1731567061/sst.o
+                  0x00027c        0x1ad build/default/production/bsp_dspic33ep128gs804.o
  .debug_pubnames
-                  0x0003c3         0x1b build/default/production/_ext/1889579238/main.o
+                  0x000429         0x3b build/default/production/button2a.o
  .debug_pubnames
-                  0x0003de         0xc1 build/default/production/_ext/1889579238/system_dspic33ep128gs804.o
+                  0x000464         0x3b build/default/production/button2b.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -718,23 +718,23 @@ __FBTSEQ
 .debug_aranges    0x000000        0x318
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/production/_ext/1889579238/blinky1.o
+                  0x000000         0x18 build/default/production/_ext/1445274692/sst.o
  .debug_aranges
-                  0x000018         0x18 build/default/production/_ext/1889579238/blinky3.o
+                  0x000018         0x18 build/default/production/_ext/1564044098/sst_port.o
  .debug_aranges
-                  0x000030         0x18 build/default/production/_ext/1889579238/button2b.o
+                  0x000030         0x18 build/default/production/main.o
  .debug_aranges
-                  0x000048         0x18 build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
+                  0x000048         0x18 build/default/production/system_dspic33ep128gs804.o
  .debug_aranges
-                  0x000060         0x18 build/default/production/_ext/1889579238/button2a.o
+                  0x000060         0x18 build/default/production/blinky1.o
  .debug_aranges
-                  0x000078         0x18 build/default/production/_ext/149885617/sst_port.o
+                  0x000078         0x18 build/default/production/blinky3.o
  .debug_aranges
-                  0x000090         0x18 build/default/production/_ext/1731567061/sst.o
+                  0x000090         0x18 build/default/production/bsp_dspic33ep128gs804.o
  .debug_aranges
-                  0x0000a8         0x18 build/default/production/_ext/1889579238/main.o
+                  0x0000a8         0x18 build/default/production/button2a.o
  .debug_aranges
-                  0x0000c0         0x18 build/default/production/_ext/1889579238/system_dspic33ep128gs804.o
+                  0x0000c0         0x18 build/default/production/button2b.o
  .debug_aranges
                   0x0000d8         0x20 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.EP_o)
  .debug_aranges
@@ -3068,44 +3068,44 @@ LOAD data_init
 .debug_pubtypes
                   0x000318        0x708
  .debug_pubtypes
-                  0x000318         0xd4 build/default/production/_ext/1889579238/blinky1.o
+                  0x000318         0xde build/default/production/_ext/1445274692/sst.o
  .debug_pubtypes
-                  0x0003ec         0xd4 build/default/production/_ext/1889579238/blinky3.o
+                  0x0003f6         0xb1 build/default/production/_ext/1564044098/sst_port.o
  .debug_pubtypes
-                  0x0004c0         0xa8 build/default/production/_ext/1889579238/button2b.o
+                  0x0004a7         0x7d build/default/production/main.o
  .debug_pubtypes
-                  0x000568        0x122 build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
+                  0x000524         0xe2 build/default/production/system_dspic33ep128gs804.o
  .debug_pubtypes
-                  0x00068a         0xa8 build/default/production/_ext/1889579238/button2a.o
+                  0x000606         0xd4 build/default/production/blinky1.o
  .debug_pubtypes
-                  0x000732         0xb1 build/default/production/_ext/149885617/sst_port.o
+                  0x0006da         0xd4 build/default/production/blinky3.o
  .debug_pubtypes
-                  0x0007e3         0xde build/default/production/_ext/1731567061/sst.o
+                  0x0007ae        0x122 build/default/production/bsp_dspic33ep128gs804.o
  .debug_pubtypes
-                  0x0008c1         0x7d build/default/production/_ext/1889579238/main.o
+                  0x0008d0         0xa8 build/default/production/button2a.o
  .debug_pubtypes
-                  0x00093e         0xe2 build/default/production/_ext/1889579238/system_dspic33ep128gs804.o
+                  0x000978         0xa8 build/default/production/button2b.o
 
 __c30_signature
                   0x000a20         0x8a
  __c30_signature
-                  0x000a20          0x6 build/default/production/_ext/1889579238/blinky1.o
+                  0x000a20          0x6 build/default/production/_ext/1445274692/sst.o
  __c30_signature
-                  0x000a26          0x6 build/default/production/_ext/1889579238/blinky3.o
+                  0x000a26          0x6 build/default/production/_ext/1564044098/sst_port.o
  __c30_signature
-                  0x000a2c          0x6 build/default/production/_ext/1889579238/button2b.o
+                  0x000a2c          0x6 build/default/production/main.o
  __c30_signature
-                  0x000a32          0x6 build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
+                  0x000a32          0x6 build/default/production/system_dspic33ep128gs804.o
  __c30_signature
-                  0x000a38          0x6 build/default/production/_ext/1889579238/button2a.o
+                  0x000a38          0x6 build/default/production/blinky1.o
  __c30_signature
-                  0x000a3e          0x6 build/default/production/_ext/149885617/sst_port.o
+                  0x000a3e          0x6 build/default/production/blinky3.o
  __c30_signature
-                  0x000a44          0x6 build/default/production/_ext/1731567061/sst.o
+                  0x000a44          0x6 build/default/production/bsp_dspic33ep128gs804.o
  __c30_signature
-                  0x000a4a          0x6 build/default/production/_ext/1889579238/main.o
+                  0x000a4a          0x6 build/default/production/button2a.o
  __c30_signature
-                  0x000a50          0x6 build/default/production/_ext/1889579238/system_dspic33ep128gs804.o
+                  0x000a50          0x6 build/default/production/button2b.o
  __c30_signature
                   0x000a56          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_extendedep.o)
  __c30_signature
@@ -3135,98 +3135,98 @@ __c30_signature
  __c30_signature
                   0x000aa4          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__errno_location.EP_o)
 
-.nbss               0x1000         0x10
- .nbss              0x1000          0x8 build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
- .nbss              0x1008          0x8 build/default/production/_ext/1889579238/main.o
+.nbss               0x1000         0x14
+ .nbss              0x1000          0x8 build/default/production/main.o
+ .nbss              0x1008          0x8 build/default/production/bsp_dspic33ep128gs804.o
+ .nbss              0x1010          0x2 build/default/production/_ext/1445274692/sst.o
+ .nbss              0x1012          0x2 build/default/production/_ext/1564044098/sst_port.o
+                    0x1012                  _g_crit_counter
 
-.ndata              0x1010          0x8
- .ndata             0x1010          0x2 build/default/production/_ext/1889579238/blinky1.o
-                    0x1010                  _AO_Blinky1
- .ndata             0x1012          0x2 build/default/production/_ext/1889579238/blinky3.o
-                    0x1012                  _AO_Blinky3
- .ndata             0x1014          0x2 build/default/production/_ext/1889579238/button2b.o
-                    0x1014                  _AO_Button2b
- .ndata             0x1016          0x2 build/default/production/_ext/1889579238/button2a.o
-                    0x1016                  _AO_Button2a
+.ndata              0x1014          0x8
+ .ndata             0x1014          0x2 build/default/production/blinky1.o
+                    0x1014                  _AO_Blinky1
+ .ndata             0x1016          0x2 build/default/production/blinky3.o
+                    0x1016                  _AO_Blinky3
+ .ndata             0x1018          0x2 build/default/production/button2a.o
+                    0x1018                  _AO_Button2a
+ .ndata             0x101a          0x2 build/default/production/button2b.o
+                    0x101a                  _AO_Button2b
 
-.nbss               0x1018          0x6
- .nbss              0x1018          0x2 build/default/production/_ext/149885617/sst_port.o
-                    0x1018                  _g_crit_counter
- .nbss              0x101a          0x2 build/default/production/_ext/1731567061/sst.o
+.nbss               0x101c          0x2
  .nbss              0x101c          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(errno.EP_o)
                     0x101c                  _errno
 
 .bss                0x101e         0x82
- .bss               0x101e         0x30 build/default/production/_ext/1889579238/main.o
- .bss               0x104e         0x1a build/default/production/_ext/1889579238/blinky1.o
- .bss               0x1068         0x1a build/default/production/_ext/1889579238/blinky3.o
- .bss               0x1082          0xe build/default/production/_ext/1889579238/button2b.o
- .bss               0x1090          0xe build/default/production/_ext/1889579238/button2a.o
+ .bss               0x101e         0x30 build/default/production/main.o
+ .bss               0x104e         0x1a build/default/production/blinky1.o
+ .bss               0x1068         0x1a build/default/production/blinky3.o
+ .bss               0x1082          0xe build/default/production/button2a.o
+ .bss               0x1090          0xe build/default/production/button2b.o
  .bss               0x109e          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__errno_location.EP_o)
                     0x109e                  ___errno_val
+
+.config_IBSEQ     0x0157fc          0x2
+ .config_IBSEQ    0x0157fc          0x2 build/default/production/main.o
+
+.config_CTXT4     0x0157b0          0x2
+ .config_CTXT4    0x0157b0          0x2 build/default/production/main.o
+
+.config_DBCC      0x0157ac          0x2
+ .config_DBCC     0x0157ac          0x2 build/default/production/main.o
+
+.config_BTSWP     0x0157a8          0x2
+ .config_BTSWP    0x0157a8          0x2 build/default/production/main.o
+
+.config_WDTWIN    0x0157a0          0x2
+ .config_WDTWIN
+                  0x0157a0          0x2 build/default/production/main.o
+
+.config_PLLKEN    0x01579c          0x2
+ .config_PLLKEN
+                  0x01579c          0x2 build/default/production/main.o
+
+.config_IESO      0x015798          0x2
+ .config_IESO     0x015798          0x2 build/default/production/main.o
+
+.config_BSLIM     0x015790          0x2
+ .config_BSLIM    0x015790          0x2 build/default/production/main.o
 
 .ivt._T1Interrupt
                   0x00001a          0x2
  .ivt._T1Interrupt
-                  0x00001a          0x2 build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
+                  0x00001a          0x2 build/default/production/bsp_dspic33ep128gs804.o
 
 .ivt._PTG0Interrupt
                   0x00013a          0x2
  .ivt._PTG0Interrupt
-                  0x00013a          0x2 build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
+                  0x00013a          0x2 build/default/production/bsp_dspic33ep128gs804.o
 
 .ivt._PTG1Interrupt
                   0x00013c          0x2
  .ivt._PTG1Interrupt
-                  0x00013c          0x2 build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
+                  0x00013c          0x2 build/default/production/bsp_dspic33ep128gs804.o
 
 .ivt._PTG2Interrupt
                   0x00013e          0x2
  .ivt._PTG2Interrupt
-                  0x00013e          0x2 build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
+                  0x00013e          0x2 build/default/production/bsp_dspic33ep128gs804.o
 
 .ivt._PTG3Interrupt
                   0x000140          0x2
  .ivt._PTG3Interrupt
-                  0x000140          0x2 build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
-
-.config_IBSEQ     0x0157fc          0x2
- .config_IBSEQ    0x0157fc          0x2 build/default/production/_ext/1889579238/main.o
-
-.config_CTXT4     0x0157b0          0x2
- .config_CTXT4    0x0157b0          0x2 build/default/production/_ext/1889579238/main.o
-
-.config_DBCC      0x0157ac          0x2
- .config_DBCC     0x0157ac          0x2 build/default/production/_ext/1889579238/main.o
-
-.config_BTSWP     0x0157a8          0x2
- .config_BTSWP    0x0157a8          0x2 build/default/production/_ext/1889579238/main.o
-
-.config_WDTWIN    0x0157a0          0x2
- .config_WDTWIN
-                  0x0157a0          0x2 build/default/production/_ext/1889579238/main.o
-
-.config_PLLKEN    0x01579c          0x2
- .config_PLLKEN
-                  0x01579c          0x2 build/default/production/_ext/1889579238/main.o
-
-.config_IESO      0x015798          0x2
- .config_IESO     0x015798          0x2 build/default/production/_ext/1889579238/main.o
-
-.config_BSLIM     0x015790          0x2
- .config_BSLIM    0x015790          0x2 build/default/production/_ext/1889579238/main.o
+                  0x000140          0x2 build/default/production/bsp_dspic33ep128gs804.o
 
 .const              0x8cd8         0x66 load address 0x000cd8  
- .const             0x8cd8         0x34 build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
- .const             0x8d0c          0xa build/default/production/_ext/1889579238/button2b.o
- .const             0x8d16          0xa build/default/production/_ext/1889579238/button2a.o
- .const             0x8d20          0xa build/default/production/_ext/149885617/sst_port.o
- .const             0x8d2a          0x8 build/default/production/_ext/1889579238/blinky1.o
- .const             0x8d32          0x8 build/default/production/_ext/1889579238/blinky3.o
- .const             0x8d3a          0x4 build/default/production/_ext/1731567061/sst.o
+ .const             0x8cd8         0x34 build/default/production/bsp_dspic33ep128gs804.o
+ .const             0x8d0c          0xa build/default/production/_ext/1564044098/sst_port.o
+ .const             0x8d16          0xa build/default/production/button2a.o
+ .const             0x8d20          0xa build/default/production/button2b.o
+ .const             0x8d2a          0x8 build/default/production/blinky1.o
+ .const             0x8d32          0x8 build/default/production/blinky3.o
+ .const             0x8d3a          0x4 build/default/production/_ext/1445274692/sst.o
 
 .text             0x000d3e        0xbc8
- .text            0x000d3e        0x32a build/default/production/_ext/1889579238/bsp_dspic33ep128gs804.o
+ .text            0x000d3e        0x32a build/default/production/bsp_dspic33ep128gs804.o
                   0x000d3e                  _SysTick_Handler
                   0x000e2a                  _DBC_fault_handler
                   0x000e76                  _assert_failed
@@ -3247,7 +3247,7 @@ __c30_signature
                   0x00102a                  _BSP_getWorkEvtBlinky3
                   0x001048                  _SST_onStart
                   0x00105e                  _SST_onIdle
- .text            0x001068        0x266 build/default/production/_ext/1889579238/system_dspic33ep128gs804.o
+ .text            0x001068        0x266 build/default/production/system_dspic33ep128gs804.o
                   0x001068                  _gpio_set_level
                   0x001096                  _gpio_get_level
                   0x0010b2                  _gpio_set_direction
@@ -3256,7 +3256,7 @@ __c30_signature
                   0x001246                  _dspic_SystemReset
                   0x00124e                  _interrupt_SetPriority
                   0x0012a4                  _interrupt_Enable
- .text            0x0012ce        0x204 build/default/production/_ext/1731567061/sst.o
+ .text            0x0012ce        0x204 build/default/production/_ext/1445274692/sst.o
                   0x0012ce                  _SST_Task_run
                   0x0012d8                  _SST_Task_ctor
                   0x0012f0                  _SST_Task_start
@@ -3265,32 +3265,32 @@ __c30_signature
                   0x0013f2                  _SST_TimeEvt_arm
                   0x001420                  _SST_TimeEvt_disarm
                   0x00145a                  _SST_TimeEvt_tick
- .text            0x0014d2        0x186 build/default/production/_ext/149885617/sst_port.o
+ .text            0x0014d2        0x186 build/default/production/_ext/1564044098/sst_port.o
                   0x001552                  _SST_init
                   0x001558                  _SST_start
                   0x00155e                  _SST_Task_setPrio
                   0x0015c0                  _SST_Task_activate
                   0x001646                  _SST_Task_setIRQ
- .text            0x001658         0xb6 build/default/production/_ext/1889579238/button2a.o
+ .text            0x001658         0xb6 build/default/production/button2a.o
                   0x001658                  _Button2a_instantiate
-                  0x001672                  build/default/production/_ext/1889579238/button2a.o:_Button2a_init
-                  0x00167c                  build/default/production/_ext/1889579238/button2a.o:_Button2a_dispatch
- .text            0x00170e         0xb4 build/default/production/_ext/1889579238/blinky1.o
+                  0x001672                  build/default/production/button2a.o:_Button2a_init
+                  0x00167c                  build/default/production/button2a.o:_Button2a_dispatch
+ .text            0x00170e         0xb4 build/default/production/blinky1.o
                   0x00170e                  _Blinky1_instantiate
-                  0x001734                  build/default/production/_ext/1889579238/blinky1.o:_Blinky1_init
-                  0x00176c                  build/default/production/_ext/1889579238/blinky1.o:_Blinky1_dispatch
- .text            0x0017c2         0xb4 build/default/production/_ext/1889579238/blinky3.o
+                  0x001734                  build/default/production/blinky1.o:_Blinky1_init
+                  0x00176c                  build/default/production/blinky1.o:_Blinky1_dispatch
+ .text            0x0017c2         0xb4 build/default/production/blinky3.o
                   0x0017c2                  _Blinky3_instantiate
-                  0x0017e8                  build/default/production/_ext/1889579238/blinky3.o:_Blinky3_init
-                  0x001820                  build/default/production/_ext/1889579238/blinky3.o:_Blinky3_dispatch
- .text            0x001876         0x90 build/default/production/_ext/1889579238/button2b.o
+                  0x0017e8                  build/default/production/blinky3.o:_Blinky3_init
+                  0x001820                  build/default/production/blinky3.o:_Blinky3_dispatch
+ .text            0x001876         0x90 build/default/production/button2b.o
                   0x001876                  _Button2b_instantiate
-                  0x001890                  build/default/production/_ext/1889579238/button2b.o:_Button2b_init
-                  0x00189a                  build/default/production/_ext/1889579238/button2b.o:_Button2b_dispatch
+                  0x001890                  build/default/production/button2b.o:_Button2b_init
+                  0x00189a                  build/default/production/button2b.o:_Button2b_dispatch
 
 .dinit            0x001906         0x64
  .dinit           0x001906         0x64 data_init
 
 .text             0x00196a         0x50
- .text            0x00196a         0x50 build/default/production/_ext/1889579238/main.o
+ .text            0x00196a         0x50 build/default/production/main.o
                   0x00196a                  _main

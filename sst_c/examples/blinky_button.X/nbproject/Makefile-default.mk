@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=D:/projs/blinky_button.X/blinky1.c D:/projs/blinky_button.X/blinky3.c D:/projs/blinky_button.X/button2b.c D:/projs/blinky_button.X/bsp_dspic33ep128gs804.c D:/projs/blinky_button.X/button2a.c D:/projs/Super-Simple-Tasker/sst_c/ports/dspic/sst_port.c D:/projs/Super-Simple-Tasker/sst_c/src/sst.c D:/projs/blinky_button.X/main.c D:/projs/blinky_button.X/system_dspic33ep128gs804.c
+SOURCEFILES_QUOTED_IF_SPACED=../../src/sst.c ../../ports/dspic/sst_port.c main.c system_dspic33ep128gs804.c blinky1.c blinky3.c bsp_dspic33ep128gs804.c button2a.c button2b.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1889579238/blinky1.o ${OBJECTDIR}/_ext/1889579238/blinky3.o ${OBJECTDIR}/_ext/1889579238/button2b.o ${OBJECTDIR}/_ext/1889579238/bsp_dspic33ep128gs804.o ${OBJECTDIR}/_ext/1889579238/button2a.o ${OBJECTDIR}/_ext/149885617/sst_port.o ${OBJECTDIR}/_ext/1731567061/sst.o ${OBJECTDIR}/_ext/1889579238/main.o ${OBJECTDIR}/_ext/1889579238/system_dspic33ep128gs804.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1889579238/blinky1.o.d ${OBJECTDIR}/_ext/1889579238/blinky3.o.d ${OBJECTDIR}/_ext/1889579238/button2b.o.d ${OBJECTDIR}/_ext/1889579238/bsp_dspic33ep128gs804.o.d ${OBJECTDIR}/_ext/1889579238/button2a.o.d ${OBJECTDIR}/_ext/149885617/sst_port.o.d ${OBJECTDIR}/_ext/1731567061/sst.o.d ${OBJECTDIR}/_ext/1889579238/main.o.d ${OBJECTDIR}/_ext/1889579238/system_dspic33ep128gs804.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1445274692/sst.o ${OBJECTDIR}/_ext/1564044098/sst_port.o ${OBJECTDIR}/main.o ${OBJECTDIR}/system_dspic33ep128gs804.o ${OBJECTDIR}/blinky1.o ${OBJECTDIR}/blinky3.o ${OBJECTDIR}/bsp_dspic33ep128gs804.o ${OBJECTDIR}/button2a.o ${OBJECTDIR}/button2b.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1445274692/sst.o.d ${OBJECTDIR}/_ext/1564044098/sst_port.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/system_dspic33ep128gs804.o.d ${OBJECTDIR}/blinky1.o.d ${OBJECTDIR}/blinky3.o.d ${OBJECTDIR}/bsp_dspic33ep128gs804.o.d ${OBJECTDIR}/button2a.o.d ${OBJECTDIR}/button2b.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/1889579238/blinky1.o ${OBJECTDIR}/_ext/1889579238/blinky3.o ${OBJECTDIR}/_ext/1889579238/button2b.o ${OBJECTDIR}/_ext/1889579238/bsp_dspic33ep128gs804.o ${OBJECTDIR}/_ext/1889579238/button2a.o ${OBJECTDIR}/_ext/149885617/sst_port.o ${OBJECTDIR}/_ext/1731567061/sst.o ${OBJECTDIR}/_ext/1889579238/main.o ${OBJECTDIR}/_ext/1889579238/system_dspic33ep128gs804.o
+OBJECTFILES=${OBJECTDIR}/_ext/1445274692/sst.o ${OBJECTDIR}/_ext/1564044098/sst_port.o ${OBJECTDIR}/main.o ${OBJECTDIR}/system_dspic33ep128gs804.o ${OBJECTDIR}/blinky1.o ${OBJECTDIR}/blinky3.o ${OBJECTDIR}/bsp_dspic33ep128gs804.o ${OBJECTDIR}/button2a.o ${OBJECTDIR}/button2b.o
 
 # Source Files
-SOURCEFILES=D:/projs/blinky_button.X/blinky1.c D:/projs/blinky_button.X/blinky3.c D:/projs/blinky_button.X/button2b.c D:/projs/blinky_button.X/bsp_dspic33ep128gs804.c D:/projs/blinky_button.X/button2a.c D:/projs/Super-Simple-Tasker/sst_c/ports/dspic/sst_port.c D:/projs/Super-Simple-Tasker/sst_c/src/sst.c D:/projs/blinky_button.X/main.c D:/projs/blinky_button.X/system_dspic33ep128gs804.c
+SOURCEFILES=../../src/sst.c ../../ports/dspic/sst_port.c main.c system_dspic33ep128gs804.c blinky1.c blinky3.c bsp_dspic33ep128gs804.c button2a.c button2b.c
 
 
 
@@ -89,114 +89,114 @@ MP_LINKER_FILE_OPTION=,--script=p33EP128GS804.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/_ext/1889579238/blinky1.o: D:/projs/blinky_button.X/blinky1.c  .generated_files/flags/default/4013b298cc0ba4e9ac05aa38406d6eafb103dcfe .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1889579238" 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/blinky1.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/blinky1.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/blinky_button.X/blinky1.c  -o ${OBJECTDIR}/_ext/1889579238/blinky1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1889579238/blinky1.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1445274692/sst.o: ../../src/sst.c  .generated_files/flags/default/815c652a8c8a901957956c0f4079550b06e0ede8 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1445274692" 
+	@${RM} ${OBJECTDIR}/_ext/1445274692/sst.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1445274692/sst.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../src/sst.c  -o ${OBJECTDIR}/_ext/1445274692/sst.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1445274692/sst.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/1889579238/blinky3.o: D:/projs/blinky_button.X/blinky3.c  .generated_files/flags/default/154a07d6564ab0fec40ffa4d908e65be4871edbc .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1889579238" 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/blinky3.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/blinky3.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/blinky_button.X/blinky3.c  -o ${OBJECTDIR}/_ext/1889579238/blinky3.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1889579238/blinky3.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1564044098/sst_port.o: ../../ports/dspic/sst_port.c  .generated_files/flags/default/e478277edfbfa7b82051ef353756526e3360bc4d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1564044098" 
+	@${RM} ${OBJECTDIR}/_ext/1564044098/sst_port.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1564044098/sst_port.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../ports/dspic/sst_port.c  -o ${OBJECTDIR}/_ext/1564044098/sst_port.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1564044098/sst_port.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/1889579238/button2b.o: D:/projs/blinky_button.X/button2b.c  .generated_files/flags/default/a98db815dab011d610f23623bc9ad4b87207b713 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1889579238" 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/button2b.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/button2b.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/blinky_button.X/button2b.c  -o ${OBJECTDIR}/_ext/1889579238/button2b.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1889579238/button2b.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/18e777df26b130cf8a0cae0da68f9d12cc4f9ada .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/main.o.d 
+	@${RM} ${OBJECTDIR}/main.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/main.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/1889579238/bsp_dspic33ep128gs804.o: D:/projs/blinky_button.X/bsp_dspic33ep128gs804.c  .generated_files/flags/default/351ebe65d881729dab2c838a7891476379e174df .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1889579238" 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/bsp_dspic33ep128gs804.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/bsp_dspic33ep128gs804.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/blinky_button.X/bsp_dspic33ep128gs804.c  -o ${OBJECTDIR}/_ext/1889579238/bsp_dspic33ep128gs804.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1889579238/bsp_dspic33ep128gs804.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/system_dspic33ep128gs804.o: system_dspic33ep128gs804.c  .generated_files/flags/default/874410da57ed0c15e6182c076c1f54d6a7a39d3f .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/system_dspic33ep128gs804.o.d 
+	@${RM} ${OBJECTDIR}/system_dspic33ep128gs804.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  system_dspic33ep128gs804.c  -o ${OBJECTDIR}/system_dspic33ep128gs804.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/system_dspic33ep128gs804.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/1889579238/button2a.o: D:/projs/blinky_button.X/button2a.c  .generated_files/flags/default/acbc6f7a6efb2d7433c7e1b9a47ebafb02634c5a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1889579238" 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/button2a.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/button2a.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/blinky_button.X/button2a.c  -o ${OBJECTDIR}/_ext/1889579238/button2a.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1889579238/button2a.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/blinky1.o: blinky1.c  .generated_files/flags/default/4e2188b8665878590d0e4dfbb5232eb2f7b24a1e .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/blinky1.o.d 
+	@${RM} ${OBJECTDIR}/blinky1.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  blinky1.c  -o ${OBJECTDIR}/blinky1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/blinky1.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/149885617/sst_port.o: D:/projs/Super-Simple-Tasker/sst_c/ports/dspic/sst_port.c  .generated_files/flags/default/5927313e3f00413a02069d03cec1d441a684d862 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/149885617" 
-	@${RM} ${OBJECTDIR}/_ext/149885617/sst_port.o.d 
-	@${RM} ${OBJECTDIR}/_ext/149885617/sst_port.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/Super-Simple-Tasker/sst_c/ports/dspic/sst_port.c  -o ${OBJECTDIR}/_ext/149885617/sst_port.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/149885617/sst_port.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/blinky3.o: blinky3.c  .generated_files/flags/default/114e344357d8d61bb0402e52af44c4972c1978f8 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/blinky3.o.d 
+	@${RM} ${OBJECTDIR}/blinky3.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  blinky3.c  -o ${OBJECTDIR}/blinky3.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/blinky3.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/1731567061/sst.o: D:/projs/Super-Simple-Tasker/sst_c/src/sst.c  .generated_files/flags/default/f920a13b6676debff03c7ae180b9693c6ba56b5d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1731567061" 
-	@${RM} ${OBJECTDIR}/_ext/1731567061/sst.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1731567061/sst.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/Super-Simple-Tasker/sst_c/src/sst.c  -o ${OBJECTDIR}/_ext/1731567061/sst.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1731567061/sst.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/bsp_dspic33ep128gs804.o: bsp_dspic33ep128gs804.c  .generated_files/flags/default/ddf0d005705bdb8f360500b04dab294b30baaf09 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/bsp_dspic33ep128gs804.o.d 
+	@${RM} ${OBJECTDIR}/bsp_dspic33ep128gs804.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  bsp_dspic33ep128gs804.c  -o ${OBJECTDIR}/bsp_dspic33ep128gs804.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/bsp_dspic33ep128gs804.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/1889579238/main.o: D:/projs/blinky_button.X/main.c  .generated_files/flags/default/85a4f4fc8c1df5de0dbd2fe1be3da7b8daee7529 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1889579238" 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/main.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/main.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/blinky_button.X/main.c  -o ${OBJECTDIR}/_ext/1889579238/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1889579238/main.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/button2a.o: button2a.c  .generated_files/flags/default/b119dfade2933c085801d45e9f1978497b65cc90 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/button2a.o.d 
+	@${RM} ${OBJECTDIR}/button2a.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  button2a.c  -o ${OBJECTDIR}/button2a.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/button2a.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/1889579238/system_dspic33ep128gs804.o: D:/projs/blinky_button.X/system_dspic33ep128gs804.c  .generated_files/flags/default/90546a96a9b2f26ec7a84816f9cb5767844f4c91 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1889579238" 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/system_dspic33ep128gs804.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/system_dspic33ep128gs804.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/blinky_button.X/system_dspic33ep128gs804.c  -o ${OBJECTDIR}/_ext/1889579238/system_dspic33ep128gs804.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1889579238/system_dspic33ep128gs804.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/button2b.o: button2b.c  .generated_files/flags/default/737024e428d0ff314859b967152819083dd77bb1 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/button2b.o.d 
+	@${RM} ${OBJECTDIR}/button2b.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  button2b.c  -o ${OBJECTDIR}/button2b.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/button2b.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 else
-${OBJECTDIR}/_ext/1889579238/blinky1.o: D:/projs/blinky_button.X/blinky1.c  .generated_files/flags/default/336461c16e7c68e40c9298abb6f36ce56484174e .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1889579238" 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/blinky1.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/blinky1.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/blinky_button.X/blinky1.c  -o ${OBJECTDIR}/_ext/1889579238/blinky1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1889579238/blinky1.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1445274692/sst.o: ../../src/sst.c  .generated_files/flags/default/1030b61f629f02c27f79826e930d3a31165856fd .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1445274692" 
+	@${RM} ${OBJECTDIR}/_ext/1445274692/sst.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1445274692/sst.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../src/sst.c  -o ${OBJECTDIR}/_ext/1445274692/sst.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1445274692/sst.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/1889579238/blinky3.o: D:/projs/blinky_button.X/blinky3.c  .generated_files/flags/default/1ffa31ec632d4c88ae982f0ab7d337f7c51d686e .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1889579238" 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/blinky3.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/blinky3.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/blinky_button.X/blinky3.c  -o ${OBJECTDIR}/_ext/1889579238/blinky3.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1889579238/blinky3.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1564044098/sst_port.o: ../../ports/dspic/sst_port.c  .generated_files/flags/default/cc1928f264746b56e124c1a37e14068f639854f8 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1564044098" 
+	@${RM} ${OBJECTDIR}/_ext/1564044098/sst_port.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1564044098/sst_port.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../ports/dspic/sst_port.c  -o ${OBJECTDIR}/_ext/1564044098/sst_port.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1564044098/sst_port.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/1889579238/button2b.o: D:/projs/blinky_button.X/button2b.c  .generated_files/flags/default/a8b44e1a0c8380cb221076112835209b5720299b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1889579238" 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/button2b.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/button2b.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/blinky_button.X/button2b.c  -o ${OBJECTDIR}/_ext/1889579238/button2b.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1889579238/button2b.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/8773facdc99c655f9d154841af6e196abdcd5c9c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/main.o.d 
+	@${RM} ${OBJECTDIR}/main.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/main.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/1889579238/bsp_dspic33ep128gs804.o: D:/projs/blinky_button.X/bsp_dspic33ep128gs804.c  .generated_files/flags/default/501f98a00cf4694d84ec2b8e6e9c52ebc0b359a4 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1889579238" 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/bsp_dspic33ep128gs804.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/bsp_dspic33ep128gs804.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/blinky_button.X/bsp_dspic33ep128gs804.c  -o ${OBJECTDIR}/_ext/1889579238/bsp_dspic33ep128gs804.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1889579238/bsp_dspic33ep128gs804.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/system_dspic33ep128gs804.o: system_dspic33ep128gs804.c  .generated_files/flags/default/e515ec8d50ecdcbaac511ac59d2c09905382d8b9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/system_dspic33ep128gs804.o.d 
+	@${RM} ${OBJECTDIR}/system_dspic33ep128gs804.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  system_dspic33ep128gs804.c  -o ${OBJECTDIR}/system_dspic33ep128gs804.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/system_dspic33ep128gs804.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/1889579238/button2a.o: D:/projs/blinky_button.X/button2a.c  .generated_files/flags/default/f06ff63ce3bc01ce927e89e289cbe08ecafc7d4e .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1889579238" 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/button2a.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/button2a.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/blinky_button.X/button2a.c  -o ${OBJECTDIR}/_ext/1889579238/button2a.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1889579238/button2a.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/blinky1.o: blinky1.c  .generated_files/flags/default/b96645270597bed95aeb0f5d70774560bdb91ca3 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/blinky1.o.d 
+	@${RM} ${OBJECTDIR}/blinky1.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  blinky1.c  -o ${OBJECTDIR}/blinky1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/blinky1.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/149885617/sst_port.o: D:/projs/Super-Simple-Tasker/sst_c/ports/dspic/sst_port.c  .generated_files/flags/default/a7f3e01372f28e1c1f1cddd4927c124215f280de .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/149885617" 
-	@${RM} ${OBJECTDIR}/_ext/149885617/sst_port.o.d 
-	@${RM} ${OBJECTDIR}/_ext/149885617/sst_port.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/Super-Simple-Tasker/sst_c/ports/dspic/sst_port.c  -o ${OBJECTDIR}/_ext/149885617/sst_port.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/149885617/sst_port.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/blinky3.o: blinky3.c  .generated_files/flags/default/c02d779d6388246b04712c2e295125ad457351da .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/blinky3.o.d 
+	@${RM} ${OBJECTDIR}/blinky3.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  blinky3.c  -o ${OBJECTDIR}/blinky3.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/blinky3.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/1731567061/sst.o: D:/projs/Super-Simple-Tasker/sst_c/src/sst.c  .generated_files/flags/default/24cc1a8777813924cb430708f7b958caa4faae5a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1731567061" 
-	@${RM} ${OBJECTDIR}/_ext/1731567061/sst.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1731567061/sst.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/Super-Simple-Tasker/sst_c/src/sst.c  -o ${OBJECTDIR}/_ext/1731567061/sst.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1731567061/sst.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/bsp_dspic33ep128gs804.o: bsp_dspic33ep128gs804.c  .generated_files/flags/default/c7f2d7cddde5280a2003818dd7857332e855cc59 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/bsp_dspic33ep128gs804.o.d 
+	@${RM} ${OBJECTDIR}/bsp_dspic33ep128gs804.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  bsp_dspic33ep128gs804.c  -o ${OBJECTDIR}/bsp_dspic33ep128gs804.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/bsp_dspic33ep128gs804.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/1889579238/main.o: D:/projs/blinky_button.X/main.c  .generated_files/flags/default/e01ad5ac12684546dbcd779520af7aba6b87f2ee .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1889579238" 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/main.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/main.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/blinky_button.X/main.c  -o ${OBJECTDIR}/_ext/1889579238/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1889579238/main.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/button2a.o: button2a.c  .generated_files/flags/default/d2475d90ce2b825551566483400d455a43506fec .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/button2a.o.d 
+	@${RM} ${OBJECTDIR}/button2a.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  button2a.c  -o ${OBJECTDIR}/button2a.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/button2a.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/_ext/1889579238/system_dspic33ep128gs804.o: D:/projs/blinky_button.X/system_dspic33ep128gs804.c  .generated_files/flags/default/b4aa71c07a73d04d0aa4d9a6ce0157a0fe624b97 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1889579238" 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/system_dspic33ep128gs804.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1889579238/system_dspic33ep128gs804.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  D:/projs/blinky_button.X/system_dspic33ep128gs804.c  -o ${OBJECTDIR}/_ext/1889579238/system_dspic33ep128gs804.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1889579238/system_dspic33ep128gs804.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../Super-Simple-Tasker/include" -I"../Super-Simple-Tasker/sst_c/ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/button2b.o: button2b.c  .generated_files/flags/default/4f69ec3bc1b81e5e528e1495cf4474390c5cdc9a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/button2b.o.d 
+	@${RM} ${OBJECTDIR}/button2b.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  button2b.c  -o ${OBJECTDIR}/button2b.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/button2b.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -I"../../../include" -I"../../ports/dspic" -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 endif
 
@@ -217,7 +217,7 @@ endif
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 ${DISTDIR}/blinky_button.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
 	@${MKDIR} ${DISTDIR} 
-	${MP_CC} $(MP_EXTRA_LD_PRE)  -o ${DISTDIR}/blinky_button.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}      -mcpu=$(MP_PROCESSOR_OPTION)        -D__DEBUG=__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)   -mreserve=data@0x1000:0x101B -mreserve=data@0x101C:0x101D -mreserve=data@0x101E:0x101F -mreserve=data@0x1020:0x1021 -mreserve=data@0x1022:0x1023 -mreserve=data@0x1024:0x1027 -mreserve=data@0x1028:0x104F   -Wl,--local-stack,,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,-D__DEBUG=__DEBUG,--defsym=__MPLAB_DEBUGGER_PK3=1,$(MP_LINKER_FILE_OPTION),--stack=16,--check-sections,--data-init,--pack-data,--handles,--isr,--no-gc-sections,--fill-upper=0,--stackguard=16,--no-force-link,--smart-io,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--report-mem,--memorysummary,${DISTDIR}/memoryfile.xml$(MP_EXTRA_LD_POST)  -mdfp="${DFP_DIR}/xc16" 
+	${MP_CC} $(MP_EXTRA_LD_PRE)  -o ${DISTDIR}/blinky_button.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}      -mcpu=$(MP_PROCESSOR_OPTION)        -D__DEBUG=__DEBUG   -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)      -Wl,--local-stack,,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,-D__DEBUG=__DEBUG,,$(MP_LINKER_FILE_OPTION),--stack=16,--check-sections,--data-init,--pack-data,--handles,--isr,--no-gc-sections,--fill-upper=0,--stackguard=16,--no-force-link,--smart-io,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--report-mem,--memorysummary,${DISTDIR}/memoryfile.xml$(MP_EXTRA_LD_POST)  -mdfp="${DFP_DIR}/xc16" 
 	
 else
 ${DISTDIR}/blinky_button.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
