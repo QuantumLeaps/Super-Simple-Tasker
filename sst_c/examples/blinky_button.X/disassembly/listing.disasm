@@ -1,0 +1,7 @@
+Unable to generate the disassembly listing file. 
+Please make sure that you have built the project with symbol information. 
+1. Open the Project Properties.
+2. Select the "Loading" node under "Conf: [your current configuration]".
+3. Check "Load Symbols when Programming or building for production".
+
+Double click on this editor pane to set.

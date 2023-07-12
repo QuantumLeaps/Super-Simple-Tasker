@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <executable name="dist/default/debug/blinky_button.X.debug.elf">
+    <memory name="data">
+      <units>bytes</units>
+      <length>8192</length>
+      <used>232</used>
+      <free>7960</free>
+    </memory>
+    <memory name="program">
+      <units>bytes</units>
+      <length>131136</length>
+      <used>9222</used>
+      <free>121914</free>
+    </memory>
+  </executable>
+</project>
