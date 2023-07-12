@@ -73,6 +73,17 @@ compatible with the requirements of
 The SST hardware implementation is likely the most performant and efficient
 **hard-real time RTOS** kernel for ARM Cortex-M.
 
+
+# Hardware RTOS for Microchip dsPIC
+The contributed [SST port for dsPIC](sst_c/ports/dspic) provides a unique
+**hardware implementation** of the SST API for
+[Microchip dsPIC](https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/dspic-dscs).
+The SST "hardware RTOS" for dsPIC is fully compatible with the requirements of
+[Rate Monotonic Analysis/Scheduling (RMA/RMS)](https://youtu.be/kLxxXNCrY60).
+
+<p align="center"><img src="img/dsPIC.png"/></p>
+
+
 # SST Videos
 SST has been presented at the Embedded Online Conference 2023 and the videos
 are available on YouTube:
