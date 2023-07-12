@@ -1,5 +1,12 @@
+/**
+ * @file bsp_dspic33ep128gs804.c
+ * @author ASHRAF (ashrafkamel491@gmail.com)
+ * @version 1.0
+ * @date 2023-06-20
+ */
+
 /*============================================================================
-* Super-Simple Tasker (SST/C) Example for TivaC TM4C123GXL
+* Super-Simple Tasker (SST/C) Example for dsPIC33ep33ep128gs804
 *
 *                    Q u a n t u m  L e a P s
 *                    ------------------------
