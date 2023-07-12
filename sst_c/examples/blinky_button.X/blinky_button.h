@@ -51,15 +51,15 @@ typedef struct {
 } ButtonWorkEvt;
 
 void Blinky1_instantiate(void);
-extern SST_Task * AO_Blinky1;  /* opaque task pointer */
+extern SST_Task * const AO_Blinky1;  /* opaque task pointer */
 
 void Blinky3_instantiate(void);
-extern SST_Task * AO_Blinky3;  /* opaque task pointer */
+extern SST_Task * const AO_Blinky3;  /* opaque task pointer */
 
 void Button2a_instantiate(void);
-extern SST_Task * AO_Button2a; /* opaque task pointer */
+extern SST_Task * const AO_Button2a; /* opaque task pointer */
 
 void Button2b_instantiate(void);
-extern SST_Task * AO_Button2b; /* opaque task pointer */
+extern SST_Task * const AO_Button2b; /* opaque task pointer */
 
 #endif /* BLINKY_BUTTON_H_ */

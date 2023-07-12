@@ -30,7 +30,7 @@
 DBC_MODULE_NAME("blinky1") /* for DBC assertions in this module */
 
 /*..........................................................................*/
-typedef struct {      /* Blinky task */
+typedef struct {      /* Blinky1 task */
     SST_Task super;   /* inherit SST_Task */
     SST_TimeEvt te;   /* time event for generating TIMEOUT events */
     uint16_t toggles; /* number of toggles to perform for TIMEOUT event */
@@ -42,7 +42,7 @@ static void Blinky1_dispatch(Blinky1 * const me, SST_Evt const * const e);
 
 /*..........................................................................*/
 static Blinky1 Blinky1_inst; /* the Blinky instance */
-SST_Task * AO_Blinky1 = &Blinky1_inst.super; /* opaque AO pointer */
+SST_Task * const AO_Blinky1 = &Blinky1_inst.super; /* opaque AO pointer */
 
 void Blinky1_instantiate(void) {
     Blinky1_ctor(&Blinky1_inst);
@@ -72,8 +72,11 @@ static void Blinky1_dispatch(Blinky1 * const me, SST_Evt const * const e) {
     switch (e->sig) {
         case TIMEOUT_SIG: {
             for (uint16_t i = me->toggles; i > 0U; --i) {
+                /* just to exercise SST task scheduler lock... */
+                SST_LockKey key = SST_Task_lock(3U);
                 BSP_d5on();
                 BSP_d5off();
+                SST_Task_unlock(key);
             }
             break;
         }

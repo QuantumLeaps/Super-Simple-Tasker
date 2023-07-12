@@ -5,6 +5,7 @@
         <group>
             <file>file:/D:/Super-Simple-Tasker/sst_c/examples/blinky_button.X/main.c</file>
             <file>file:/D:/Super-Simple-Tasker/sst_c/examples/blinky_button.X/Makefile</file>
+            <file>file:/D:/Super-Simple-Tasker/sst_c/ports/dspic/sst_port.c</file>
             <file>file:/D:/Super-Simple-Tasker/sst_c/src/sst.c</file>
         </group>
     </open-files>

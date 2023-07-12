@@ -42,7 +42,7 @@ static void Blinky3_dispatch(Blinky3 * const me, SST_Evt const * const e);
 
 /*..........................................................................*/
 static Blinky3 Blinky3_inst; /* the Blinky3 instance */
-SST_Task * AO_Blinky3 = &Blinky3_inst.super; /* opaque AO pointer */
+SST_Task * const AO_Blinky3 = &Blinky3_inst.super; /* opaque AO pointer */
 
 void Blinky3_instantiate(void) {
     Blinky3_ctor(&Blinky3_inst);

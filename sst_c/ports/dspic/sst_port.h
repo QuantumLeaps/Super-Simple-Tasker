@@ -1,3 +1,10 @@
+/**
+ * @file sst_port.h
+ * @author ASHRAF (ashrafkamel491@gmail.com)
+ * @version 0.1
+ * @date 2023-06-20
+ */
+
 /*===========================================================================
 * Super-Simple Tasker (SST/C) port to DSPIC33ep
 *
@@ -66,5 +73,8 @@
 
 /* the idle SST callback for this SST port */
 void SST_onIdle(void);
+
+/* the SST scheduler lock key type */
+typedef uint16_t SST_LockKey;
 
 #endif /* SST_PORT_H_ */

@@ -1,5 +1,12 @@
+/**
+ * @file sst_port.c
+ * @author ASHRAF (ashraf-masoud@elarabygroup.com)
+ * @version 0.1
+ * @date 2023-06-20
+ */
+
 /*===========================================================================
-* Super-Simple Tasker (SST/C) port to DSPIC33ep
+* Super-Simple Tasker (SST/C) port to dsPIC33ep
 *
 * Copyright (C) 2006-2023 Quantum Leaps, <state-machine.com>.
 *
@@ -113,4 +120,34 @@ void SST_Task_activate(SST_Task * const me) {
 void SST_Task_setIRQ(SST_Task * const me, uint8_t irq) 
 {
     me->interrupt_num = irq;
+}
+
+
+/*..........................................................................*/
+SST_LockKey SST_Task_lock(SST_TaskPrio ceiling) {
+    /* NOTE:
+    * dsPIC support the Interrupt Priority Level -IPL- bits in Status Reg -SR-
+    * and the selective SST scheduler locking 
+    * is implemented by setting IPL bits to the ceiling level.
+    */
+    // save current Priority
+    SST_LockKey basepri_ = SRbits.IPL;
+    // Current base priority is lower than the ceiling
+    if(basepri_ < ceiling)
+    {
+        // update the Processor Priority
+        SRbits.IPL = ceiling;
+    }
+    else
+    {
+        //do nothing
+    }
+    
+    return basepri_;
+}
+
+/*..........................................................................*/
+void SST_Task_unlock(SST_LockKey lock_key) 
+{
+    SRbits.IPL = lock_key;
 }

@@ -41,7 +41,7 @@ static void Button2b_dispatch(Button2b * const me, SST_Evt const * const e);
 
 /*..........................................................................*/
 static Button2b Button2b_inst; /* the Button2b instance */
-SST_Task * AO_Button2b = &Button2b_inst.super; /* opaque AO pointer */
+SST_Task * const AO_Button2b = &Button2b_inst.super; /* opaque AO pointer */
 
 void Button2b_instantiate(void) {
     Button2b_ctor(&Button2b_inst);

@@ -190,14 +190,6 @@ void BSP_init(void) {
     SST_Task_setIRQ(AO_Button2a, _PTG2Interrupt_n);
     SST_Task_setIRQ(AO_Blinky1,  _PTG3Interrupt_n);
 
-
-    /* configure test pins on GPIOA (digital output) */
-    //gpio_set_direction(GPIOA, TST1_PIN | TST2_PIN | TST6_PIN, GPIO_OUTPUT);
-
-    /* configure button on GPIOF (digital input) */
-    //gpio_set_direction(GPIOA, BTN_SW1, GPIO_INPUT_PU);
-    /* configure test pins on GPIOD (digital output) */
-    //gpio_set_direction(GPIOB, TST3_PIN | TST4_PIN | TST5_PIN, GPIO_OUTPUT);
     
     gpio_set_direction(TST1_PORT, TST1_PIN, GPIO_OUTPUT);
     gpio_set_direction(TST2_PORT, TST2_PIN, GPIO_OUTPUT);
