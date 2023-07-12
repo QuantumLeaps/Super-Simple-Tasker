@@ -165,14 +165,11 @@ LockKey Task::lock(TaskPrio ceiling) {
     //
     uint32_t nvic_prio = ((0xFFU >> nvic_prio_shift) + 1U - ceiling)
                          << nvic_prio_shift;
-    LockKey basepri_;
+    LockKey basepri_; // initialized in the following asm() instruction
     __asm volatile ("mrs %0,BASEPRI" : "=r" (basepri_) :: );
     if (basepri_ > nvic_prio) { // current priority lower than the ceiling?
         __asm volatile ("cpsid i\n msr BASEPRI,%0\n cpsie i"
                         :: "r" (nvic_prio) : );
-    }
-    else {
-        basepri_ = nvic_prio;
     }
     return basepri_;
 #endif
