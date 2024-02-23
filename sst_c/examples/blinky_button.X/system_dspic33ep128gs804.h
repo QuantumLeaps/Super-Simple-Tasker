@@ -1,20 +1,20 @@
-/* 
+/*
  * File:   drivers.h
- * Author: ASHRAF 
+ * Author: ASHRAF
  *
  * Created on June 12, 2023, 3:17 PM
  */
 
 #ifndef DRIVERS_H
-#define	DRIVERS_H
+#define    DRIVERS_H
 
-#ifdef	__cplusplus
+#ifdef    __cplusplus
 extern "C" {
 #endif
 #include <stdint.h>
 #include "xc.h"  /* the device specific header */
 
-    
+
     /********* GPIO REGISTERS ********/
 
 typedef volatile struct { // GPIO Structure
@@ -194,9 +194,9 @@ void interrupt_Enable(IRQn_Type IRQn);
 void SysTick_Config(uint16_t freq_hz);
 
 
-#ifdef	__cplusplus
+#ifdef    __cplusplus
 }
 #endif
 
-#endif	/* DRIVERS_H */
+#endif    /* DRIVERS_H */
 

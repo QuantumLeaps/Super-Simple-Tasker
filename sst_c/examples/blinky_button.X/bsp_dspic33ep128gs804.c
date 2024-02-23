@@ -197,7 +197,7 @@ void BSP_init(void) {
     SST_Task_setIRQ(AO_Button2a, _PTG2Interrupt_n);
     SST_Task_setIRQ(AO_Blinky1,  _PTG3Interrupt_n);
 
-    
+
     gpio_set_direction(TST1_PORT, TST1_PIN, GPIO_OUTPUT);
     gpio_set_direction(TST2_PORT, TST2_PIN, GPIO_OUTPUT);
     gpio_set_direction(TST3_PORT, TST3_PIN, GPIO_OUTPUT);

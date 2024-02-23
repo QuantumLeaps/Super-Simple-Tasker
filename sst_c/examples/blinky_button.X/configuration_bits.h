@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   configuration_bits.h
  * Author: AMASOU02
  *
@@ -6,9 +6,9 @@
  */
 
 #ifndef CONFIGURATION_BITS_H
-#define	CONFIGURATION_BITS_H
+#define    CONFIGURATION_BITS_H
 
-#ifdef	__cplusplus
+#ifdef    __cplusplus
 extern "C" {
 #endif
 
@@ -81,9 +81,9 @@ extern "C" {
 
 
 
-#ifdef	__cplusplus
+#ifdef    __cplusplus
 }
 #endif
 
-#endif	/* CONFIGURATION_BITS_H */
+#endif    /* CONFIGURATION_BITS_H */
 

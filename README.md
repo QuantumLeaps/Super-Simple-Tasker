@@ -22,10 +22,10 @@ as **basic tasks** in the
 SST provides the following features:
 - basic tasks (non-blocking, run-to-completion)
 - preemptive, priority-based scheduling
-- multiple tasks per prioriy level
+- multiple tasks per priority level
 - multiple "activations" per task (event queues)
 - selective scheduler locking according to "Stack Resource Policy" (SRP)<br>
-  (a non-blocking mutual exclusion mechansim for protecting shared resources)
+  (a non-blocking mutual exclusion mechanism for protecting shared resources)
 
 > **NOTE**<br>
 The execution profile of SST tasks perfectly matches the non-blocking and
@@ -33,13 +33,13 @@ run-to-completion semantics of event-driven state machines
 (a.k.a. ["Active Objects" or "Actors](https://www.state-machine.com/active-object)).
 
 This repository contains the SST following implementations:
-- [preemptvie SST in C](sst_c)
-- [preemptvie SST in C++](sst_cpp)
+- [preemptive SST in C](sst_c)
+- [preemptive SST in C++](sst_cpp)
 
 Additionally, this repository contains the even simpler, *non-preemptive*
 implementation of basic tasks called [SST0](#non-preemptive-sst0):
-- [non-preemptvie SST0 in C](sst0_c)
-- [non-preemptvie SST0 in C++](sst0_cpp)
+- [non-preemptive SST0 in C](sst0_c)
+- [non-preemptive SST0 in C++](sst0_cpp)
 
 
 > **NOTE**<br>
@@ -128,7 +128,7 @@ kernels in the
 This repository contains also the non-preemptive implementation of the
 SST API, called **SST0**. SST0 is also a **priority-based RTOS kernel**,
 but the scheduling is non-preemptive. SST0 scheduler always executes the
-higest-priority basic task ready to run, but the scheduling is performed
+highest-priority basic task ready to run, but the scheduling is performed
 only after voluntary completion of each task (run-to-completion execution).
 
 <p align="center"><img src="img/logo_sst0-chip.png"/></p>
@@ -136,7 +136,7 @@ only after voluntary completion of each task (run-to-completion execution).
 SST0 provides the following features:
 - basic tasks (non-blocking, run-to-completion)
 - priority-based, non-preemptive (cooperative) scheduling
-- only one task per prioriy level
+- only one task per priority level
 - multiple "activations" per task (event queues)
 
 

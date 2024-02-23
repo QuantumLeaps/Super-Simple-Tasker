@@ -117,7 +117,7 @@ void SST_Task_activate(SST_Task * const me) {
     /* TBD: implement event recycling */
 }
 /*..........................................................................*/
-void SST_Task_setIRQ(SST_Task * const me, uint8_t irq) 
+void SST_Task_setIRQ(SST_Task * const me, uint8_t irq)
 {
     me->interrupt_num = irq;
 }
@@ -127,7 +127,7 @@ void SST_Task_setIRQ(SST_Task * const me, uint8_t irq)
 SST_LockKey SST_Task_lock(SST_TaskPrio ceiling) {
     /* NOTE:
     * dsPIC support the Interrupt Priority Level -IPL- bits in Status Reg -SR-
-    * and the selective SST scheduler locking 
+    * and the selective SST scheduler locking
     * is implemented by setting IPL bits to the ceiling level.
     */
     // save current Priority
@@ -142,12 +142,12 @@ SST_LockKey SST_Task_lock(SST_TaskPrio ceiling) {
     {
         //do nothing
     }
-    
+
     return basepri_;
 }
 
 /*..........................................................................*/
-void SST_Task_unlock(SST_LockKey lock_key) 
+void SST_Task_unlock(SST_LockKey lock_key)
 {
     SRbits.IPL = lock_key;
 }

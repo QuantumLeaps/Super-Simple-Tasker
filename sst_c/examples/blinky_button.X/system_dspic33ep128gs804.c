@@ -1,7 +1,7 @@
 /**
  * @file system_dspic33ep128gs804.c
  * @author ASHRAF (ashrafkamel491@gmail.com)
- * @version 1 
+ * @version 1
  */
 
 #include "system_dspic33ep128gs804.h"
@@ -40,8 +40,8 @@ int8_t gpio_get_level(gpio_t gpio,gpio_pin_t pin_num)
  * @param[in] GPIOx: where x can be (A,B,C) to select the GPIO peripheral.
  * @param pin: The port pin to be assigned a direction.
  * This parameter can be one of PIN_X where x can be (0..15) or ALL.
- * @param direction: is the new direction of the pin 
- * 
+ * @param direction: is the new direction of the pin
+ *
  * \b Example:
  * @code
  * gpio_set_direction(GPIOA, PIN_8, GPIO_INPUT_PU);
@@ -89,14 +89,14 @@ void gpio_set_direction(gpio_t GPIOx, gpio_pin_t pin_no, gpio_direction_t direct
             }
         }
     }
-    
+
 }
 
 #define F_CPU_MHZ   7.37F
 
-void SysTick_Config(uint16_t Freq_hz) 
+void SysTick_Config(uint16_t Freq_hz)
 {
-    
+
     float period_us = 1.0/(float)Freq_hz;
     period_us *= 1000;
     period_us *= 1000;
