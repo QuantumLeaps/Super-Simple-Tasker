@@ -167,7 +167,8 @@ LockKey Task::lock(TaskPrio ceiling) {
                          << nvic_prio_shift;
     LockKey basepri_; // initialized in the following asm() instruction
     __asm volatile ("mrs %0,BASEPRI" : "=r" (basepri_) :: );
-    if (basepri_ > nvic_prio) { // current priority lower than the ceiling?
+    // masking disabled, or current priority lower than the ceiling?
+    if ((basepri_ == 0U) || (basepri_ > nvic_prio)) {
         __asm volatile ("cpsid i\n msr BASEPRI,%0\n cpsie i"
                         :: "r" (nvic_prio) : );
     }
